@@ -4,26 +4,23 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { createContext, useContext } from "react";
 
-const authContext = createContext({
-  user: {
+const adminContext = createContext({
+  admin: {
     _id: "",
-    avatar: "",
-    name: "",
     email: "",
-    contact: null,
   },
   isLoading: false,
 });
 
-export const AuthContextProvider = ({
+export const AdminContextProvider = ({
   children,
 }: {
   children: React.ReactNode;
 }) => {
-  const { data: user, isLoading } = useQuery({
+  const { data: admin, isLoading } = useQuery({
     queryFn: async () => {
       try {
-        const { data } = await axios.get(`${BACKEND_URL}/user`, {
+        const { data } = await axios.get(`${BACKEND_URL}/admin`, {
           withCredentials: true,
         });
 
@@ -32,12 +29,12 @@ export const AuthContextProvider = ({
         return null;
       }
     },
-    queryKey: ["user"],
+    queryKey: ["admin"],
     retry: false,
   });
 
   return (
-    <authContext.Provider value={{ user, isLoading }}>
+    <adminContext.Provider value={{ admin, isLoading }}>
       {isLoading ? (
         <div className="h-screen w-screen flex flex-col items-center justify-center">
           <Loader />
@@ -46,8 +43,8 @@ export const AuthContextProvider = ({
       ) : (
         children
       )}
-    </authContext.Provider>
+    </adminContext.Provider>
   );
 };
 
-export const useAuthContext = () => useContext(authContext);
+export const useAdminContext = () => useContext(adminContext);
