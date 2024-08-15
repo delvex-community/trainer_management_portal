@@ -91,7 +91,7 @@ const SigninForm = () => {
       {admin ? (
         <Navigate to="/admin" />
       ) : (
-        <div className="flex flex-col bg-white rounded-md p-6 shadow-md gap-3 max-w-md w-full">
+        <div className="flex flex-col bg-white rounded-md p-6 shadow-md gap-3 max-w-md w-full mx-4">
           <h2 className="h2-bold text-center">Admin Login</h2>
           <p className="text-center mb-4">
             Log in to admin account of delvex portal
@@ -106,10 +106,8 @@ const SigninForm = () => {
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <div className="flex justify-between items-center gap-4">
-                      <FormLabel className="min-w-[100px] base-medium text-black">
-                        Email
-                      </FormLabel>
+                    <div className="shadcn-form-row">
+                      <FormLabel className="shadcn-form-label">Email</FormLabel>
                       <FormControl>
                         <Input
                           placeholder="Your Email"
@@ -129,8 +127,8 @@ const SigninForm = () => {
                 name="password"
                 render={({ field }) => (
                   <FormItem>
-                    <div className="flex justify-between items-center gap-4">
-                      <FormLabel className="min-w-[100px] base-medium text-black">
+                    <div className="shadcn-form-row">
+                      <FormLabel className="shadcn-form-label">
                         Password
                       </FormLabel>
                       <FormControl>

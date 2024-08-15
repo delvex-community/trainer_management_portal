@@ -7,7 +7,7 @@ export const uploadOnCloudinary = async function (localFilePath) {
 
     const response = await cloudinary.uploader.upload(localFilePath, {
       resource_type: "auto",
-      folder: "snapgram",
+      folder: "delvex",
     });
 
     fs.unlinkSync(localFilePath);

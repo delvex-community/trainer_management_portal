@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/form";
 import axios from "axios";
 import { Input } from "@/components/ui/input";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { BACKEND_URL } from "@/config";
 import { toast } from "@/components/ui/use-toast";
 import Loader from "@/components/Loader";
@@ -20,25 +20,12 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import { LoginUserType } from "@/types";
 import { SigninValidation } from "@/lib/validation";
 import { useGoogleLogin } from "@react-oauth/google";
+import { useCurrentUser } from "@/react-query/user";
 
 const SigninForm = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-  const { data: user, isLoading } = useQuery({
-    queryFn: async () => {
-      try {
-        const { data } = await axios.get(`${BACKEND_URL}/user`, {
-          withCredentials: true,
-        });
-
-        return data;
-      } catch (error) {
-        return null;
-      }
-    },
-    queryKey: ["user"],
-    retry: false,
-  });
+  const { user } = useCurrentUser();
 
   const form = useForm<z.infer<typeof SigninValidation>>({
     resolver: zodResolver(SigninValidation),
@@ -47,6 +34,7 @@ const SigninForm = () => {
       password: "",
     },
   });
+
   const { mutate: googleLoginApi } = useMutation({
     mutationFn: async (email: string) => {
       const { data } = await axios.post(
@@ -118,11 +106,12 @@ const SigninForm = () => {
       return data;
     },
     onSuccess: () => {
-      navigate("/");
+      queryClient.invalidateQueries({ queryKey: ["user"] });
       return toast({
         title: "Login Successfull",
         description: "Welcome back to delvex training portal.",
       });
+      // navigate("/");
     },
     onError: (err) => {
       if (axios.isAxiosError(err)) {
@@ -152,7 +141,7 @@ const SigninForm = () => {
       {user ? (
         <Navigate to="/" />
       ) : (
-        <div className="flex flex-col bg-white rounded-md p-6 shadow-md gap-3 max-w-md w-full">
+        <div className="flex flex-col bg-white rounded-md p-6 shadow-md gap-3 max-w-md w-full mx-4">
           <h2 className="h2-bold text-center">Welcome back</h2>
           <p className="text-center mb-4">
             Log in to continue using delvex trainer portal
@@ -167,10 +156,8 @@ const SigninForm = () => {
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <div className="flex justify-between items-center gap-4">
-                      <FormLabel className="min-w-[100px] base-medium text-black">
-                        Email
-                      </FormLabel>
+                    <div className="shadcn-form-row">
+                      <FormLabel className="shadcn-form-label">Email</FormLabel>
                       <FormControl>
                         <Input
                           placeholder="Your Email"
@@ -190,8 +177,8 @@ const SigninForm = () => {
                 name="password"
                 render={({ field }) => (
                   <FormItem>
-                    <div className="flex justify-between items-center gap-4">
-                      <FormLabel className="min-w-[100px] base-medium text-black">
+                    <div className="shadcn-form-row">
+                      <FormLabel className="shadcn-form-label">
                         Password
                       </FormLabel>
                       <FormControl>

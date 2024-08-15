@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import AuthLayout from "./_auth/AuthLayout";
 import SigninForm from "./_auth/forms/SigninForm";
 import RootLayout from "./_root/RootLayout";
@@ -7,10 +7,13 @@ import SignupForm from "./_auth/forms/SignupForm";
 import Profile from "./_root/pages/Profile";
 import { Settings } from "lucide-react";
 import AdminForm from "./_auth/forms/AdminForm";
-import UserProtectedRoute from "./_root/User.ProtectedRoute";
+import UserProtectedRoute from "./_root/UserProtectedRoute";
 import AdminProtectedRoute from "./admin/AdminProtectedRoute";
 import AdminLayout from "./admin/AdminLayout";
 import AdminHome from "./admin/pages/AdminHome";
+import AdminTrainers from "./admin/pages/AdminTrainers";
+import TrainerForm from "./admin/forms/TrainerForm";
+import TrainerDetails from "./admin/pages/TrainerDetails";
 
 const App = () => {
   return (
@@ -38,13 +41,18 @@ const App = () => {
 
         {/* Admin Routes */}
         <Route
+          path="/admin"
           element={
             <AdminProtectedRoute>
               <AdminLayout />
             </AdminProtectedRoute>
           }
         >
-          <Route path="/admin" element={<AdminHome />} />
+          <Route index element={<Navigate to="home" />} />
+          <Route path="home" element={<AdminHome />} />
+          <Route path="trainers" element={<AdminTrainers />} />
+          <Route path="trainers/add" element={<TrainerForm />} />
+          <Route path="trainers/:trainerId" element={<TrainerDetails />} />
         </Route>
       </Routes>
     </main>

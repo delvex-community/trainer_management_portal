@@ -7,7 +7,8 @@ import { v2 as cloudinary } from "cloudinary";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import userRouter from "./routes/user.routes.js";
-import adminRouter from "./routes/admin.route.js";
+import adminRouter from "./routes/admin.routes.js";
+import trainerRouter from "./routes/trainer.routes.js";
 
 connectDB();
 
@@ -38,6 +39,9 @@ app.use("/api/user", userRouter);
 
 // Admin API
 app.use("/api/admin", adminRouter);
+
+// Trainer API
+app.use("/api/trainer", trainerRouter);
 
 app.get("/", (req, res) => {
   res.send("Server is Running");

@@ -110,7 +110,7 @@ const SignupForm = () => {
   return (
     <>
       {stage === 1 && (
-        <div className="flex flex-col bg-white rounded-md p-6 shadow-md gap-3 max-w-md w-full">
+        <div className="flex flex-col bg-white rounded-md p-6 shadow-md gap-3 max-w-md w-full m-4">
           <h2 className="h2-bold text-center">Create your account</h2>
           <p className="text-center mb-4">
             Sign up to use delvex trainer portal
@@ -125,8 +125,8 @@ const SignupForm = () => {
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <div className="flex justify-between items-center gap-4">
-                      <FormLabel className="min-w-[100px] base-medium  text-black">
+                    <div className="shadcn-form-row">
+                      <FormLabel className="shadcn-form-label">
                         Full Name
                       </FormLabel>
                       <FormControl>
@@ -146,10 +146,8 @@ const SignupForm = () => {
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <div className="flex justify-between items-center gap-4">
-                      <FormLabel className="min-w-[100px] base-medium text-black">
-                        Email
-                      </FormLabel>
+                    <div className="shadcn-form-row">
+                      <FormLabel className="shadcn-form-label">Email</FormLabel>
                       <FormControl>
                         <Input
                           placeholder="Your Email"
@@ -168,8 +166,8 @@ const SignupForm = () => {
                 name="contact"
                 render={({ field }) => (
                   <FormItem>
-                    <div className="flex justify-between items-center gap-4">
-                      <FormLabel className="min-w-[100px] base-medium text-black">
+                    <div className="shadcn-form-row">
+                      <FormLabel className="shadcn-form-label">
                         Mobile No.
                       </FormLabel>
                       <FormControl>
@@ -189,8 +187,8 @@ const SignupForm = () => {
                 name="password"
                 render={({ field }) => (
                   <FormItem>
-                    <div className="flex justify-between items-center gap-4">
-                      <FormLabel className="min-w-[100px] base-medium text-black">
+                    <div className="shadcn-form-row">
+                      <FormLabel className="shadcn-form-label">
                         Password
                       </FormLabel>
                       <FormControl>

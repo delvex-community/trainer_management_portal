@@ -20,3 +20,14 @@ export const SigninValidation = z.object({
     .min(8, { message: "Password must be at least 8 characters" })
     .max(20),
 });
+
+export const TrainerValidation = z.object({
+  name: z.string(),
+  email: z.string().email(),
+  contact: z
+    .string()
+    .min(10, { message: "Invalid number" })
+    .max(10, { message: "Invalid number" }),
+  tech: z.string(),
+  file: z.custom<File[]>(),
+});

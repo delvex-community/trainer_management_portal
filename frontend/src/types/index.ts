@@ -16,3 +16,20 @@ export type LoginUserType = {
   email: string;
   password: string;
 };
+
+export type CreateTrainerType = {
+  name: string;
+  email: string;
+  contact: number;
+  tech: string;
+  avatar: File;
+};
+
+export type TrainerType = {
+  name: string;
+  email: string;
+  contact: number;
+  tech: string;
+  avatar: string;
+  _id: string;
+};
