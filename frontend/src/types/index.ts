@@ -32,4 +32,5 @@ export type TrainerType = {
   tech: string;
   avatar: string;
   _id: string;
+  ratings: any;
 };

@@ -29,5 +29,5 @@ export const TrainerValidation = z.object({
     .min(10, { message: "Invalid number" })
     .max(10, { message: "Invalid number" }),
   tech: z.string(),
-  file: z.custom<File[]>(),
+  file: z.custom<File[]>() || z.string(),
 });

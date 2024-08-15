@@ -5,12 +5,12 @@ import { convertFileToUrl } from "@/lib/utils";
 
 type ProfileUploaderProps = {
   fieldChange: (files: File) => void;
-  //   mediaUrl: string;
+  mediaUrl?: string;
 };
 
-const ProfileUploader = ({ fieldChange }: ProfileUploaderProps) => {
+const ProfileUploader = ({ fieldChange, mediaUrl }: ProfileUploaderProps) => {
   const [file, setFile] = useState<File>();
-  const [fileUrl, setFileUrl] = useState<string>("");
+  const [fileUrl, setFileUrl] = useState<string>(mediaUrl || "");
 
   const onDrop = useCallback(
     (acceptedFiles: FileWithPath[]) => {

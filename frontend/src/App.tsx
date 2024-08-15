@@ -14,6 +14,9 @@ import AdminHome from "./admin/pages/AdminHome";
 import AdminTrainers from "./admin/pages/AdminTrainers";
 import TrainerForm from "./admin/forms/TrainerForm";
 import TrainerDetails from "./admin/pages/TrainerDetails";
+import UpdateTrainer from "./admin/pages/UpdateTrainer";
+import AdminTrainings from "./admin/pages/AdminTrainings";
+import UpdateRating from "./admin/forms/UpdateRating";
 
 const App = () => {
   return (
@@ -50,9 +53,17 @@ const App = () => {
         >
           <Route index element={<Navigate to="home" />} />
           <Route path="home" element={<AdminHome />} />
-          <Route path="trainers" element={<AdminTrainers />} />
-          <Route path="trainers/add" element={<TrainerForm />} />
-          <Route path="trainers/:trainerId" element={<TrainerDetails />} />
+          <Route path="trainings" element={<AdminTrainings />} />
+          <Route path="trainers">
+            <Route index element={<AdminTrainers />} />
+            <Route path="add" element={<TrainerForm />} />
+            <Route path=":trainerId" element={<TrainerDetails />} />
+            <Route
+              path=":trainerId/update-profile"
+              element={<UpdateTrainer />}
+            />
+            <Route path=":trainerId/update-rating" element={<UpdateRating />} />
+          </Route>
         </Route>
       </Routes>
     </main>

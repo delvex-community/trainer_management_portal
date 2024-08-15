@@ -21,3 +21,39 @@ export function useAllTrainers() {
 
   return { allTrainers, loadingTrainers };
 }
+
+export function useTrainerById(trainerId: string) {
+  const { data: trainer, isLoading } = useQuery({
+    queryFn: async () => {
+      try {
+        const { data } = await axios.get(`${BACKEND_URL}/trainer/${trainerId}`);
+
+        return data;
+      } catch (error) {
+        return null;
+      }
+    },
+    queryKey: ["trainer", trainerId],
+  });
+
+  return { trainer, isLoading };
+}
+
+export function useRating(trainerId: string) {
+  const { data: rating, isLoading } = useQuery({
+    queryFn: async () => {
+      try {
+        const { data } = await axios.get(
+          `${BACKEND_URL}/trainer/rating/${trainerId}`
+        );
+
+        return data;
+      } catch (error) {
+        return null;
+      }
+    },
+    queryKey: ["rating", trainerId],
+  });
+
+  return { rating, isLoading };
+}

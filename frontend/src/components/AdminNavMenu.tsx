@@ -78,8 +78,8 @@ const AdminNavMenu = () => {
         </div>
 
         <DropdownMenuSeparator />
-
-        {/* <div className="flex flex-col space-y-1 mb-2"> */}
+        {/* 
+        <div className="flex flex-col space-y-1 mb-2">
         <DropdownMenuItem asChild>
           <Link to={`/profile/admin/${admin?._id}`}>Profile</Link>
         </DropdownMenuItem>
@@ -87,9 +87,9 @@ const AdminNavMenu = () => {
         <DropdownMenuItem asChild>
           <Link to="/settings">Settings</Link>
         </DropdownMenuItem>
-        {/* </div> */}
+        </div> */}
 
-        <DropdownMenuSeparator />
+        {/* <DropdownMenuSeparator /> */}
 
         <DropdownMenuItem
           onSelect={(event) => {
