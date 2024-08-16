@@ -7,7 +7,7 @@ const AdminLayout = () => {
     <div>
       <AdminContextProvider>
         <AdminNavbar />
-        <main className="container mt-24 sm:mt-20 overflow-auto h-full">
+        <main className="container mt-24 overflow-auto h-full">
           <Outlet />
         </main>
       </AdminContextProvider>
