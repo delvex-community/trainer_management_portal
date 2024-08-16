@@ -9,6 +9,7 @@ import cookieParser from "cookie-parser";
 import userRouter from "./routes/user.routes.js";
 import adminRouter from "./routes/admin.routes.js";
 import trainerRouter from "./routes/trainer.routes.js";
+import trainingRouter from "./routes/training.routes.js";
 
 connectDB();
 
@@ -42,6 +43,9 @@ app.use("/api/admin", adminRouter);
 
 // Trainer API
 app.use("/api/trainer", trainerRouter);
+
+// Training API
+app.use("/api/training", trainingRouter);
 
 app.get("/", (req, res) => {
   res.send("Server is Running");

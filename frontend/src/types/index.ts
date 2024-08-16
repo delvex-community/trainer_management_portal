@@ -35,3 +35,11 @@ export type TrainerType = {
   ratings: any;
   avgRating: number;
 };
+
+export type TrainingType = {
+  title: string;
+  location: string;
+  date: Date;
+  mode: string;
+  trainer: TrainerType;
+};

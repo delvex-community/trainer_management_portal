@@ -2,6 +2,8 @@ import { Link, useParams } from "react-router-dom";
 import { useTrainerById } from "@/react-query/trainer";
 import { Edit, Loader, Mail, Phone, Star } from "lucide-react";
 import { useCurrentAdmin } from "@/react-query/admin";
+import { useTrainerTrainings } from "@/react-query/training";
+import TrainingList from "@/components/TrainingList";
 
 interface StabBlockProps {
   value: string | number;
@@ -19,8 +21,11 @@ const TrainerDetails = () => {
   const { trainerId } = useParams();
   const { trainer, isLoading } = useTrainerById(trainerId || "");
   const { admin } = useCurrentAdmin();
+  const { trainerTrainings, isLoading: loadingTrainings } = useTrainerTrainings(
+    trainerId || ""
+  );
 
-  if (isLoading)
+  if (isLoading || loadingTrainings)
     return (
       <div className="flex-center w-full h-full">
         <Loader />
@@ -98,6 +103,10 @@ const TrainerDetails = () => {
               </Link>
             </div>
           )}
+        </div>
+
+        <div className="mt-4">
+          <TrainingList trainings={trainerTrainings.data} />
         </div>
       </div>
     </div>
