@@ -12,9 +12,9 @@ import {
 
 const trainerRouter = express.Router();
 
-trainerRouter.post("/add", upload.single("file"), addTrainer);
-
 trainerRouter.get("/all", getAllTrainers);
+
+trainerRouter.post("/add", upload.single("file"), addTrainer);
 
 trainerRouter.get("/:trainerId", getTrainerById);
 

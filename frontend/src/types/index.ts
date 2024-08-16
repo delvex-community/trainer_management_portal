@@ -33,4 +33,5 @@ export type TrainerType = {
   avatar: string;
   _id: string;
   ratings: any;
+  avgRating: number;
 };

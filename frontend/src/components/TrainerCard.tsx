@@ -2,14 +2,19 @@ import { TrainerType } from "@/types";
 import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
 import { Edit, Mail, Phone, Star } from "lucide-react";
-import { calculateRating } from "@/lib/utils";
 import TrainerDeleteConfirmation from "./TrainerDeleteConfirmation";
 
-const TrainerCard = ({ trainer }: { trainer: TrainerType }) => {
+const TrainerCard = ({
+  trainer,
+  isAdmin,
+}: {
+  trainer: TrainerType;
+  isAdmin: boolean;
+}) => {
   return (
     <div className="w-full border-2 rounded-md bg-white shadow-md px-6 py-3 cursor-pointer  ">
       <Link
-        to={`/admin/trainers/${trainer._id}`}
+        to={`/trainers/${trainer._id}`}
         className="flex items-center gap-6 flex-wrap justify-center sm:justify-start"
       >
         <img
@@ -21,7 +26,7 @@ const TrainerCard = ({ trainer }: { trainer: TrainerType }) => {
           <div className="flex items-center gap-4">
             <h3 className="text-xl">{trainer.name}</h3>
             <span className="text-yellow-500 text-md font-bold flex items-center gap-2">
-              {calculateRating(trainer?.ratings)}
+              {trainer.avgRating}
               <Star className="fill-yellow-500 h-4 w-4" />
             </span>
           </div>
@@ -36,20 +41,22 @@ const TrainerCard = ({ trainer }: { trainer: TrainerType }) => {
           </span>
         </div>
       </Link>
-      <div className="flex items-center justify-between w-full mt-6">
-        <Button
-          variant="secondary"
-          className="text-md flex items-center gap-2"
-          asChild
-        >
-          <Link to={`/admin/trainers/${trainer._id}/update-profile`}>
-            <Edit />
-            Edit
-          </Link>
-        </Button>
+      {isAdmin && (
+        <div className="flex items-center justify-between w-full mt-6">
+          <Button
+            variant="secondary"
+            className="text-md flex items-center gap-2"
+            asChild
+          >
+            <Link to={`/admin/trainers/${trainer._id}/update-profile`}>
+              <Edit />
+              Edit
+            </Link>
+          </Button>
 
-        <TrainerDeleteConfirmation />
-      </div>
+          <TrainerDeleteConfirmation />
+        </div>
+      )}
     </div>
   );
 };

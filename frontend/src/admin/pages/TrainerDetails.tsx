@@ -1,7 +1,8 @@
 import { Link, useParams } from "react-router-dom";
 import { useTrainerById } from "@/react-query/trainer";
 import { Edit, Loader, Mail, Phone, Star } from "lucide-react";
-import { calculateRating } from "@/lib/utils";
+import { useAdminContext } from "@/context/AdminContext";
+import { useCurrentAdmin } from "@/react-query/admin";
 
 interface StabBlockProps {
   value: string | number;
@@ -18,7 +19,9 @@ const StatBlock = ({ value, label }: StabBlockProps) => (
 const TrainerDetails = () => {
   const { trainerId } = useParams();
   const { trainer, isLoading } = useTrainerById(trainerId || "");
-  const ratings = trainer?.ratings;
+  const { admin } = useCurrentAdmin();
+
+  console.log(admin);
 
   if (isLoading)
     return (
@@ -43,7 +46,7 @@ const TrainerDetails = () => {
                   {trainer?.name}
                 </h1>
                 <span className="text-yellow-500 text-lg font-bold flex items-center gap-2">
-                  {calculateRating(ratings)}
+                  {trainer.avgRating}
                   <Star className="fill-yellow-500" />
                 </span>
               </div>
@@ -76,26 +79,28 @@ const TrainerDetails = () => {
             </p>
           </div>
 
-          <div className="flex flex-col justify-center gap-4">
-            <Link
-              to={`/admin/trainers/${trainer?._id}/update-profile`}
-              className={`h-10 bg-dark-4 px-5 text-light-1 flex-center gap-2 rounded-lg`}
-            >
-              <Edit className="w-4 h-4" />
-              <p className="flex whitespace-nowrap text-sm sm:text-base">
-                Edit Profile
-              </p>
-            </Link>
-            <Link
-              to={`/admin/trainers/${trainer?._id}/update-rating`}
-              className={`h-10 bg-dark-4 px-5 text-light-1 flex-center gap-2 rounded-lg`}
-            >
-              <Star className="w-4 h-4" />
-              <p className="flex whitespace-nowrap text-sm sm:text-base">
-                Update Ratings
-              </p>
-            </Link>
-          </div>
+          {admin && (
+            <div className="flex flex-col justify-center gap-4">
+              <Link
+                to={`/admin/trainers/${trainer?._id}/update-profile`}
+                className={`h-10 bg-dark-4 px-5 text-light-1 flex-center gap-2 rounded-lg`}
+              >
+                <Edit className="w-4 h-4" />
+                <p className="flex whitespace-nowrap text-sm sm:text-base">
+                  Edit Profile
+                </p>
+              </Link>
+              <Link
+                to={`/admin/trainers/${trainer?._id}/update-rating`}
+                className={`h-10 bg-dark-4 px-5 text-light-1 flex-center gap-2 rounded-lg`}
+              >
+                <Star className="w-4 h-4" />
+                <p className="flex whitespace-nowrap text-sm sm:text-base">
+                  Update Ratings
+                </p>
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </div>

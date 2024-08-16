@@ -40,6 +40,7 @@ const App = () => {
           <Route index element={<Home />} />
           <Route path="/profile/:id" element={<Profile />} />
           <Route path="/settings" element={<Settings />} />
+          <Route path="/trainers/:trainerId" element={<TrainerDetails />} />
         </Route>
 
         {/* Admin Routes */}

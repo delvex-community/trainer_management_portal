@@ -10,7 +10,7 @@ const AdminTrainers = () => {
           <NavLink to="/admin/trainers/add">Add Trainer</NavLink>
         </Button>
       </div>
-      <TrainersList />
+      <TrainersList isAdmin={true} />
     </div>
   );
 };

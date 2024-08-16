@@ -48,15 +48,50 @@ export const addTrainer = asyncHandler(async (req, res) => {
 });
 
 export const getAllTrainers = asyncHandler(async (req, res) => {
-  const trainers = await Trainer.aggregate([
-    {
-      $lookup: {
-        from: "ratings",
-        localField: "_id",
-        foreignField: "trainerId",
-        as: "ratings",
-      },
+  const { query, sort: sortQuery, order, page } = req.query;
+  const limit = 6;
+
+  const skip = (Number(page) - 1) * limit;
+  const condition = query
+    ? {
+        $or: [
+          { name: { $regex: query, $options: "i" } },
+          { email: { $regex: query, $options: "i" } },
+          {
+            $expr: {
+              $regexMatch: {
+                input: { $toString: "$contact" },
+                regex: query,
+                options: "i",
+              },
+            },
+          },
+        ],
+      }
+    : {};
+
+  const orderValue = order === "desc" ? -1 : 1;
+
+  let sortCondition = {};
+  if (sortQuery === "name") {
+    sortCondition = { name: orderValue };
+  }
+  if (sortQuery === "rating") {
+    sortCondition = { avgRating: orderValue };
+  }
+
+  let pipeline = [];
+
+  pipeline.push({
+    $lookup: {
+      from: "ratings",
+      localField: "_id",
+      foreignField: "trainerId",
+      as: "ratings",
     },
+  });
+
+  pipeline.push(
     {
       $addFields: {
         ratings: {
@@ -64,9 +99,45 @@ export const getAllTrainers = asyncHandler(async (req, res) => {
         },
       },
     },
-  ]);
+    {
+      $addFields: {
+        avgRating: {
+          $avg: [
+            "$ratings.rating1",
+            "$ratings.rating2",
+            "$ratings.rating3",
+            "$ratings.rating4",
+            "$ratings.rating5",
+          ],
+        },
+      },
+    },
+    {
+      $match: condition,
+    },
+    {
+      $skip: skip,
+    }
+  );
 
-  return res.status(200).json(trainers);
+  const temp = await Trainer.aggregate(pipeline);
+
+  const length = temp.length;
+
+  pipeline.push({
+    $limit: limit,
+  });
+
+  if (sortQuery) {
+    pipeline.push({
+      $sort: sortCondition,
+    });
+  }
+  const trainers = await Trainer.aggregate(pipeline);
+
+  return res
+    .status(200)
+    .json({ data: trainers, totalPages: Math.ceil(length / limit) });
 });
 
 export const getTrainerById = asyncHandler(async (req, res) => {

@@ -7,14 +7,13 @@ import {
 } from "./ui/dropdown-menu";
 import { Avatar } from "./ui/avatar";
 import { useAuthContext } from "@/context/AuthContext";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { BACKEND_URL } from "@/config";
 import { toast } from "./ui/use-toast";
 
 const UserNav = () => {
-  // const navigate = useNavigate();
   const { user } = useAuthContext();
   const queryClient = useQueryClient();
 
@@ -29,7 +28,6 @@ const UserNav = () => {
       return data;
     },
     onSuccess: () => {
-      // navigate("/sign-in", { replace: true });
       queryClient.invalidateQueries({ queryKey: ["user"] });
       toast({
         title: "Logged Out",
