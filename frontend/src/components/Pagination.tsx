@@ -11,8 +11,6 @@ const Pagination = ({ totalPages }: PaginationProps) => {
   const page = searchParams.get("page") || "1";
   const queryClient = useQueryClient();
 
-  console.log(totalPages);
-
   const onClick = (btnType: string) => {
     const pageValue = btnType === "next" ? Number(page) + 1 : Number(page) - 1;
 

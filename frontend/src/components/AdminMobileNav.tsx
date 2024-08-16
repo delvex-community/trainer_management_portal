@@ -1,12 +1,5 @@
 import AdminNavItems from "./AdminNavItems";
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "./ui/sheet";
+import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 
 const AdminMobileNav = () => {
   return (

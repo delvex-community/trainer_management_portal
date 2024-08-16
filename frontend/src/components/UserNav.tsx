@@ -78,15 +78,9 @@ const UserNav = () => {
 
         <DropdownMenuSeparator />
 
-        {/* <div className="flex flex-col space-y-1 mb-2"> */}
         <DropdownMenuItem asChild>
           <Link to={`/profile/${user?._id}`}>Profile</Link>
         </DropdownMenuItem>
-
-        <DropdownMenuItem asChild>
-          <Link to="/settings">Settings</Link>
-        </DropdownMenuItem>
-        {/* </div> */}
 
         <DropdownMenuSeparator />
 

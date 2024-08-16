@@ -164,6 +164,19 @@ export const getTrainerById = asyncHandler(async (req, res) => {
         },
       },
     },
+    {
+      $addFields: {
+        avgRating: {
+          $avg: [
+            "$ratings.rating1",
+            "$ratings.rating2",
+            "$ratings.rating3",
+            "$ratings.rating4",
+            "$ratings.rating5",
+          ],
+        },
+      },
+    },
   ]);
 
   if (!trainer) throw new ApiError(400, "Trainer does not exists");

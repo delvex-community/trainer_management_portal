@@ -1,7 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import { useTrainerById } from "@/react-query/trainer";
 import { Edit, Loader, Mail, Phone, Star } from "lucide-react";
-import { useAdminContext } from "@/context/AdminContext";
 import { useCurrentAdmin } from "@/react-query/admin";
 
 interface StabBlockProps {
@@ -20,8 +19,6 @@ const TrainerDetails = () => {
   const { trainerId } = useParams();
   const { trainer, isLoading } = useTrainerById(trainerId || "");
   const { admin } = useCurrentAdmin();
-
-  console.log(admin);
 
   if (isLoading)
     return (
@@ -46,8 +43,8 @@ const TrainerDetails = () => {
                   {trainer?.name}
                 </h1>
                 <span className="text-yellow-500 text-lg font-bold flex items-center gap-2">
-                  {trainer.avgRating}
-                  <Star className="fill-yellow-500" />
+                  {trainer?.avgRating}
+                  <Star className="fill-yellow-500 h-5 w-5" />
                 </span>
               </div>
               <div className="flex items-center justify-center md:justify-start md:items-start gap-3 mt-3 ">

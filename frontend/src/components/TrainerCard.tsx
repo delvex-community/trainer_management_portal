@@ -14,7 +14,11 @@ const TrainerCard = ({
   return (
     <div className="w-full border-2 rounded-md bg-white shadow-md px-6 py-3 cursor-pointer  ">
       <Link
-        to={`/trainers/${trainer._id}`}
+        to={`${
+          isAdmin
+            ? `/admin/trainers/${trainer._id}`
+            : `/trainers/${trainer._id}`
+        }`}
         className="flex items-center gap-6 flex-wrap justify-center sm:justify-start"
       >
         <img

@@ -6,7 +6,7 @@ import {
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 import { Avatar } from "./ui/avatar";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { BACKEND_URL } from "@/config";
