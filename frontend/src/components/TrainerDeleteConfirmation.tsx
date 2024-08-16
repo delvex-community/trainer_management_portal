@@ -11,14 +11,14 @@ import {
 } from "./ui/alert-dialog";
 import { Delete } from "lucide-react";
 import { Button } from "./ui/button";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { BACKEND_URL } from "@/config";
-import { useParams } from "react-router-dom";
 import { toast } from "./ui/use-toast";
 
-const TrainerDeleteConfirmation = () => {
-  const { trainerId } = useParams();
+const TrainerDeleteConfirmation = ({ trainerId }: { trainerId: string }) => {
+  const queryClient = useQueryClient();
+
   const { mutate: deleteTrainer, isPending } = useMutation({
     mutationFn: async () => {
       const { data } = await axios.delete(
@@ -27,6 +27,7 @@ const TrainerDeleteConfirmation = () => {
       return data;
     },
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["all-trainers"] });
       return toast({
         title: "Deleted Successfully",
         description: "Trainer has been removed.",

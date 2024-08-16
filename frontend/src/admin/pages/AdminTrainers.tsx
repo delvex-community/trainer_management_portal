@@ -1,16 +1,27 @@
+import Pagination from "@/components/Pagination";
+import SearchInput from "@/components/SearchInput";
 import TrainersList from "@/components/TrainersList";
 import { Button } from "@/components/ui/button";
+import { useAllTrainers } from "@/react-query/trainer";
 import { NavLink } from "react-router-dom";
 
 const AdminTrainers = () => {
+  const { allTrainers } = useAllTrainers();
+
   return (
-    <div className="flex flex-col gap-6 py-8">
-      <div className="flex justify-end mb-5">
+    <div className="flex flex-col gap-6 items-center">
+      <div className="w-full max-w-[400px]">
+        <SearchInput />
+      </div>
+      <div className="flex justify-center mb-5">
         <Button className="font-semibold text-lg" asChild>
           <NavLink to="/admin/trainers/add">Add Trainer</NavLink>
         </Button>
       </div>
       <TrainersList isAdmin={true} />
+      <div className="flex items-center justify-center mt-4">
+        <Pagination totalPages={allTrainers?.totalPages} />
+      </div>
     </div>
   );
 };

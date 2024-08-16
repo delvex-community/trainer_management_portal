@@ -58,7 +58,7 @@ const TrainerCard = ({
             </Link>
           </Button>
 
-          <TrainerDeleteConfirmation />
+          <TrainerDeleteConfirmation trainerId={trainer._id} />
         </div>
       )}
     </div>

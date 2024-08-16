@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { Star } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRating } from "@/react-query/trainer";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
@@ -12,13 +12,21 @@ import { toast } from "@/components/ui/use-toast";
 const UpdateRating = () => {
   const navigate = useNavigate();
   const { trainerId } = useParams();
-  const { rating } = useRating(trainerId || "");
+  const { rating, isLoading } = useRating(trainerId || "");
 
   const [rating1, setRating1] = useState(rating?.rating1);
   const [rating2, setRating2] = useState(rating?.rating2);
   const [rating3, setRating3] = useState(rating?.rating3);
   const [rating4, setRating4] = useState(rating?.rating4);
   const [rating5, setRating5] = useState(rating?.rating5);
+
+  useEffect(() => {
+    setRating1(rating?.rating1);
+    setRating2(rating?.rating2);
+    setRating3(rating?.rating3);
+    setRating4(rating?.rating4);
+    setRating5(rating?.rating5);
+  }, [rating]);
 
   const { mutate: updateRating, isPending } = useMutation({
     mutationFn: async () => {
@@ -58,6 +66,8 @@ const UpdateRating = () => {
       });
     },
   });
+
+  if (isLoading) return <Loader />;
 
   return (
     <div className="h-[80vh] flex items-center justify-center">

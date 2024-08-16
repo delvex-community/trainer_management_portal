@@ -77,7 +77,7 @@ const TrainerDetails = () => {
           </div>
 
           {admin && (
-            <div className="flex flex-col justify-center gap-4">
+            <div className="flex md:flex-col justify-center gap-4">
               <Link
                 to={`/admin/trainers/${trainer?._id}/update-profile`}
                 className={`h-10 bg-dark-4 px-5 text-light-1 flex-center gap-2 rounded-lg`}
