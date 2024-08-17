@@ -20,9 +20,12 @@ export function useAllTrainings() {
 export function useTrainerTrainings(trainerId: string) {
   const { data: trainerTrainings, isLoading } = useQuery({
     queryFn: async () => {
-      const { data } = await axios.get(`${BACKEND_URL}/training/${trainerId}`, {
-        withCredentials: true,
-      });
+      const { data } = await axios.get(
+        `${BACKEND_URL}/training/trainer/${trainerId}`,
+        {
+          withCredentials: true,
+        }
+      );
 
       return data;
     },
@@ -30,4 +33,22 @@ export function useTrainerTrainings(trainerId: string) {
   });
 
   return { trainerTrainings, isLoading };
+}
+
+export function useTraining(trainingId: string) {
+  const { data: training, isLoading } = useQuery({
+    queryFn: async () => {
+      const { data } = await axios.get(
+        `${BACKEND_URL}/training/${trainingId}`,
+        {
+          withCredentials: true,
+        }
+      );
+
+      return data;
+    },
+    queryKey: ["training", trainingId],
+  });
+
+  return { training, isLoading };
 }

@@ -18,6 +18,7 @@ import UpdateTrainer from "./admin/pages/UpdateTrainer";
 import AdminTrainings from "./admin/pages/AdminTrainings";
 import UpdateRating from "./admin/forms/UpdateRating";
 import TrainingForm from "./admin/forms/TrainingForm";
+import UpdateTraining from "./admin/forms/UpdateTraining";
 
 const App = () => {
   return (
@@ -58,6 +59,7 @@ const App = () => {
           <Route path="trainings">
             <Route index element={<AdminTrainings />} />
             <Route path="add" element={<TrainingForm />} />
+            <Route path="update/:trainingId" element={<UpdateTraining />} />
           </Route>
           <Route path="trainers">
             <Route index element={<AdminTrainers />} />

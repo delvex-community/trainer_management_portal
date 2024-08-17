@@ -7,7 +7,11 @@ import { Training } from "../models/training.model.js";
 export const addTraining = asyncHandler(async (req, res) => {
   const { title, location, mode, trainerId, date } = req.body;
 
-  console.log(req.body);
+  const findTraining = await Training.findOne({
+    $and: [{ title }, { location }, { mode }, { trainerId }, { date }],
+  });
+
+  if (findTraining) throw new ApiError(400, "Training already exists");
 
   const training = await Training.create({
     title,
@@ -94,4 +98,35 @@ export const deleteTraining = asyncHandler(async (req, res) => {
   return res
     .status(200)
     .json(new ApiResponse(200, {}, "Training deleted successfully"));
+});
+
+export const getTrainingById = asyncHandler(async (req, res) => {
+  const { trainingId } = req.params;
+
+  const training = await Training.findById(trainingId);
+
+  if (!training) throw new ApiError(400, "Training does not exists");
+
+  return res.status(200).json(training);
+});
+
+export const updateTraining = asyncHandler(async (req, res) => {
+  const { title, location, date, trainerId, mode } = req.body;
+  const { trainingId } = req.params;
+
+  const findTraining = await Training.findById(trainingId);
+
+  if (!findTraining) throw new ApiError(400, "Training does not exists");
+
+  await Training.findByIdAndUpdate(findTraining._id, {
+    title,
+    location,
+    date,
+    mode,
+    trainerId,
+  });
+
+  return res
+    .status(200)
+    .json(new ApiResponse(200, {}, "Training updated successfully"));
 });

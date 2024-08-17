@@ -1,6 +1,8 @@
 import { formatDateTime } from "@/lib/utils";
 import { TrainingType } from "@/types";
-import { CalendarX2, Edit, Laptop, Trash2 } from "lucide-react";
+import { CalendarX2, Edit, Laptop } from "lucide-react";
+import TrainingDeleteConfirmation from "./TrainingDeleteConfirmation";
+import { NavLink } from "react-router-dom";
 
 type TrainingCardProps = {
   training: TrainingType;
@@ -35,8 +37,11 @@ const TrainingCard = ({ training }: TrainingCardProps) => {
           {training.trainer.name}
         </div>
         <div className="flex items-center gap-3">
-          <Edit className="text-violet-600" />
-          <Trash2 className="text-red-600" />
+          <NavLink to={`/admin/trainings/update/${training._id}`}>
+            <Edit className="text-violet-600" />
+          </NavLink>
+
+          <TrainingDeleteConfirmation trainingId={training._id} />
         </div>
       </div>
     </div>
