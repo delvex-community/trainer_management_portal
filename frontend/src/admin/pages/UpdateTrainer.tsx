@@ -35,6 +35,7 @@ const UpdateTrainer = () => {
       contact: String(trainer?.contact) || "",
       tech: trainer?.tech || "",
       file: trainer?.avatar || [],
+      location: trainer?.location || "",
     });
   }, [trainer]);
 
@@ -46,6 +47,7 @@ const UpdateTrainer = () => {
       contact: "",
       tech: "",
       file: [],
+      location: "",
     },
   });
 
@@ -167,6 +169,32 @@ const UpdateTrainer = () => {
                 </FormItem>
               )}
             />
+
+            <FormField
+              control={form.control}
+              name="location"
+              render={({ field }) => (
+                <FormItem>
+                  <div className="shadcn-form-row">
+                    <FormLabel className="shadcn-form-label">
+                      Location
+                    </FormLabel>
+                    <div className="w-full">
+                      <FormControl>
+                        <Input
+                          placeholder="Trainer's Location"
+                          {...field}
+                          className="form-input mb-2"
+                          type="text"
+                        />
+                      </FormControl>
+                    </div>
+                  </div>
+                  <FormMessage className="text-start" />
+                </FormItem>
+              )}
+            />
+
             <FormField
               control={form.control}
               name="tech"

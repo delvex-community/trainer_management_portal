@@ -37,7 +37,8 @@ const TrainingForm = () => {
     defaultValues: {
       title: "",
       location: "",
-      date: new Date(),
+      startDate: new Date(),
+      endDate: new Date(),
       mode: "Offline",
       trainerId: "",
     },
@@ -172,11 +173,37 @@ const TrainingForm = () => {
             />
             <FormField
               control={form.control}
-              name="date"
+              name="startDate"
               render={({ field }) => (
                 <FormItem>
                   <div className="shadcn-form-row">
-                    <FormLabel className="shadcn-form-label">Date</FormLabel>
+                    <FormLabel className="shadcn-form-label">
+                      Start Date
+                    </FormLabel>
+                    <FormControl>
+                      <div className="flex items-center border-gray-200 border-[1px] rounded-md px-3 py-2 w-full">
+                        <Calendar className="h-4 w-4" />
+                        <DatePicker
+                          selected={field.value}
+                          onChange={(date: Date | null) => field.onChange(date)}
+                        />
+                      </div>
+                    </FormControl>
+                  </div>
+                  <FormMessage className="text-start" />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="endDate"
+              render={({ field }) => (
+                <FormItem>
+                  <div className="shadcn-form-row">
+                    <FormLabel className="shadcn-form-label">
+                      End Date
+                    </FormLabel>
                     <FormControl>
                       <div className="flex items-center border-gray-200 border-[1px] rounded-md px-3 py-2 w-full">
                         <Calendar className="h-4 w-4" />

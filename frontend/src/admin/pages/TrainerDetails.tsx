@@ -1,6 +1,14 @@
 import { Link, useParams } from "react-router-dom";
 import { useTrainerById } from "@/react-query/trainer";
-import { Edit, Loader, Mail, Phone, Star } from "lucide-react";
+import {
+  Edit,
+  Loader,
+  LocateIcon,
+  Mail,
+  MapPin,
+  Phone,
+  Star,
+} from "lucide-react";
 import { useCurrentAdmin } from "@/react-query/admin";
 import { useTrainerTrainings } from "@/react-query/training";
 import TrainingList from "@/components/TrainingList";
@@ -66,9 +74,16 @@ const TrainerDetails = () => {
                   </div>
                 </div>
 
+                <div className="mt-4 font-semibold flex items-center gap-2 text-gray-700 justify-center md:justify-start">
+                  <MapPin className="h-5 w-5" />
+                  {trainer.location}
+                </div>
+
                 <div className="flex gap-6 mt-6 items-center justify-center md:justify-start flex-wrap z-20">
-                  <StatBlock value={15} label="Training Delivered" />
-                  <StatBlock value={10} label="Online Classes" />
+                  <StatBlock
+                    value={trainer.trainingCount}
+                    label="Training Delivered"
+                  />
                 </div>
 
                 <p className="flex items-center justify-center sm:justify-start flex-wrap gap-2 small-medium md:base-medium text-center xl:text-left mt-7 max-w-screen-sm">

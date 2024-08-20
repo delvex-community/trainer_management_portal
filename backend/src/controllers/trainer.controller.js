@@ -7,7 +7,7 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
 
 export const addTrainer = asyncHandler(async (req, res) => {
-  const { name, email, contact, tech } = req.body;
+  const { name, email, contact, tech, location } = req.body;
 
   const findTrainer = await Trainer.findOne({ $or: [{ email, contact }] });
 
@@ -36,6 +36,7 @@ export const addTrainer = asyncHandler(async (req, res) => {
     contact,
     tech,
     avatar: avatarUrl,
+    location,
   });
 
   await Rating.create({
@@ -57,6 +58,8 @@ export const getAllTrainers = asyncHandler(async (req, res) => {
         $or: [
           { name: { $regex: query, $options: "i" } },
           { email: { $regex: query, $options: "i" } },
+          { tech: { $regex: query, $options: "i" } },
+          { location: { $regex: query, $options: "i" } },
           {
             $expr: {
               $regexMatch: {
@@ -177,6 +180,21 @@ export const getTrainerById = asyncHandler(async (req, res) => {
         },
       },
     },
+    {
+      $lookup: {
+        from: "trainings",
+        localField: "_id",
+        foreignField: "trainerId",
+        as: "trainingCount",
+      },
+    },
+    {
+      $addFields: {
+        trainingCount: {
+          $size: "$trainingCount",
+        },
+      },
+    },
   ]);
 
   if (!trainer) throw new ApiError(400, "Trainer does not exists");
@@ -185,9 +203,8 @@ export const getTrainerById = asyncHandler(async (req, res) => {
 });
 
 export const updateTrainer = asyncHandler(async (req, res) => {
-  const { name, email, contact, tech } = req.body;
+  const { name, email, contact, tech, location } = req.body;
   let { file: avatar } = req.body;
-  console.log(req.body);
 
   const { trainerId } = req.params;
 
@@ -211,6 +228,7 @@ export const updateTrainer = asyncHandler(async (req, res) => {
       contact,
       tech,
       avatar,
+      location,
     },
     { new: true }
   );

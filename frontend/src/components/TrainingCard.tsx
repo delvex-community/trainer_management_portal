@@ -1,6 +1,6 @@
 import { formatDateTime } from "@/lib/utils";
 import { TrainingType } from "@/types";
-import { CalendarX2, Edit, Laptop } from "lucide-react";
+import { Edit, Laptop } from "lucide-react";
 import TrainingDeleteConfirmation from "./TrainingDeleteConfirmation";
 import { NavLink } from "react-router-dom";
 
@@ -12,20 +12,21 @@ const TrainingCard = ({ training }: TrainingCardProps) => {
   return (
     <div className="flex flex-col gap-3 w-full shadow-md px-4 py-3 rounded-md cursor-pointer">
       <h3 className="font-semibold text-2xl">{training.title}</h3>
-      <div className="flex items-center justify-between font-semibold text-blue-600">
-        <span className="flex items-center gap-2">
-          <CalendarX2 />
-          {formatDateTime(training.date).dateOnly}
+      <div className="flex items-center font-semibold text-blue-600">
+        <span className="flex items-center gap-2 mr-2">
+          {formatDateTime(training.startDate).dateOnly}
+        </span>{" "}
+        -{" "}
+        <span className="flex items-center gap-2 ml-2">
+          {formatDateTime(training.endDate).dateOnly}
         </span>
+      </div>
+      <div className="flex justify-between font-semibold text-gray-600">
         <span className="flex items-center gap-2">
           <Laptop />
           {training.mode}
         </span>
-      </div>
-      <div className="flex justify-end">
-        <span className="text-lg font-semibold text-gray-500">
-          {training.location}
-        </span>
+        <span className="text-lg  ">{training.location}</span>
       </div>
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4 font-bold text-md">

@@ -26,7 +26,7 @@ const TrainingDeleteConfirmation = ({ trainingId }: { trainingId: string }) => {
       return data;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["all-trainers"] });
+      queryClient.invalidateQueries({ queryKey: ["all-trainings"] });
       return toast({
         title: "Deleted Successfully",
         description: "Trainer has been removed.",

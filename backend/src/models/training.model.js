@@ -8,7 +8,10 @@ const trainingSchema = new Schema(
     location: {
       type: String,
     },
-    date: {
+    startDate: {
+      type: Date,
+    },
+    endDate: {
       type: Date,
     },
     mode: {

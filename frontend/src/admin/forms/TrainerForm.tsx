@@ -93,7 +93,7 @@ const TrainerForm = () => {
                     </FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="Your Full Name"
+                        placeholder="Trainer's Full Name"
                         {...field}
                         className="form-input"
                         required={true}
@@ -113,7 +113,7 @@ const TrainerForm = () => {
                     <FormLabel className="shadcn-form-label">Email</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="Your Email"
+                        placeholder="Trainer's Email"
                         {...field}
                         type="email"
                         className="form-input"
@@ -135,7 +135,7 @@ const TrainerForm = () => {
                     </FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="Your Contact Info"
+                        placeholder="Trainer's Contact Info"
                         {...field}
                         className="form-input"
                         type="number"
@@ -146,6 +146,32 @@ const TrainerForm = () => {
                 </FormItem>
               )}
             />
+
+            <FormField
+              control={form.control}
+              name="location"
+              render={({ field }) => (
+                <FormItem>
+                  <div className="shadcn-form-row">
+                    <FormLabel className="shadcn-form-label">
+                      Location
+                    </FormLabel>
+                    <div className="w-full">
+                      <FormControl>
+                        <Input
+                          placeholder="Trainer's Location"
+                          {...field}
+                          className="form-input mb-2"
+                          type="text"
+                        />
+                      </FormControl>
+                    </div>
+                  </div>
+                  <FormMessage className="text-start" />
+                </FormItem>
+              )}
+            />
+
             <FormField
               control={form.control}
               name="tech"
@@ -158,7 +184,7 @@ const TrainerForm = () => {
                     <div className="w-full">
                       <FormControl>
                         <Input
-                          placeholder="Tech Stack"
+                          placeholder="Trainer's Tech Stack"
                           {...field}
                           className="form-input mb-2"
                           type="text"

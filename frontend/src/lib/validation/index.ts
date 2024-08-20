@@ -30,12 +30,14 @@ export const TrainerValidation = z.object({
     .max(10, { message: "Invalid number" }),
   tech: z.string(),
   file: z.custom<File[]>() || z.string(),
+  location: z.string(),
 });
 
 export const TrainingValidation = z.object({
   title: z.string().min(6, { message: "Title must be at least 6 characters" }),
   location: z.string(),
   mode: z.string(),
-  date: z.date(),
+  startDate: z.date(),
+  endDate: z.date(),
   trainerId: z.string(),
 });

@@ -42,7 +42,10 @@ const UpdateTraining = () => {
     defaultValues: {
       title: training?.title || "",
       location: training?.location || "",
-      date: training?.date ? new Date(training.date) : new Date(),
+      startDate: training?.startDate
+        ? new Date(training.startDate)
+        : new Date(),
+      endDate: training?.endDate ? new Date(training.endDate) : new Date(),
       mode: training?.mode || "Offline",
       trainerId: training?.trainerId || "",
     },
@@ -52,7 +55,10 @@ const UpdateTraining = () => {
     form.reset({
       title: training?.title,
       mode: training?.mode,
-      date: training?.date ? new Date(training.date) : new Date(),
+      startDate: training?.startDate
+        ? new Date(training.startDate)
+        : new Date(),
+      endDate: training?.endDate ? new Date(training.endDate) : new Date(),
       trainerId: training?.trainerId,
       location: training?.location,
     });
@@ -190,11 +196,37 @@ const UpdateTraining = () => {
             />
             <FormField
               control={form.control}
-              name="date"
+              name="startDate"
               render={({ field }) => (
                 <FormItem>
                   <div className="shadcn-form-row">
-                    <FormLabel className="shadcn-form-label">Date</FormLabel>
+                    <FormLabel className="shadcn-form-label">
+                      Start Date
+                    </FormLabel>
+                    <FormControl>
+                      <div className="flex items-center border-gray-200 border-[1px] rounded-md px-3 py-2 w-full">
+                        <Calendar className="h-4 w-4" />
+                        <DatePicker
+                          selected={field.value}
+                          onChange={(date: Date | null) => field.onChange(date)}
+                        />
+                      </div>
+                    </FormControl>
+                  </div>
+                  <FormMessage className="text-start" />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="endDate"
+              render={({ field }) => (
+                <FormItem>
+                  <div className="shadcn-form-row">
+                    <FormLabel className="shadcn-form-label">
+                      End Date
+                    </FormLabel>
                     <FormControl>
                       <div className="flex items-center border-gray-200 border-[1px] rounded-md px-3 py-2 w-full">
                         <Calendar className="h-4 w-4" />

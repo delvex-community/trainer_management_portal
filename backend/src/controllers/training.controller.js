@@ -5,10 +5,17 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 import { Training } from "../models/training.model.js";
 
 export const addTraining = asyncHandler(async (req, res) => {
-  const { title, location, mode, trainerId, date } = req.body;
+  const { title, location, mode, trainerId, startDate, endDate } = req.body;
 
   const findTraining = await Training.findOne({
-    $and: [{ title }, { location }, { mode }, { trainerId }, { date }],
+    $and: [
+      { title },
+      { location },
+      { mode },
+      { trainerId },
+      { startDate },
+      { endDate },
+    ],
   });
 
   if (findTraining) throw new ApiError(400, "Training already exists");
@@ -16,7 +23,8 @@ export const addTraining = asyncHandler(async (req, res) => {
   const training = await Training.create({
     title,
     location,
-    date,
+    startDate,
+    endDate,
     trainerId,
     mode,
   });
@@ -111,7 +119,7 @@ export const getTrainingById = asyncHandler(async (req, res) => {
 });
 
 export const updateTraining = asyncHandler(async (req, res) => {
-  const { title, location, date, trainerId, mode } = req.body;
+  const { title, location, startDate, endDate, trainerId, mode } = req.body;
   const { trainingId } = req.params;
 
   const findTraining = await Training.findById(trainingId);
@@ -121,7 +129,8 @@ export const updateTraining = asyncHandler(async (req, res) => {
   await Training.findByIdAndUpdate(findTraining._id, {
     title,
     location,
-    date,
+    startDate,
+    endDate,
     mode,
     trainerId,
   });

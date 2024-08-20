@@ -40,7 +40,8 @@ export type TrainingType = {
   _id: string;
   title: string;
   location: string;
-  date: Date;
+  startDate: Date;
+  endDate: Date;
   mode: string;
   trainer: TrainerType;
 };

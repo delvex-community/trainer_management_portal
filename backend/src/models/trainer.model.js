@@ -17,6 +17,9 @@ const trainerSchema = new Schema(
     tech: {
       type: String,
     },
+    location: {
+      type: String,
+    },
   },
   {
     timestamps: true,
