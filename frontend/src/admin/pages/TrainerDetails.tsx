@@ -1,14 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import { useTrainerById } from "@/react-query/trainer";
-import {
-  Edit,
-  Loader,
-  LocateIcon,
-  Mail,
-  MapPin,
-  Phone,
-  Star,
-} from "lucide-react";
+import { Edit, Loader, Mail, MapPin, Phone, Star } from "lucide-react";
 import { useCurrentAdmin } from "@/react-query/admin";
 import { useTrainerTrainings } from "@/react-query/training";
 import TrainingList from "@/components/TrainingList";
