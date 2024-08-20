@@ -17,18 +17,18 @@ export const addTrainer = asyncHandler(async (req, res) => {
       "Trainer with this email or contact already exists."
     );
 
-  let avatarUrl = req.file?.path;
+  let avatarUrl = req.file?.path || "";
 
-  if (!avatarUrl) throw new ApiError(400, "Avatar file is required");
+  if (avatarUrl) {
+    const localFilePath = req.file.path;
 
-  const localFilePath = req.file.path;
+    const imageFile = await uploadOnCloudinary(localFilePath);
 
-  const imageFile = await uploadOnCloudinary(localFilePath);
+    if (!imageFile)
+      throw new ApiError(400, "Something went wrong while uploading avatar");
 
-  if (!imageFile)
-    throw new ApiError(400, "Something went wrong while uploading avatar");
-
-  avatarUrl = imageFile.url;
+    avatarUrl = imageFile.url;
+  }
 
   const trainer = await Trainer.create({
     name,

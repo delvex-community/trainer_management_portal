@@ -30,7 +30,7 @@ const TrainingCard = ({ training }: TrainingCardProps) => {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4 font-bold text-md">
           <img
-            src={training.trainer.avatar}
+            src={training.trainer.avatar || "/icons/profile-placeholder.svg"}
             alt="trainer-profile"
             className="w-10 h-10 rounded-full object-cover"
           />

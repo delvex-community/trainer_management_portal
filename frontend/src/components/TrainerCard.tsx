@@ -22,7 +22,7 @@ const TrainerCard = ({
         className="flex items-center gap-6 flex-wrap justify-center sm:justify-start"
       >
         <img
-          src={trainer.avatar}
+          src={trainer.avatar || "/icons/profile-placeholder.svg"}
           alt={trainer.name}
           className="w-20 h-20 object-cover rounded-full"
         />
