@@ -2,6 +2,8 @@ import { User } from "../models/user.model.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
+import bcrypt from "bcryptjs";
+import { uploadOnCloudinary } from "../utils/cloudinary.js";
 
 async function generateAccessToken(userId) {
   try {
@@ -187,4 +189,126 @@ export const getCurrentUser = asyncHandler(async (req, res) => {
   const user = req.user;
 
   return res.status(200).json(user);
+});
+
+export const getAllUsers = asyncHandler(async (req, res) => {
+  const { query, sort: sortQuery, order, page } = req.query;
+  const limit = 6;
+
+  const skip = (Number(page) - 1) * limit;
+  const condition = query
+    ? {
+        $or: [
+          { name: { $regex: query, $options: "i" } },
+          { email: { $regex: query, $options: "i" } },
+          {
+            $expr: {
+              $regexMatch: {
+                input: { $toString: "$contact" },
+                regex: query,
+                options: "i",
+              },
+            },
+          },
+        ],
+      }
+    : {};
+
+  const orderValue = order === "desc" ? -1 : 1;
+
+  let sortCondition = {};
+  if (sortQuery === "name") {
+    sortCondition = { name: orderValue };
+  }
+
+  let pipeline = [];
+
+  pipeline.push(
+    {
+      $match: condition,
+    },
+    {
+      $skip: skip,
+    }
+  );
+
+  const temp = await User.aggregate(pipeline);
+
+  const length = temp.length;
+
+  pipeline.push({
+    $limit: limit,
+  });
+
+  if (sortQuery) {
+    pipeline.push({
+      $sort: sortCondition,
+    });
+  }
+
+  const users = await User.aggregate(pipeline);
+
+  return res
+    .status(200)
+    .json({ data: users, totalPages: Math.ceil(length / limit) });
+});
+
+export const deleteUser = asyncHandler(async (req, res) => {
+  const { userId } = req.params;
+
+  const findUser = await User.findById(userId);
+
+  if (!findUser) throw new ApiError(404, "User not found");
+
+  await User.findByIdAndDelete(findUser._id);
+
+  return res.status(200).json(new ApiResponse(200, {}, "User deleted"));
+});
+
+export const getUserById = asyncHandler(async (req, res) => {
+  const { userId } = req.params;
+
+  const findUser = await User.findById(userId);
+
+  if (!findUser) throw new ApiError(404, "user not found");
+
+  return res.status(200).json(findUser);
+});
+
+export const updateUser = asyncHandler(async (req, res) => {
+  const { userId } = req.params;
+
+  const { name, email, contact } = req.body;
+  let { file: avatar } = req.body;
+
+  if (!avatar) {
+    const localFilePath = req.file?.path;
+
+    if (localFilePath) {
+      const imageFile = await uploadOnCloudinary(localFilePath);
+
+      if (!imageFile) {
+        throw new ApiError(400, "Something went wrong while uploading image");
+      }
+
+      avatar = imageFile.url;
+    } else {
+      avatar = "";
+    }
+  }
+
+  const user = await User.findByIdAndUpdate(
+    userId,
+    {
+      name,
+      email,
+      contact,
+      avatar,
+    },
+    { new: true }
+  );
+
+  return res
+    .status(200)
+    .json(new ApiResponse(200, user, "updated successfull"));
 });

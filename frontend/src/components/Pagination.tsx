@@ -17,7 +17,7 @@ const Pagination = ({ totalPages }: PaginationProps) => {
     searchParams.set("page", String(pageValue));
     setSearchParams(searchParams);
     setTimeout(() => {
-      queryClient.invalidateQueries({ queryKey: ["all-trainers"] });
+      queryClient.invalidateQueries({ queryKey: ["all-users"] });
     }, 100);
   };
 

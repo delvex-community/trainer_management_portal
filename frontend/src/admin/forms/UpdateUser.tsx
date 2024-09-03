@@ -1,76 +1,69 @@
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import Loader from "@/components/Loader";
+import ProfileUploader from "@/components/ProfileUploader";
 import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import axios from "axios";
 import { Input } from "@/components/ui/input";
-import { TrainerValidation } from "@/lib/validation";
-import { useMutation } from "@tanstack/react-query";
-import { BACKEND_URL } from "@/config";
 import { toast } from "@/components/ui/use-toast";
-import Loader from "@/components/Loader";
-import { useNavigate, useParams } from "react-router-dom";
-import ProfileUploader from "@/components/ProfileUploader";
-import { useTrainerById } from "@/react-query/trainer";
+import { BACKEND_URL } from "@/config";
+import { UpdateUserValidation } from "@/lib/validation";
+import { useUserById } from "@/react-query/user";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
 import { useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { useNavigate, useParams } from "react-router-dom";
+import { z } from "zod";
 
-const UpdateTrainer = () => {
+const UpdateUser = () => {
   const navigate = useNavigate();
-  const { trainerId } = useParams();
-  const { trainer, isLoading } = useTrainerById(trainerId || "");
+  const { userId } = useParams();
+  const { user, loadingUser } = useUserById(userId || "");
 
   useEffect(() => {
     form.reset({
-      name: trainer?.name || "",
-      email: trainer?.email || "",
-      contact: String(trainer?.contact) || "",
-      tech: trainer?.tech || "",
-      file: trainer?.avatar || [],
-      location: trainer?.location || "",
+      name: user?.name || "",
+      email: user?.email || "",
+      contact: String(user?.contact) || "",
+      file: user?.avatar || "",
     });
-  }, [trainer]);
+  }, [user]);
 
-  const form = useForm<z.infer<typeof TrainerValidation>>({
-    resolver: zodResolver(TrainerValidation),
+  const form = useForm<z.infer<typeof UpdateUserValidation>>({
+    resolver: zodResolver(UpdateUserValidation),
     defaultValues: {
       name: "",
       email: "",
-      contact: "",
-      tech: "",
-      file: [],
-      location: "",
+      contact: undefined,
+      // password: "",
+      file: "",
     },
   });
 
-  const { mutate: updateTrainer, isPending } = useMutation({
+  const { mutate: updateUser, isPending } = useMutation({
     mutationFn: async (payload: any) => {
       const { data } = await axios.patch(
-        `${BACKEND_URL}/trainer/update/${trainerId}`,
+        `${BACKEND_URL}/user/update/${userId}`,
         payload,
         {
           withCredentials: true,
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
         }
       );
 
       return data;
     },
     onSuccess: () => {
-      navigate(`/admin/trainers/${trainerId}`);
+      navigate("/admin/users");
       return toast({
-        title: "Updated Successfully",
-        description: "Trainer information have been updated.",
+        title: "Update Successfull",
+        description: "User's account has been updated.",
       });
     },
     onError: (err) => {
@@ -88,16 +81,16 @@ const UpdateTrainer = () => {
     },
   });
 
-  function onSubmit(values: z.infer<typeof TrainerValidation>) {
-    updateTrainer(values);
+  function onSubmit(values: z.infer<typeof UpdateUserValidation>) {
+    updateUser(values);
   }
 
-  if (isLoading) return <Loader />;
+  if (loadingUser) return <Loader />;
 
   return (
-    <div className="h-[80vh] flex items-center justify-center">
-      <div className="flex flex-col bg-white rounded-md p-6 shadow-md gap-3 max-w-md w-full">
-        <h2 className="h2-bold text-center mb-6">Update Trainer</h2>
+    <div className="h-[70vh] flex items-center justify-center">
+      <div className="flex flex-col bg-white rounded-md p-6 shadow-md gap-3 max-w-md w-full mx-auto">
+        <h2 className="h2-bold text-center mb-4">Update User Details</h2>
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
@@ -117,7 +110,6 @@ const UpdateTrainer = () => {
                         placeholder="Your Full Name"
                         {...field}
                         className="form-input"
-                        required={true}
                       />
                     </FormControl>
                   </div>
@@ -159,7 +151,6 @@ const UpdateTrainer = () => {
                         placeholder="Your Contact Info"
                         {...field}
                         className="form-input"
-                        type="number"
                       />
                     </FormControl>
                   </div>
@@ -167,59 +158,28 @@ const UpdateTrainer = () => {
                 </FormItem>
               )}
             />
-
-            <FormField
+            {/* <FormField
               control={form.control}
-              name="location"
+              name="password"
               render={({ field }) => (
                 <FormItem>
                   <div className="shadcn-form-row">
                     <FormLabel className="shadcn-form-label">
-                      Location
+                      Password
                     </FormLabel>
-                    <div className="w-full">
-                      <FormControl>
-                        <Input
-                          placeholder="Trainer's Location"
-                          {...field}
-                          className="form-input mb-2"
-                          type="text"
-                        />
-                      </FormControl>
-                    </div>
+                    <FormControl>
+                      <Input
+                        placeholder="Your Password"
+                        {...field}
+                        className="form-input"
+                        type="text"
+                      />
+                    </FormControl>
                   </div>
                   <FormMessage className="text-start" />
                 </FormItem>
               )}
-            />
-
-            <FormField
-              control={form.control}
-              name="tech"
-              render={({ field }) => (
-                <FormItem>
-                  <div className="shadcn-form-row">
-                    <FormLabel className="shadcn-form-label">
-                      Tech Stack
-                    </FormLabel>
-                    <div className="w-full">
-                      <FormControl>
-                        <Input
-                          placeholder="Tech Stack"
-                          {...field}
-                          className="form-input mb-2"
-                          type="text"
-                        />
-                      </FormControl>
-                      <FormDescription>
-                        Add tech stack seperated by ","
-                      </FormDescription>
-                    </div>
-                  </div>
-                  <FormMessage className="text-start" />
-                </FormItem>
-              )}
-            />
+            /> */}
 
             <FormField
               control={form.control}
@@ -229,7 +189,7 @@ const UpdateTrainer = () => {
                   <FormControl>
                     <ProfileUploader
                       fieldChange={field.onChange}
-                      mediaUrl={trainer.avatar}
+                      mediaUrl={user.avatar}
                     />
                   </FormControl>
                   <FormMessage className="shad-form_message" />
@@ -237,18 +197,9 @@ const UpdateTrainer = () => {
               )}
             />
 
-            <div className="flex items-center justify-between gap-3 mt-3">
-              <Button
-                variant="outline"
-                type="button"
-                onClick={() => navigate(-1)}
-              >
-                Cancel
-              </Button>
-              <Button type="submit" disabled={isPending}>
-                {isPending ? <Loader /> : "Update"}
-              </Button>
-            </div>
+            <Button type="submit" className="mt-3" disabled={isPending}>
+              {isPending ? <Loader /> : "Update"}
+            </Button>
           </form>
         </Form>
       </div>
@@ -256,4 +207,4 @@ const UpdateTrainer = () => {
   );
 };
 
-export default UpdateTrainer;
+export default UpdateUser;

@@ -194,16 +194,16 @@ const SigninForm = () => {
                   </FormItem>
                 )}
               />
-              <p className="text-center font-semibold">
+              {/* <p className="text-center font-semibold">
                 Don't have an account?{" "}
                 <Link to="/sign-up" className="text-blue-600">
                   Sign up
                 </Link>
-              </p>
+              </p> */}
               <Button type="submit" className="mt-3" disabled={isPending}>
                 {isPending ? <Loader /> : "Login"}
               </Button>
-
+              {/* 
               <p className="text-gray-800 font-semibold text-sm text-center">
                 OR
               </p>
@@ -220,7 +220,7 @@ const SigninForm = () => {
                   />
                   Sign in with Google
                 </Button>
-              </div>
+              </div> */}
             </form>
           </Form>
         </div>

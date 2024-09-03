@@ -18,6 +18,10 @@ export const adminHeaderLinks = [
     label: "Trainings",
     route: "/admin/trainings",
   },
+  {
+    label: "Users",
+    route: "/admin/users",
+  },
 ];
 
 export const ratingLabels = [

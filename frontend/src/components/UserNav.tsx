@@ -78,9 +78,9 @@ const UserNav = () => {
 
         <DropdownMenuSeparator />
 
-        <DropdownMenuItem asChild>
+        {/* <DropdownMenuItem asChild>
           <Link to={`/profile/${user?._id}`}>Profile</Link>
-        </DropdownMenuItem>
+        </DropdownMenuItem> */}
 
         <DropdownMenuSeparator />
 

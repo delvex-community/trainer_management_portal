@@ -19,6 +19,9 @@ import AdminTrainings from "./admin/pages/AdminTrainings";
 import UpdateRating from "./admin/forms/UpdateRating";
 import TrainingForm from "./admin/forms/TrainingForm";
 import UpdateTraining from "./admin/forms/UpdateTraining";
+import AdminUsers from "./admin/pages/AdminUsers";
+import AddUserForm from "./admin/forms/AddUserForm";
+import UpdateUser from "./admin/forms/UpdateUser";
 
 const App = () => {
   return (
@@ -27,7 +30,7 @@ const App = () => {
         {/* Public Routes */}
         <Route element={<AuthLayout />}>
           <Route path="/sign-in" element={<SigninForm />} />
-          <Route path="/sign-up" element={<SignupForm />} />
+          {/* <Route path="/sign-up" element={<SignupForm />} /> */}
           <Route path="/admin-auth" element={<AdminForm />} />
         </Route>
 
@@ -70,6 +73,11 @@ const App = () => {
               element={<UpdateTrainer />}
             />
             <Route path=":trainerId/update-rating" element={<UpdateRating />} />
+          </Route>
+          <Route path="users">
+            <Route index element={<AdminUsers />} />
+            <Route path="add" element={<AddUserForm />} />
+            <Route path=":userId/update-user" element={<UpdateUser />} />
           </Route>
         </Route>
       </Routes>
