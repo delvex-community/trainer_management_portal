@@ -1,17 +1,14 @@
-import { Link, useParams } from "react-router-dom";
-import { useTrainerById } from "@/react-query/trainer";
-import { Edit, Loader, Mail, MapPin, Phone, Star } from "lucide-react";
-import { useCurrentAdmin } from "@/react-query/admin";
-import { useTrainerTrainings } from "@/react-query/training";
 import TrainingList from "@/components/TrainingList";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useTrainerById } from "@/react-query/trainer";
+import { useTrainerTrainings } from "@/react-query/training";
+import { Loader, Mail, MapPin, Phone, Star } from "lucide-react";
+import { Link, useParams } from "react-router-dom";
 
 interface StabBlockProps {
   value: string | number;
@@ -28,7 +25,6 @@ const StatBlock = ({ value, label }: StabBlockProps) => (
 const TrainerDetails = () => {
   const { trainerId } = useParams();
   const { trainer, isLoading } = useTrainerById(trainerId || "");
-  const { admin } = useCurrentAdmin();
   const { trainerTrainings, isLoading: loadingTrainings } = useTrainerTrainings(
     trainerId || ""
   );
@@ -98,46 +94,29 @@ const TrainerDetails = () => {
                 </p>
               </div>
             </div>
+            <DropdownMenu>
+              <DropdownMenuTrigger
+                className={`h-10 bg-dark-4 px-5 text-light-1 flex-center gap-2 rounded-lg`}
+              >
+                <Star className="w-4 h-4" />
+                <p className="flex whitespace-nowrap text-sm sm:text-base">
+                  Ratings
+                </p>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuItem className="bg-dark-4 text-white font-semibold mb-1">
+                  <Link to={`/trainers/${trainer?._id}/rating/tech`}>
+                    Tech Rating
+                  </Link>
+                </DropdownMenuItem>
 
-            {admin && (
-              <div className="flex md:flex-col justify-center gap-4">
-                <Link
-                  to={`/admin/trainers/${trainer?._id}/update-profile`}
-                  className={`h-10 bg-dark-4 px-5 text-light-1 flex-center gap-2 rounded-lg`}
-                >
-                  <Edit className="w-4 h-4" />
-                  <p className="flex whitespace-nowrap text-sm sm:text-base">
-                    Edit Profile
-                  </p>
-                </Link>
-                <DropdownMenu>
-                  <DropdownMenuTrigger
-                    className={`h-10 bg-dark-4 px-5 text-light-1 flex-center gap-2 rounded-lg`}
-                  >
-                    <Star className="w-4 h-4" />
-                    <p className="flex whitespace-nowrap text-sm sm:text-base">
-                      Update Ratings
-                    </p>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent>
-                    <DropdownMenuItem>
-                      <Link
-                        to={`/admin/trainers/${trainer?._id}/update-rating/tech`}
-                      >
-                        Tech Rating
-                      </Link>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem>
-                      <Link
-                        to={`/admin/trainers/${trainer?._id}/update-rating/nontech`}
-                      >
-                        Non Tech Rating
-                      </Link>
-                    </DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              </div>
-            )}
+                <DropdownMenuItem className="bg-dark-4 text-white font-semibold">
+                  <Link to={`/trainers/${trainer?._id}/rating/nontech`}>
+                    Non Tech Rating
+                  </Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
 
           <TrainingList trainings={trainerTrainings.data} />

@@ -19,9 +19,12 @@ import AdminHome from "./admin/pages/AdminHome";
 import AdminTrainers from "./admin/pages/AdminTrainers";
 import AdminTrainings from "./admin/pages/AdminTrainings";
 import AdminUsers from "./admin/pages/AdminUsers";
-import TrainerDetails from "./admin/pages/TrainerDetails";
 import UpdateTrainer from "./admin/pages/UpdateTrainer";
 import UpdateNonTechRating from "./admin/forms/UpdateNonTechRating";
+import TrainerDetails from "./_root/pages/TrainerDetails";
+import AdminTrainerDetails from "./admin/pages/AdminTrainerDetails";
+import TechRating from "./_root/pages/TechRating";
+import NonTechRating from "./_root/pages/NonTechRating";
 
 const App = () => {
   return (
@@ -45,7 +48,11 @@ const App = () => {
           <Route index element={<Home />} />
           <Route path="/profile/:id" element={<Profile />} />
           <Route path="/settings" element={<Settings />} />
-          <Route path="/trainers/:trainerId" element={<TrainerDetails />} />
+          <Route path="/trainers/:trainerId">
+            <Route index element={<TrainerDetails />} />
+            <Route path="rating/tech" element={<TechRating />} />
+            <Route path="rating/nontech" element={<NonTechRating />} />
+          </Route>
         </Route>
 
         {/* Admin Routes */}
@@ -57,8 +64,8 @@ const App = () => {
             </AdminProtectedRoute>
           }
         >
-          <Route index element={<Navigate to="home" />} />
-          <Route path="home" element={<AdminHome />} />
+          <Route index element={<Navigate to="trainers" />} />
+          {/* <Route path="home" element={<AdminHome />} /> */}
           <Route path="trainings">
             <Route index element={<AdminTrainings />} />
             <Route path="add" element={<TrainingForm />} />
@@ -67,7 +74,7 @@ const App = () => {
           <Route path="trainers">
             <Route index element={<AdminTrainers />} />
             <Route path="add" element={<TrainerForm />} />
-            <Route path=":trainerId" element={<TrainerDetails />} />
+            <Route path=":trainerId" element={<AdminTrainerDetails />} />
             <Route
               path=":trainerId/update-profile"
               element={<UpdateTrainer />}

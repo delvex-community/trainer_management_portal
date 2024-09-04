@@ -6,10 +6,10 @@ export const headerLinks = [
 ];
 
 export const adminHeaderLinks = [
-  {
-    label: "Home",
-    route: "/admin/home",
-  },
+  // {
+  //   label: "Home",
+  //   route: "/admin/home",
+  // },
   {
     label: "Trainers",
     route: "/admin/trainers",
