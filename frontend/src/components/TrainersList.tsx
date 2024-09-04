@@ -15,7 +15,7 @@ const TrainersList = ({ isAdmin = false }) => {
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {allTrainers.data.map((trainer: TrainerType) => (
-            <div className="flex items-center justify-center" key={trainer._id}>
+            <div className="w-full" key={trainer._id}>
               <TrainerCard trainer={trainer} isAdmin={isAdmin} />
             </div>
           ))}
