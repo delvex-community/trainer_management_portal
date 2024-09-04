@@ -1,3 +1,8 @@
+import { BACKEND_URL } from "@/config";
+import { useAuthContext } from "@/context/AuthContext";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import axios from "axios";
+import { Avatar } from "./ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -5,12 +10,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
-import { Avatar } from "./ui/avatar";
-import { useAuthContext } from "@/context/AuthContext";
-import { Link } from "react-router-dom";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
-import { BACKEND_URL } from "@/config";
 import { toast } from "./ui/use-toast";
 
 const UserNav = () => {

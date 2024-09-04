@@ -6,25 +6,24 @@ import SigninForm from "./_auth/forms/SigninForm";
 import RootLayout from "./_root/RootLayout";
 import UserProtectedRoute from "./_root/UserProtectedRoute";
 import Home from "./_root/pages/Home";
+import NonTechRating from "./_root/pages/NonTechRating";
 import Profile from "./_root/pages/Profile";
+import TechRating from "./_root/pages/TechRating";
+import TrainerDetails from "./_root/pages/TrainerDetails";
 import AdminLayout from "./admin/AdminLayout";
 import AdminProtectedRoute from "./admin/AdminProtectedRoute";
 import AddUserForm from "./admin/forms/AddUserForm";
 import TrainerForm from "./admin/forms/TrainerForm";
 import TrainingForm from "./admin/forms/TrainingForm";
+import UpdateNonTechRating from "./admin/forms/UpdateNonTechRating";
 import UpdateTechRating from "./admin/forms/UpdateTechRating";
 import UpdateTraining from "./admin/forms/UpdateTraining";
 import UpdateUser from "./admin/forms/UpdateUser";
-import AdminHome from "./admin/pages/AdminHome";
+import AdminTrainerDetails from "./admin/pages/AdminTrainerDetails";
 import AdminTrainers from "./admin/pages/AdminTrainers";
 import AdminTrainings from "./admin/pages/AdminTrainings";
 import AdminUsers from "./admin/pages/AdminUsers";
 import UpdateTrainer from "./admin/pages/UpdateTrainer";
-import UpdateNonTechRating from "./admin/forms/UpdateNonTechRating";
-import TrainerDetails from "./_root/pages/TrainerDetails";
-import AdminTrainerDetails from "./admin/pages/AdminTrainerDetails";
-import TechRating from "./_root/pages/TechRating";
-import NonTechRating from "./_root/pages/NonTechRating";
 
 const App = () => {
   return (

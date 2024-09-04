@@ -1,6 +1,4 @@
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import Loader from "@/components/Loader";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -10,20 +8,21 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import axios from "axios";
 import { Input } from "@/components/ui/input";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { BACKEND_URL } from "@/config";
 import { toast } from "@/components/ui/use-toast";
-import Loader from "@/components/Loader";
-import { Link, Navigate, useNavigate } from "react-router-dom";
-import { LoginUserType } from "@/types";
+import { BACKEND_URL } from "@/config";
 import { SigninValidation } from "@/lib/validation";
-import { useGoogleLogin } from "@react-oauth/google";
 import { useCurrentUser } from "@/react-query/user";
+import { LoginUserType } from "@/types";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import axios from "axios";
+import { useForm } from "react-hook-form";
+import { Navigate } from "react-router-dom";
+import { z } from "zod";
 
 const SigninForm = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const queryClient = useQueryClient();
   const { user } = useCurrentUser();
 
@@ -35,67 +34,67 @@ const SigninForm = () => {
     },
   });
 
-  const { mutate: googleLoginApi } = useMutation({
-    mutationFn: async (email: string) => {
-      const { data } = await axios.post(
-        `${BACKEND_URL}/user/google-login`,
-        { email },
-        {
-          withCredentials: true,
-        }
-      );
+  // const { mutate: googleLoginApi } = useMutation({
+  //   mutationFn: async (email: string) => {
+  //     const { data } = await axios.post(
+  //       `${BACKEND_URL}/user/google-login`,
+  //       { email },
+  //       {
+  //         withCredentials: true,
+  //       }
+  //     );
 
-      return data;
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["user"] });
-      navigate("/");
-      return toast({
-        title: "Login Successfull",
-        description: "Welcome back to delvex training portal.",
-      });
-    },
-    onError: (err) => {
-      if (axios.isAxiosError(err)) {
-        return toast({
-          title: "Something went wrong",
-          description: err.response?.data.message,
-          variant: "destructive",
-        });
-      }
-      return toast({
-        title: "Something went wrong, please try again later",
-        variant: "destructive",
-      });
-    },
-  });
+  //     return data;
+  //   },
+  //   onSuccess: () => {
+  //     queryClient.invalidateQueries({ queryKey: ["user"] });
+  //     navigate("/");
+  //     return toast({
+  //       title: "Login Successfull",
+  //       description: "Welcome back to delvex training portal.",
+  //     });
+  //   },
+  //   onError: (err) => {
+  //     if (axios.isAxiosError(err)) {
+  //       return toast({
+  //         title: "Something went wrong",
+  //         description: err.response?.data.message,
+  //         variant: "destructive",
+  //       });
+  //     }
+  //     return toast({
+  //       title: "Something went wrong, please try again later",
+  //       variant: "destructive",
+  //     });
+  //   },
+  // });
 
-  const googleLogin = useGoogleLogin({
-    onSuccess: async (codeResponse) => {
-      try {
-        const { data } = await axios.get(
-          `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${codeResponse.access_token}`,
-          {
-            headers: {
-              Authorization: `Bearer ${codeResponse.access_token}`,
-              Accept: "application/json",
-            },
-          }
-        );
+  // const googleLogin = useGoogleLogin({
+  //   onSuccess: async (codeResponse) => {
+  //     try {
+  //       const { data } = await axios.get(
+  //         `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${codeResponse.access_token}`,
+  //         {
+  //           headers: {
+  //             Authorization: `Bearer ${codeResponse.access_token}`,
+  //             Accept: "application/json",
+  //           },
+  //         }
+  //       );
 
-        googleLoginApi(data.email);
-      } catch (error) {
-        console.log(error);
-      }
-    },
-    onError: () => {
-      toast({
-        title: "Something went wrong",
-        description: "Please try to register later",
-        variant: "destructive",
-      });
-    },
-  });
+  //       googleLoginApi(data.email);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   },
+  //   onError: () => {
+  //     toast({
+  //       title: "Something went wrong",
+  //       description: "Please try to register later",
+  //       variant: "destructive",
+  //     });
+  //   },
+  // });
 
   const { mutate: loginUser, isPending } = useMutation({
     mutationFn: async (payload: LoginUserType) => {

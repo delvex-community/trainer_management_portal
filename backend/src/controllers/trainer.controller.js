@@ -51,8 +51,42 @@ export const addTrainer = asyncHandler(async (req, res) => {
 });
 
 export const getAllTrainers = asyncHandler(async (req, res) => {
-  const { query, sort: sortQuery, order, page } = req.query;
+  const {
+    query,
+    sort: sortQuery,
+    order,
+    page,
+    rating,
+    atLeast,
+    atMost,
+  } = req.query;
   const limit = 6;
+
+  const ratingCondition = rating
+    ? atLeast
+      ? atMost
+        ? {
+            $expr: {
+              $eq: ["$avgRating", Number(rating)],
+            },
+          }
+        : {
+            $expr: {
+              $gte: ["$avgRating", Number(rating)],
+            },
+          }
+      : atMost
+      ? {
+          $expr: {
+            $lte: ["$avgRating", Number(rating)],
+          },
+        }
+      : {
+          $expr: {
+            $eq: ["$avgRating", Number(rating)],
+          },
+        }
+    : {};
 
   const skip = (Number(page) - 1) * limit;
   const condition = query
@@ -122,6 +156,7 @@ export const getAllTrainers = asyncHandler(async (req, res) => {
         },
       },
     },
+    { $match: ratingCondition },
     {
       $match: condition,
     },

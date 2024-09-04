@@ -38,7 +38,7 @@ const Sort = () => {
   }
 
   return (
-    <div className="flex items-center justify-center gap-3">
+    <div className="flex items-center justify-center gap-3 w-fit">
       <Select onValueChange={(value) => onSelectSort(value)}>
         <SelectTrigger className="w-[100px]">
           <SelectValue placeholder="Sort" />

@@ -13,6 +13,9 @@ export function useAllTrainers() {
         const sort = searchParams.get("sort") || "";
         const order = searchParams.get("order") || "";
         const page = searchParams.get("page") || "1";
+        const rating = searchParams.get("rating") || "";
+        const atLeast = searchParams.get("atLeast") || "";
+        const atMost = searchParams.get("atMost") || "";
 
         const { data } = await axios.get(`${BACKEND_URL}/trainer/all`, {
           params: {
@@ -20,6 +23,9 @@ export function useAllTrainers() {
             sort,
             order,
             page,
+            rating,
+            atLeast,
+            atMost,
           },
           withCredentials: true,
         });
