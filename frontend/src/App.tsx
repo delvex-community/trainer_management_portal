@@ -1,27 +1,27 @@
+import { Settings } from "lucide-react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import AuthLayout from "./_auth/AuthLayout";
+import AdminForm from "./_auth/forms/AdminForm";
 import SigninForm from "./_auth/forms/SigninForm";
 import RootLayout from "./_root/RootLayout";
-import Home from "./_root/pages/Home";
-import SignupForm from "./_auth/forms/SignupForm";
-import Profile from "./_root/pages/Profile";
-import { Settings } from "lucide-react";
-import AdminForm from "./_auth/forms/AdminForm";
 import UserProtectedRoute from "./_root/UserProtectedRoute";
-import AdminProtectedRoute from "./admin/AdminProtectedRoute";
+import Home from "./_root/pages/Home";
+import Profile from "./_root/pages/Profile";
 import AdminLayout from "./admin/AdminLayout";
+import AdminProtectedRoute from "./admin/AdminProtectedRoute";
+import AddUserForm from "./admin/forms/AddUserForm";
+import TrainerForm from "./admin/forms/TrainerForm";
+import TrainingForm from "./admin/forms/TrainingForm";
+import UpdateTechRating from "./admin/forms/UpdateTechRating";
+import UpdateTraining from "./admin/forms/UpdateTraining";
+import UpdateUser from "./admin/forms/UpdateUser";
 import AdminHome from "./admin/pages/AdminHome";
 import AdminTrainers from "./admin/pages/AdminTrainers";
-import TrainerForm from "./admin/forms/TrainerForm";
+import AdminTrainings from "./admin/pages/AdminTrainings";
+import AdminUsers from "./admin/pages/AdminUsers";
 import TrainerDetails from "./admin/pages/TrainerDetails";
 import UpdateTrainer from "./admin/pages/UpdateTrainer";
-import AdminTrainings from "./admin/pages/AdminTrainings";
-import UpdateRating from "./admin/forms/UpdateRating";
-import TrainingForm from "./admin/forms/TrainingForm";
-import UpdateTraining from "./admin/forms/UpdateTraining";
-import AdminUsers from "./admin/pages/AdminUsers";
-import AddUserForm from "./admin/forms/AddUserForm";
-import UpdateUser from "./admin/forms/UpdateUser";
+import UpdateNonTechRating from "./admin/forms/UpdateNonTechRating";
 
 const App = () => {
   return (
@@ -72,7 +72,14 @@ const App = () => {
               path=":trainerId/update-profile"
               element={<UpdateTrainer />}
             />
-            <Route path=":trainerId/update-rating" element={<UpdateRating />} />
+            <Route
+              path=":trainerId/update-rating/tech"
+              element={<UpdateTechRating />}
+            />
+            <Route
+              path=":trainerId/update-rating/nontech"
+              element={<UpdateNonTechRating />}
+            />
           </Route>
           <Route path="users">
             <Route index element={<AdminUsers />} />

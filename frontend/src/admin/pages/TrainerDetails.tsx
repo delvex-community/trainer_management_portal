@@ -4,6 +4,14 @@ import { Edit, Loader, Mail, MapPin, Phone, Star } from "lucide-react";
 import { useCurrentAdmin } from "@/react-query/admin";
 import { useTrainerTrainings } from "@/react-query/training";
 import TrainingList from "@/components/TrainingList";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 interface StabBlockProps {
   value: string | number;
@@ -102,15 +110,32 @@ const TrainerDetails = () => {
                     Edit Profile
                   </p>
                 </Link>
-                <Link
-                  to={`/admin/trainers/${trainer?._id}/update-rating`}
-                  className={`h-10 bg-dark-4 px-5 text-light-1 flex-center gap-2 rounded-lg`}
-                >
-                  <Star className="w-4 h-4" />
-                  <p className="flex whitespace-nowrap text-sm sm:text-base">
-                    Update Ratings
-                  </p>
-                </Link>
+                <DropdownMenu>
+                  <DropdownMenuTrigger
+                    className={`h-10 bg-dark-4 px-5 text-light-1 flex-center gap-2 rounded-lg`}
+                  >
+                    <Star className="w-4 h-4" />
+                    <p className="flex whitespace-nowrap text-sm sm:text-base">
+                      Update Ratings
+                    </p>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent>
+                    <DropdownMenuItem>
+                      <Link
+                        to={`/admin/trainers/${trainer?._id}/update-rating/tech`}
+                      >
+                        Tech Rating
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem>
+                      <Link
+                        to={`/admin/trainers/${trainer?._id}/update-rating/nontech`}
+                      >
+                        Non Tech Rating
+                      </Link>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
               </div>
             )}
           </div>

@@ -41,6 +41,8 @@ export const addTrainer = asyncHandler(async (req, res) => {
 
   await Rating.create({
     trainerId: trainer._id,
+    tech: {},
+    nonTech: {},
   });
 
   return res
@@ -106,11 +108,16 @@ export const getAllTrainers = asyncHandler(async (req, res) => {
       $addFields: {
         avgRating: {
           $avg: [
-            "$ratings.rating1",
-            "$ratings.rating2",
-            "$ratings.rating3",
-            "$ratings.rating4",
-            "$ratings.rating5",
+            "$ratings.tech.rating1",
+            "$ratings.tech.rating2",
+            "$ratings.tech.rating3",
+            "$ratings.tech.rating4",
+            "$ratings.tech.rating5",
+            "$ratings.nonTech.rating1",
+            "$ratings.nonTech.rating2",
+            "$ratings.nonTech.rating3",
+            "$ratings.nonTech.rating4",
+            "$ratings.nonTech.rating5",
           ],
         },
       },
@@ -171,11 +178,16 @@ export const getTrainerById = asyncHandler(async (req, res) => {
       $addFields: {
         avgRating: {
           $avg: [
-            "$ratings.rating1",
-            "$ratings.rating2",
-            "$ratings.rating3",
-            "$ratings.rating4",
-            "$ratings.rating5",
+            "$ratings.tech.rating1",
+            "$ratings.tech.rating2",
+            "$ratings.tech.rating3",
+            "$ratings.tech.rating4",
+            "$ratings.tech.rating5",
+            "$ratings.nonTech.rating1",
+            "$ratings.nonTech.rating2",
+            "$ratings.nonTech.rating3",
+            "$ratings.nonTech.rating4",
+            "$ratings.nonTech.rating5",
           ],
         },
       },
@@ -238,23 +250,34 @@ export const updateTrainer = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, trainer, "Trainer updated successfully"));
 });
 
-export const updateRating = asyncHandler(async (req, res) => {
+export const updateTechRating = asyncHandler(async (req, res) => {
   const { trainerId } = req.params;
   const { rating1, rating2, rating3, rating4, rating5 } = req.body;
 
   const findRating = await Rating.findOne({ trainerId });
 
   await Rating.findByIdAndUpdate(findRating._id, {
-    rating1,
-    rating2,
-    rating3,
-    rating4,
-    rating5,
+    tech: { rating1, rating2, rating3, rating4, rating5 },
   });
 
   return res
     .status(200)
-    .json(new ApiResponse(200, {}, "Rating updated successfully"));
+    .json(new ApiResponse(200, {}, "Tech Rating updated successfully"));
+});
+
+export const updateNonTechRating = asyncHandler(async (req, res) => {
+  const { trainerId } = req.params;
+  const { rating1, rating2, rating3, rating4, rating5 } = req.body;
+
+  const findRating = await Rating.findOne({ trainerId });
+
+  await Rating.findByIdAndUpdate(findRating._id, {
+    nonTech: { rating1, rating2, rating3, rating4, rating5 },
+  });
+
+  return res
+    .status(200)
+    .json(new ApiResponse(200, {}, "Non Tech Rating updated successfully"));
 });
 
 export const getRating = asyncHandler(async (req, res) => {
