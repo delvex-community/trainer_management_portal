@@ -11,9 +11,11 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { useAllTrainers } from "@/react-query/trainer";
+import { useState } from "react";
 
 const Home = () => {
   const { allTrainers } = useAllTrainers();
+  const [open, setOpen] = useState(false);
 
   return (
     <div className="flex flex-col gap-10 items-center justify-center w-full max-h-screen">
@@ -22,7 +24,7 @@ const Home = () => {
           Search Trainers
         </h1>
         <SearchInput />
-        <Dialog>
+        <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger className="flex justify-center">
             <div className={buttonVariants()}>Filter</div>
           </DialogTrigger>
@@ -32,7 +34,7 @@ const Home = () => {
                 Filter Trainers
               </DialogTitle>
               <div className="mt-6">
-                <Filter />
+                <Filter setOpen={setOpen} />
               </div>
             </DialogHeader>
           </DialogContent>

@@ -4,7 +4,7 @@ import Sort from "./Sort";
 import { Button } from "./ui/button";
 import { useQueryClient } from "@tanstack/react-query";
 
-const Filter = () => {
+const Filter = ({ setOpen }: { setOpen: any }) => {
   const [_, setSearchParams] = useSearchParams();
   const queryClient = useQueryClient();
 
@@ -13,6 +13,7 @@ const Filter = () => {
     setTimeout(() => {
       queryClient.invalidateQueries({ queryKey: ["all-trainers"] });
     }, 100);
+    setOpen(false);
   }
 
   return (
