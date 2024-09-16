@@ -31,3 +31,17 @@ export const ratingLabels = [
   "Presentation Style",
   "Practical Application",
 ];
+
+export const filterTechnologies = [
+  "React",
+  "Java",
+  "Express.js",
+  "Node.js",
+  "HTML",
+  "CSS",
+  "Javascript",
+  "Typescript",
+  "Docker",
+  "Kubernetes",
+  "Jenkins",
+];

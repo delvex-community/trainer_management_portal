@@ -3,6 +3,7 @@ import RatingFilter from "./RatingFilter";
 import Sort from "./Sort";
 import { Button } from "./ui/button";
 import { useQueryClient } from "@tanstack/react-query";
+import TechnologyFilter from "./TechnologyFilter";
 
 const Filter = ({ setOpen }: { setOpen: any }) => {
   const [_, setSearchParams] = useSearchParams();
@@ -31,6 +32,14 @@ const Filter = ({ setOpen }: { setOpen: any }) => {
         </h3>
         <RatingFilter />
       </div>
+
+      <div className="flex flex-col gap-3 items-center ">
+        <h3 className="text-gray-800 font-semibold bg-gray-200 py-1 px-2 rounded-md">
+          Technologies
+        </h3>
+        <TechnologyFilter />
+      </div>
+
       <Button onClick={resetParams}>Reset</Button>
     </div>
   );

@@ -39,7 +39,10 @@ const Sort = () => {
 
   return (
     <div className="flex items-center justify-center gap-3 w-fit">
-      <Select onValueChange={(value) => onSelectSort(value)}>
+      <Select
+        onValueChange={(value) => onSelectSort(value)}
+        value={searchParams.get("sort") || ""}
+      >
         <SelectTrigger className="w-[100px]">
           <SelectValue placeholder="Sort" />
         </SelectTrigger>
@@ -49,7 +52,10 @@ const Sort = () => {
           <SelectItem value="name">Name</SelectItem>
         </SelectContent>
       </Select>
-      <Select onValueChange={(value) => onSelectOrder(value)}>
+      <Select
+        onValueChange={(value) => onSelectOrder(value)}
+        value={searchParams.get("order") || ""}
+      >
         <SelectTrigger className="w-[100px]">
           <SelectValue placeholder="Order" />
         </SelectTrigger>

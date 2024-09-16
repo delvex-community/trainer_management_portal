@@ -1,28 +1,37 @@
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import Loader from "@/components/Loader";
+import ProfileUploader from "@/components/ProfileUploader";
+import TrainerTechCheckbox from "@/components/TrainerTechCheckbox";
 import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import axios from "axios";
 import { Input } from "@/components/ui/input";
-import { TrainerValidation } from "@/lib/validation";
-import { useMutation } from "@tanstack/react-query";
-import { BACKEND_URL } from "@/config";
+import {
+  Select,
+  SelectContent,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { toast } from "@/components/ui/use-toast";
-import Loader from "@/components/Loader";
+import { BACKEND_URL } from "@/config";
+import { filterTechnologies } from "@/constants";
+import { TrainerValidation } from "@/lib/validation";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import ProfileUploader from "@/components/ProfileUploader";
+import { z } from "zod";
 
 const TrainerForm = () => {
   const navigate = useNavigate();
+  const [technologies, setTechnologies] = useState<String[]>([]);
   const form = useForm<z.infer<typeof TrainerValidation>>({
     resolver: zodResolver(TrainerValidation),
     defaultValues: {
@@ -30,6 +39,7 @@ const TrainerForm = () => {
       email: "",
       contact: "",
       tech: "",
+      location: "",
       file: [],
     },
   });
@@ -70,7 +80,8 @@ const TrainerForm = () => {
   });
 
   function onSubmit(values: z.infer<typeof TrainerValidation>) {
-    addTrainer(values);
+    const data = { ...values, tech: technologies };
+    addTrainer(data);
   }
 
   return (
@@ -156,16 +167,14 @@ const TrainerForm = () => {
                     <FormLabel className="shadcn-form-label">
                       Location
                     </FormLabel>
-                    <div className="w-full">
-                      <FormControl>
-                        <Input
-                          placeholder="Trainer's Location"
-                          {...field}
-                          className="form-input mb-2"
-                          type="text"
-                        />
-                      </FormControl>
-                    </div>
+                    <FormControl>
+                      <Input
+                        placeholder="Trainer's Location"
+                        {...field}
+                        className="form-input"
+                        required={true}
+                      />
+                    </FormControl>
                   </div>
                   <FormMessage className="text-start" />
                 </FormItem>
@@ -175,7 +184,7 @@ const TrainerForm = () => {
             <FormField
               control={form.control}
               name="tech"
-              render={({ field }) => (
+              render={() => (
                 <FormItem>
                   <div className="shadcn-form-row">
                     <FormLabel className="shadcn-form-label">
@@ -183,16 +192,24 @@ const TrainerForm = () => {
                     </FormLabel>
                     <div className="w-full">
                       <FormControl>
-                        <Input
-                          placeholder="Trainer's Tech Stack"
-                          {...field}
-                          className="form-input mb-2"
-                          type="text"
-                        />
+                        <Select>
+                          <SelectTrigger className="w-full">
+                            <SelectValue placeholder="Select Technologies" />
+                          </SelectTrigger>
+                          <SelectContent className="max-h-[150px]">
+                            <div className="flex flex-col gap-2 overscroll-auto px-3 py-2">
+                              {filterTechnologies.map((tech) => (
+                                <TrainerTechCheckbox
+                                  key={tech}
+                                  value={tech}
+                                  technologies={technologies}
+                                  setTechnologies={setTechnologies}
+                                />
+                              ))}
+                            </div>
+                          </SelectContent>
+                        </Select>
                       </FormControl>
-                      <FormDescription>
-                        Add tech stack seperated by ","
-                      </FormDescription>
                     </div>
                   </div>
                   <FormMessage className="text-start" />

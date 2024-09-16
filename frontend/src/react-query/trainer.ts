@@ -16,6 +16,7 @@ export function useAllTrainers() {
         const rating = searchParams.get("rating") || "";
         const atLeast = searchParams.get("atLeast") || "";
         const atMost = searchParams.get("atMost") || "";
+        const tech = searchParams.getAll("tech") || "";
 
         const { data } = await axios.get(`${BACKEND_URL}/trainer/all`, {
           params: {
@@ -26,6 +27,7 @@ export function useAllTrainers() {
             rating,
             atLeast,
             atMost,
+            tech,
           },
           withCredentials: true,
         });

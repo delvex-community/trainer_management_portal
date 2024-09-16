@@ -83,7 +83,7 @@ const TrainerDetails = () => {
                 </div>
 
                 <p className="flex items-center justify-center sm:justify-start flex-wrap gap-2 small-medium md:base-medium text-center xl:text-left mt-7 max-w-screen-sm">
-                  {trainer?.tech.split(",").map((tech: string) => (
+                  {trainer?.tech.map((tech: string) => (
                     <span
                       key={tech}
                       className="bg-gray-800 text-white px-2 py-1 rounded-md"

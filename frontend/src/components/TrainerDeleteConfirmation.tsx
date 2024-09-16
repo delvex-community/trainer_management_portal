@@ -45,7 +45,7 @@ const TrainerDeleteConfirmation = ({ trainerId }: { trainerId: string }) => {
 
   return (
     <AlertDialog>
-      <AlertDialogTrigger>
+      <AlertDialogTrigger asChild>
         <Button
           variant="destructive"
           className="text-md flex items-center gap-2"

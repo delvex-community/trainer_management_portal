@@ -52,7 +52,10 @@ const RatingFilter = () => {
 
   return (
     <div className="flex flex-col gap-3 items-center">
-      <Select onValueChange={(value) => onSelectRating(value)}>
+      <Select
+        onValueChange={(value) => onSelectRating(value)}
+        value={searchParams?.get("rating") || ""}
+      >
         <SelectTrigger className="w-[100px]">
           <SelectValue placeholder="Rating" />
         </SelectTrigger>
@@ -88,12 +91,16 @@ const RatingFilter = () => {
       <div className="flex items-center gap-4 w-full font-semibold text-gray-700 text-sm">
         <div className="flex items-center gap-2">
           <Checkbox
+            checked={searchParams?.get("atLeast") === "true"}
             onCheckedChange={(value: boolean) => onLeastChange(value)}
           />
           At Least
         </div>
         <div className="flex items-center gap-2">
-          <Checkbox onCheckedChange={(value: boolean) => onMostChange(value)} />{" "}
+          <Checkbox
+            checked={searchParams?.get("atMost") === "true"}
+            onCheckedChange={(value: boolean) => onMostChange(value)}
+          />{" "}
           At Most
         </div>
       </div>

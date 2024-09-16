@@ -59,8 +59,18 @@ export const getAllTrainers = asyncHandler(async (req, res) => {
     rating,
     atLeast,
     atMost,
+    tech,
   } = req.query;
   const limit = 6;
+  const skip = (Number(page) - 1) * limit;
+
+  const techCondition = tech
+    ? {
+        tech: {
+          $all: tech,
+        },
+      }
+    : {};
 
   const ratingCondition = rating
     ? atLeast
@@ -88,13 +98,11 @@ export const getAllTrainers = asyncHandler(async (req, res) => {
         }
     : {};
 
-  const skip = (Number(page) - 1) * limit;
   const condition = query
     ? {
         $or: [
           { name: { $regex: query, $options: "i" } },
           { email: { $regex: query, $options: "i" } },
-          { tech: { $regex: query, $options: "i" } },
           { location: { $regex: query, $options: "i" } },
           {
             $expr: {
@@ -159,6 +167,9 @@ export const getAllTrainers = asyncHandler(async (req, res) => {
     { $match: ratingCondition },
     {
       $match: condition,
+    },
+    {
+      $match: techCondition,
     },
     {
       $skip: skip,

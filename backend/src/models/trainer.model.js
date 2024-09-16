@@ -15,7 +15,7 @@ const trainerSchema = new Schema(
       type: Number,
     },
     tech: {
-      type: String,
+      type: Array,
     },
     location: {
       type: String,
