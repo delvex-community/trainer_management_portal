@@ -55,9 +55,7 @@ const TrainerForm = () => {
 
       return data;
     },
-    onSuccess: (res) => {
-      console.log(res);
-
+    onSuccess: () => {
       navigate("/admin/trainers");
       return toast({
         title: "Added Successfully",

@@ -64,8 +64,8 @@ export const formatDateTime = (dateString: Date) => {
 };
 
 export function truncateString(str: string) {
-  if (str.length > 15) {
-    return str.substring(0, 15) + "...";
+  if (str.length > 18) {
+    return str.substring(0, 18) + "...";
   }
   return str;
 }

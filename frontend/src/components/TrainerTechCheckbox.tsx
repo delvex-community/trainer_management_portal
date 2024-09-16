@@ -11,8 +11,6 @@ const TrainerTechCheckbox = ({
   setTechnologies: any;
 }) => {
   function onChange() {
-    console.log(technologies);
-
     if (technologies?.includes(value)) {
       const newTech = technologies.filter((tech) => tech !== value);
       setTechnologies(newTech);

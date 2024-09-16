@@ -27,7 +27,7 @@ const TrainerCard = ({
           alt={trainer.name}
           className="w-20 h-20 object-cover rounded-full"
         />
-        <div className="text-gray-800 flex flex-col gap-2 font-semibold w-full">
+        <div className="text-gray-800 flex flex-col gap-2 font-semibold flex-1">
           <div className="flex items-center gap-4 justify-between w-full">
             <h3 className="text-xl">{truncateString(trainer.name)}</h3>
             <span className="text-yellow-500 text-md font-bold flex items-center gap-2">
