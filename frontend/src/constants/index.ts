@@ -24,12 +24,20 @@ export const adminHeaderLinks = [
   },
 ];
 
-export const ratingLabels = [
-  "Knowledge of Subject",
+export const nonTechRatingLabels = [
+  "Problem-Solving Approach",
   "Communication Skills",
-  "Engagement with Participants",
-  "Presentation Style",
-  "Practical Application",
+  "Work Ethic",
+  "Leadership",
+  "Time Management ",
+];
+
+export const techRatingLabels = [
+  "Problem-Solving Skills",
+  "Debugging Skills",
+  "Knowledge of Frameworks",
+  "Architecture Design",
+  "Documentation",
 ];
 
 export const filterTechnologies = [

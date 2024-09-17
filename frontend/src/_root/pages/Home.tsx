@@ -28,9 +28,9 @@ const Home = () => {
           <DialogTrigger className="flex justify-center">
             <div className={buttonVariants()}>Filter</div>
           </DialogTrigger>
-          <DialogContent className="max-w-[300px]">
+          <DialogContent className="max-w-[600px] overflow-y-auto max-h-screen">
             <DialogHeader>
-              <DialogTitle className="text-xl text-center">
+              <DialogTitle className="text-xl text-center ">
                 Filter Trainers
               </DialogTitle>
               <div className="mt-6">
@@ -40,7 +40,7 @@ const Home = () => {
           </DialogContent>
         </Dialog>
       </div>
-      <div className="overflow-auto w-full">
+      <div className="overscroll-auto w-full">
         <TrainersList />
       </div>
       <Pagination totalPages={allTrainers?.totalPages} />

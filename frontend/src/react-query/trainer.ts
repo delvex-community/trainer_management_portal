@@ -17,6 +17,16 @@ export function useAllTrainers() {
         const atLeast = searchParams.get("atLeast") || "";
         const atMost = searchParams.get("atMost") || "";
         const tech = searchParams.getAll("tech") || "";
+        const techRating = searchParams.get("techRating") || "";
+        const techRatingLabel = searchParams.get("techRatingLabel") || "";
+        const atLeastTechRating = searchParams.get("atLeastTechRating") || "";
+        const atMostTechRating = searchParams.get("atMostTechRating") || "";
+        const nonTechRating = searchParams.get("nonTechRating") || "";
+        const nonTechRatingLabel = searchParams.get("nonTechRatingLabel") || "";
+        const atLeastNonTechRating =
+          searchParams.get("atLeastNonTechRating") || "";
+        const atMostNonTechRating =
+          searchParams.get("atMostNonTechRating") || "";
 
         const { data } = await axios.get(`${BACKEND_URL}/trainer/all`, {
           params: {
@@ -28,6 +38,14 @@ export function useAllTrainers() {
             atLeast,
             atMost,
             tech,
+            techRating,
+            techRatingLabel,
+            atLeastTechRating,
+            atMostTechRating,
+            nonTechRating,
+            nonTechRatingLabel,
+            atLeastNonTechRating,
+            atMostNonTechRating,
           },
           withCredentials: true,
         });

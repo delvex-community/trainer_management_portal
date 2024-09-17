@@ -1,4 +1,5 @@
 import Loader from "@/components/Loader";
+import { techRatingLabels } from "@/constants";
 import { useRating } from "@/react-query/trainer";
 import { Star } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -30,7 +31,7 @@ const TechRating = () => {
         <h2 className="h2-bold text-center mb-6">Tech Rating</h2>
         <div className="flex flex-col gap-4">
           <div className="flex items-center gap-2 justify-between flex-col sm:flex-row text-center sm:text-left">
-            <span className="text-lg font-semibold">Knowledge of Subject</span>
+            <span className="text-lg font-semibold">{techRatingLabels[0]}</span>
             <div className="flex items-center gap-2">
               {Array(5)
                 .fill(undefined)
@@ -47,7 +48,7 @@ const TechRating = () => {
             </div>
           </div>
           <div className="flex items-center gap-2 justify-between flex-col sm:flex-row text-center sm:text-left">
-            <span className="text-lg font-semibold">Communication Skills</span>
+            <span className="text-lg font-semibold">{techRatingLabels[1]}</span>
             <div className="flex items-center gap-2">
               {Array(5)
                 .fill(undefined)
@@ -64,9 +65,7 @@ const TechRating = () => {
             </div>
           </div>
           <div className="flex items-center gap-2 justify-between flex-col sm:flex-row text-center sm:text-left">
-            <span className="text-lg font-semibold">
-              Engagement with Participants
-            </span>
+            <span className="text-lg font-semibold">{techRatingLabels[2]}</span>
             <div className="flex items-center gap-2">
               {Array(5)
                 .fill(undefined)
@@ -83,7 +82,7 @@ const TechRating = () => {
             </div>
           </div>
           <div className="flex items-center gap-2 justify-between flex-col sm:flex-row text-center sm:text-left">
-            <span className="text-lg font-semibold">Presentation Style</span>
+            <span className="text-lg font-semibold">{techRatingLabels[3]}</span>
             <div className="flex items-center gap-2">
               {Array(5)
                 .fill(undefined)
@@ -100,7 +99,7 @@ const TechRating = () => {
             </div>
           </div>
           <div className="flex items-center gap-2 justify-between flex-col sm:flex-row text-center sm:text-left">
-            <span className="text-lg font-semibold">Practical Application</span>
+            <span className="text-lg font-semibold">{techRatingLabels[4]}</span>
             <div className="flex items-center gap-2">
               {Array(5)
                 .fill(undefined)

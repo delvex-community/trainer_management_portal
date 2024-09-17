@@ -60,6 +60,14 @@ export const getAllTrainers = asyncHandler(async (req, res) => {
     atLeast,
     atMost,
     tech,
+    techRating,
+    techRatingLabel,
+    atLeastTechRating,
+    atMostTechRating,
+    nonTechRating,
+    nonTechRatingLabel,
+    atLeastNonTechRating,
+    atMostNonTechRating,
   } = req.query;
   const limit = 6;
   const skip = (Number(page) - 1) * limit;
@@ -70,6 +78,70 @@ export const getAllTrainers = asyncHandler(async (req, res) => {
           $all: tech,
         },
       }
+    : {};
+
+  const techRatingCondition = techRating
+    ? atLeastTechRating
+      ? atMostTechRating
+        ? {
+            $expr: {
+              $eq: [`$ratings.tech.${techRatingLabel}`, Number(techRating)],
+            },
+          }
+        : {
+            $expr: {
+              $gte: [`$ratings.tech.${techRatingLabel}`, Number(techRating)],
+            },
+          }
+      : atMostTechRating
+      ? {
+          $expr: {
+            $lte: [`$ratings.tech.${techRatingLabel}`, Number(techRating)],
+          },
+        }
+      : {
+          $expr: {
+            $eq: [`$ratings.tech.${techRatingLabel}`, Number(techRating)],
+          },
+        }
+    : {};
+
+  const nonTechRatingCondition = nonTechRating
+    ? atLeastNonTechRating
+      ? atMostNonTechRating
+        ? {
+            $expr: {
+              $eq: [
+                `$ratings.nonTech.${nonTechRatingLabel}`,
+                Number(nonTechRating),
+              ],
+            },
+          }
+        : {
+            $expr: {
+              $gte: [
+                `$ratings.nonTech.${nonTechRatingLabel}`,
+                Number(nonTechRating),
+              ],
+            },
+          }
+      : atMostTechRating
+      ? {
+          $expr: {
+            $lte: [
+              `$ratings.nonTech.${nonTechRatingLabel}`,
+              Number(nonTechRating),
+            ],
+          },
+        }
+      : {
+          $expr: {
+            $eq: [
+              `$ratings.nonTech.${nonTechRatingLabel}`,
+              Number(nonTechRating),
+            ],
+          },
+        }
     : {};
 
   const ratingCondition = rating
@@ -170,6 +242,12 @@ export const getAllTrainers = asyncHandler(async (req, res) => {
     },
     {
       $match: techCondition,
+    },
+    {
+      $match: techRatingCondition,
+    },
+    {
+      $match: nonTechRatingCondition,
     },
     {
       $skip: skip,
