@@ -176,6 +176,7 @@ export const getAllTrainers = asyncHandler(async (req, res) => {
           { name: { $regex: query, $options: "i" } },
           { email: { $regex: query, $options: "i" } },
           { location: { $regex: query, $options: "i" } },
+          { tech: { $regex: query, $options: "i" } },
           {
             $expr: {
               $regexMatch: {
