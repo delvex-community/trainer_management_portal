@@ -346,15 +346,17 @@ export const updateTrainer = asyncHandler(async (req, res) => {
   const { trainerId } = req.params;
 
   if (!avatar) {
-    const localFilePath = req.file.path;
+    const localFilePath = req.file?.path;
 
-    const imageFile = await uploadOnCloudinary(localFilePath);
+    if (localFilePath) {
+      const imageFile = await uploadOnCloudinary(localFilePath);
 
-    if (!imageFile) {
-      throw new ApiError(400, "Something went wrong while uploading image");
+      if (!imageFile) {
+        throw new ApiError(400, "Something went wrong while uploading image");
+      }
+
+      avatar = imageFile.url;
     }
-
-    avatar = imageFile.url;
   }
 
   const trainer = await Trainer.findByIdAndUpdate(

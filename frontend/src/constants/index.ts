@@ -22,6 +22,10 @@ export const adminHeaderLinks = [
     label: "Users",
     route: "/admin/users",
   },
+  {
+    label: "Technologies",
+    route: "/admin/technologies",
+  },
 ];
 
 export const nonTechRatingLabels = [

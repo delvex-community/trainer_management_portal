@@ -21,22 +21,31 @@ import Loader from "@/components/Loader";
 import { useNavigate, useParams } from "react-router-dom";
 import ProfileUploader from "@/components/ProfileUploader";
 import { useTrainerById } from "@/react-query/trainer";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import TrainerTechCheckbox from "@/components/TrainerTechCheckbox";
+import {
+  Select,
+  SelectContent,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { filterTechnologies } from "@/constants";
 
 const UpdateTrainer = () => {
   const navigate = useNavigate();
   const { trainerId } = useParams();
   const { trainer, isLoading } = useTrainerById(trainerId || "");
+  const [technologies, setTechnologies] = useState<String[]>([]);
 
   useEffect(() => {
     form.reset({
       name: trainer?.name || "",
       email: trainer?.email || "",
       contact: String(trainer?.contact) || "",
-      tech: trainer?.tech || "",
       file: trainer?.avatar || [],
       location: trainer?.location || "",
     });
+    setTechnologies(trainer?.tech || []);
   }, [trainer]);
 
   const form = useForm<z.infer<typeof TrainerValidation>>({
@@ -45,7 +54,6 @@ const UpdateTrainer = () => {
       name: "",
       email: "",
       contact: "",
-      tech: "",
       file: [],
       location: "",
     },
@@ -89,7 +97,8 @@ const UpdateTrainer = () => {
   });
 
   function onSubmit(values: z.infer<typeof TrainerValidation>) {
-    updateTrainer(values);
+    const data = { ...values, tech: technologies };
+    updateTrainer(data);
   }
 
   if (isLoading) return <Loader />;
@@ -196,7 +205,7 @@ const UpdateTrainer = () => {
             <FormField
               control={form.control}
               name="tech"
-              render={({ field }) => (
+              render={() => (
                 <FormItem>
                   <div className="shadcn-form-row">
                     <FormLabel className="shadcn-form-label">
@@ -204,16 +213,24 @@ const UpdateTrainer = () => {
                     </FormLabel>
                     <div className="w-full">
                       <FormControl>
-                        <Input
-                          placeholder="Tech Stack"
-                          {...field}
-                          className="form-input mb-2"
-                          type="text"
-                        />
+                        <Select>
+                          <SelectTrigger className="w-full">
+                            <SelectValue placeholder="Select Technologies" />
+                          </SelectTrigger>
+                          <SelectContent className="max-h-[150px]">
+                            <div className="flex flex-col gap-2 overscroll-auto px-3 py-2">
+                              {filterTechnologies.map((tech) => (
+                                <TrainerTechCheckbox
+                                  key={tech}
+                                  value={tech}
+                                  technologies={technologies}
+                                  setTechnologies={setTechnologies}
+                                />
+                              ))}
+                            </div>
+                          </SelectContent>
+                        </Select>
                       </FormControl>
-                      <FormDescription>
-                        Add tech stack seperated by ","
-                      </FormDescription>
                     </div>
                   </div>
                   <FormMessage className="text-start" />
