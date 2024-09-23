@@ -90,7 +90,7 @@ const UpdateTrainer = () => {
         });
       }
       return toast({
-        title: "Something went wrong, please try again later",
+        description: "Something went wrong, please try again later",
         variant: "destructive",
       });
     },

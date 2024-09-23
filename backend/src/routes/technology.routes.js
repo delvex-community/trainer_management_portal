@@ -8,9 +8,9 @@ import { Router } from "express";
 
 const technologyRouter = Router();
 
-technologyRouter.post("/add", addTechnology);
-
 technologyRouter.get("/all", getTechnologies);
+
+technologyRouter.post("/add", addTechnology);
 
 technologyRouter.patch("/:technologyId", updateTechnology);
 

@@ -5,6 +5,7 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 
 export const addTechnology = asyncHandler(async (req, res) => {
   const { name } = req.body;
+  console.log(name);
 
   const findTechnology = await Technology.findOne({
     name,
@@ -22,9 +23,33 @@ export const addTechnology = asyncHandler(async (req, res) => {
 });
 
 export const getTechnologies = asyncHandler(async (req, res) => {
-  const technologies = await Technology.find();
+  const { query, page } = req.query;
+  const limit = 12;
+  const skip = (Number(page) - 1) * limit;
 
-  return res.status(200).json(new ApiResponse(200, technologies, "OK"));
+  const condition = query
+    ? {
+        name: { $regex: query, $options: "i" },
+      }
+    : {};
+
+  let pipeline = [];
+
+  pipeline.push({ $match: condition });
+
+  const temp = await Technology.aggregate(pipeline);
+
+  const length = temp.length;
+
+  pipeline.push({
+    $limit: limit,
+  });
+
+  const technologies = await Technology.aggregate(pipeline);
+
+  return res
+    .status(200)
+    .json({ data: technologies, totalPages: Math.ceil(length / limit) });
 });
 
 export const updateTechnology = asyncHandler(async (req, res) => {
