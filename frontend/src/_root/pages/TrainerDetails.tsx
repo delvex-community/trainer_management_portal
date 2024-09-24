@@ -104,13 +104,13 @@ const TrainerDetails = () => {
                 </p>
               </DropdownMenuTrigger>
               <DropdownMenuContent>
-                <DropdownMenuItem className="bg-dark-4 text-white font-semibold mb-1">
+                <DropdownMenuItem className="font-semibold mb-1">
                   <Link to={`/trainers/${trainer?._id}/rating/tech`}>
                     Tech Rating
                   </Link>
                 </DropdownMenuItem>
 
-                <DropdownMenuItem className="bg-dark-4 text-white font-semibold">
+                <DropdownMenuItem className="font-semibold">
                   <Link to={`/trainers/${trainer?._id}/rating/nontech`}>
                     Non Tech Rating
                   </Link>

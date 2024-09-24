@@ -1,5 +1,5 @@
 import Loader from "@/components/Loader";
-import { techRatingLabels } from "@/constants";
+import { useRatingLabels } from "@/react-query/rating";
 import { useRating } from "@/react-query/trainer";
 import { Star } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -8,6 +8,7 @@ import { useParams } from "react-router-dom";
 const TechRating = () => {
   const { trainerId } = useParams();
   const { rating, isLoading } = useRating(trainerId || "");
+  const { ratingLabels } = useRatingLabels();
 
   const [rating1, setRating1] = useState(rating?.tech.rating1);
   const [rating2, setRating2] = useState(rating?.tech.rating2);
@@ -31,7 +32,9 @@ const TechRating = () => {
         <h2 className="h2-bold text-center mb-6">Tech Rating</h2>
         <div className="flex flex-col gap-4">
           <div className="flex items-center gap-2 justify-between flex-col sm:flex-row text-center sm:text-left">
-            <span className="text-lg font-semibold">{techRatingLabels[0]}</span>
+            <span className="text-lg font-semibold">
+              {ratingLabels?.data.tech.label1}
+            </span>
             <div className="flex items-center gap-2">
               {Array(5)
                 .fill(undefined)
@@ -48,7 +51,9 @@ const TechRating = () => {
             </div>
           </div>
           <div className="flex items-center gap-2 justify-between flex-col sm:flex-row text-center sm:text-left">
-            <span className="text-lg font-semibold">{techRatingLabels[1]}</span>
+            <span className="text-lg font-semibold">
+              {ratingLabels?.data.tech.label2}
+            </span>
             <div className="flex items-center gap-2">
               {Array(5)
                 .fill(undefined)
@@ -65,7 +70,9 @@ const TechRating = () => {
             </div>
           </div>
           <div className="flex items-center gap-2 justify-between flex-col sm:flex-row text-center sm:text-left">
-            <span className="text-lg font-semibold">{techRatingLabels[2]}</span>
+            <span className="text-lg font-semibold">
+              {ratingLabels?.data.tech.label3}
+            </span>
             <div className="flex items-center gap-2">
               {Array(5)
                 .fill(undefined)
@@ -82,7 +89,9 @@ const TechRating = () => {
             </div>
           </div>
           <div className="flex items-center gap-2 justify-between flex-col sm:flex-row text-center sm:text-left">
-            <span className="text-lg font-semibold">{techRatingLabels[3]}</span>
+            <span className="text-lg font-semibold">
+              {ratingLabels?.data.tech.label4}
+            </span>
             <div className="flex items-center gap-2">
               {Array(5)
                 .fill(undefined)
@@ -99,7 +108,9 @@ const TechRating = () => {
             </div>
           </div>
           <div className="flex items-center gap-2 justify-between flex-col sm:flex-row text-center sm:text-left">
-            <span className="text-lg font-semibold">{techRatingLabels[4]}</span>
+            <span className="text-lg font-semibold">
+              {ratingLabels?.data.tech.label5}
+            </span>
             <div className="flex items-center gap-2">
               {Array(5)
                 .fill(undefined)

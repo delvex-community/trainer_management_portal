@@ -1,5 +1,5 @@
 import Loader from "@/components/Loader";
-import { nonTechRatingLabels } from "@/constants";
+import { useRatingLabels } from "@/react-query/rating";
 import { useRating } from "@/react-query/trainer";
 import { Star } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -8,6 +8,7 @@ import { useParams } from "react-router-dom";
 const NonTechRating = () => {
   const { trainerId } = useParams();
   const { rating, isLoading } = useRating(trainerId || "");
+  const { ratingLabels } = useRatingLabels();
 
   const [rating1, setRating1] = useState(rating?.nonTech.rating1);
   const [rating2, setRating2] = useState(rating?.nonTech.rating2);
@@ -32,7 +33,7 @@ const NonTechRating = () => {
         <div className="flex flex-col gap-4">
           <div className="flex items-center gap-2 justify-between flex-col sm:flex-row text-center sm:text-left">
             <span className="text-lg font-semibold">
-              {nonTechRatingLabels[0]}
+              {ratingLabels?.data.nonTech.label1}
             </span>
             <div className="flex items-center gap-2">
               {Array(5)
@@ -51,7 +52,7 @@ const NonTechRating = () => {
           </div>
           <div className="flex items-center gap-2 justify-between flex-col sm:flex-row text-center sm:text-left">
             <span className="text-lg font-semibold">
-              {nonTechRatingLabels[1]}
+              {ratingLabels?.data.nonTech.labe2l}
             </span>
             <div className="flex items-center gap-2">
               {Array(5)
@@ -70,7 +71,7 @@ const NonTechRating = () => {
           </div>
           <div className="flex items-center gap-2 justify-between flex-col sm:flex-row text-center sm:text-left">
             <span className="text-lg font-semibold">
-              {nonTechRatingLabels[2]}
+              {ratingLabels?.data.nonTech.label3}
             </span>
             <div className="flex items-center gap-2">
               {Array(5)
@@ -89,7 +90,7 @@ const NonTechRating = () => {
           </div>
           <div className="flex items-center gap-2 justify-between flex-col sm:flex-row text-center sm:text-left">
             <span className="text-lg font-semibold">
-              {nonTechRatingLabels[3]}
+              {ratingLabels?.data.nonTech.label4}
             </span>
             <div className="flex items-center gap-2">
               {Array(5)
@@ -108,7 +109,7 @@ const NonTechRating = () => {
           </div>
           <div className="flex items-center gap-2 justify-between flex-col sm:flex-row text-center sm:text-left">
             <span className="text-lg font-semibold">
-              {nonTechRatingLabels[4]}
+              {ratingLabels?.data.nonTech.label5}
             </span>
             <div className="flex items-center gap-2">
               {Array(5)

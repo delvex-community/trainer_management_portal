@@ -8,11 +8,13 @@ import { BACKEND_URL } from "@/config";
 import { Button } from "@/components/ui/button";
 import Loader from "@/components/Loader";
 import { toast } from "@/components/ui/use-toast";
+import { useRatingLabels } from "@/react-query/rating";
 
 const UpdateNonTechRating = () => {
   const navigate = useNavigate();
   const { trainerId } = useParams();
   const { rating, isLoading } = useRating(trainerId || "");
+  const { ratingLabels } = useRatingLabels();
 
   const [rating1, setRating1] = useState(rating?.nonTech.rating1);
   const [rating2, setRating2] = useState(rating?.nonTech.rating2);
@@ -75,7 +77,10 @@ const UpdateNonTechRating = () => {
         <h2 className="h2-bold text-center mb-6">Update Non Tech Rating</h2>
         <div className="flex flex-col gap-4">
           <div className="flex items-center gap-2 justify-between flex-col sm:flex-row text-center sm:text-left">
-            <span className="text-lg font-semibold">Knowledge of Subject</span>
+            <span className="text-lg font-semibold">
+              {" "}
+              {ratingLabels?.data?.nonTech.label1}
+            </span>
             <div className="flex items-center gap-2">
               {Array(5)
                 .fill(undefined)
@@ -93,7 +98,9 @@ const UpdateNonTechRating = () => {
             </div>
           </div>
           <div className="flex items-center gap-2 justify-between flex-col sm:flex-row text-center sm:text-left">
-            <span className="text-lg font-semibold">Communication Skills</span>
+            <span className="text-lg font-semibold">
+              {ratingLabels?.data?.nonTech.label2}
+            </span>
             <div className="flex items-center gap-2">
               {Array(5)
                 .fill(undefined)
@@ -112,7 +119,7 @@ const UpdateNonTechRating = () => {
           </div>
           <div className="flex items-center gap-2 justify-between flex-col sm:flex-row text-center sm:text-left">
             <span className="text-lg font-semibold">
-              Engagement with Participants
+              {ratingLabels?.data?.nonTech.label3}
             </span>
             <div className="flex items-center gap-2">
               {Array(5)
@@ -131,7 +138,10 @@ const UpdateNonTechRating = () => {
             </div>
           </div>
           <div className="flex items-center gap-2 justify-between flex-col sm:flex-row text-center sm:text-left">
-            <span className="text-lg font-semibold">Presentation Style</span>
+            <span className="text-lg font-semibold">
+              {" "}
+              {ratingLabels?.data?.nonTech.label4}
+            </span>
             <div className="flex items-center gap-2">
               {Array(5)
                 .fill(undefined)
@@ -149,7 +159,10 @@ const UpdateNonTechRating = () => {
             </div>
           </div>
           <div className="flex items-center gap-2 justify-between flex-col sm:flex-row text-center sm:text-left">
-            <span className="text-lg font-semibold">Practical Application</span>
+            <span className="text-lg font-semibold">
+              {" "}
+              {ratingLabels?.data?.nonTech.label5}
+            </span>
             <div className="flex items-center gap-2">
               {Array(5)
                 .fill(undefined)
