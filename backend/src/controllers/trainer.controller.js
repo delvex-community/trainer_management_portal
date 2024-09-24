@@ -5,6 +5,7 @@ import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
+import { RatingLabel } from "../models/ratingLabel.model.js";
 
 export const addTrainer = asyncHandler(async (req, res) => {
   const { name, email, contact, tech, location } = req.body;

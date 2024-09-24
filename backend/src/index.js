@@ -6,13 +6,19 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import express from "express";
 import { connectDB } from "./db/connectDB.js";
+import { RatingLabel } from "./models/ratingLabel.model.js";
 import adminRouter from "./routes/admin.routes.js";
+import ratingRouter from "./routes/rating.routes.js";
 import technologyRouter from "./routes/technology.routes.js";
 import trainerRouter from "./routes/trainer.routes.js";
 import trainingRouter from "./routes/training.routes.js";
 import userRouter from "./routes/user.routes.js";
 
 connectDB();
+
+const findLabels = await RatingLabel.find();
+
+if (!findLabels) await RatingLabel.create({ tech: {}, nonTech: {} });
 
 const app = express();
 const PORT = 3000;
@@ -50,6 +56,9 @@ app.use("/api/training", trainingRouter);
 
 // Technology API
 app.use("/api/technology", technologyRouter);
+
+// Rating API
+app.use("/api/rating", ratingRouter);
 
 app.get("/", (req, res) => {
   res.send("Server is Running");

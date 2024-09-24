@@ -30,12 +30,14 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { filterTechnologies } from "@/constants";
+import { useAllTechnologies } from "@/react-query/technology";
 
 const UpdateTrainer = () => {
   const navigate = useNavigate();
   const { trainerId } = useParams();
   const { trainer, isLoading } = useTrainerById(trainerId || "");
   const [technologies, setTechnologies] = useState<String[]>([]);
+  const { allTechnologies } = useAllTechnologies();
 
   useEffect(() => {
     form.reset({
@@ -219,14 +221,16 @@ const UpdateTrainer = () => {
                           </SelectTrigger>
                           <SelectContent className="max-h-[150px]">
                             <div className="flex flex-col gap-2 overscroll-auto px-3 py-2">
-                              {filterTechnologies.map((tech) => (
-                                <TrainerTechCheckbox
-                                  key={tech}
-                                  value={tech}
-                                  technologies={technologies}
-                                  setTechnologies={setTechnologies}
-                                />
-                              ))}
+                              {allTechnologies?.data.map(
+                                (tech: { name: string }) => (
+                                  <TrainerTechCheckbox
+                                    key={tech.name}
+                                    value={tech.name}
+                                    technologies={technologies}
+                                    setTechnologies={setTechnologies}
+                                  />
+                                )
+                              )}
                             </div>
                           </SelectContent>
                         </Select>

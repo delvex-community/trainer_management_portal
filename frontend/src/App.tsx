@@ -25,6 +25,7 @@ import AdminTrainings from "./admin/pages/AdminTrainings";
 import AdminUsers from "./admin/pages/AdminUsers";
 import UpdateTrainer from "./admin/pages/UpdateTrainer";
 import AdminTechnologies from "./admin/pages/AdminTechnologies";
+import AdminRatings from "./admin/pages/AdminRatings";
 
 const App = () => {
   return (
@@ -94,6 +95,7 @@ const App = () => {
             <Route path=":userId/update-user" element={<UpdateUser />} />
           </Route>
           <Route path="technologies" element={<AdminTechnologies />} />
+          <Route path="ratings" element={<AdminRatings />} />
         </Route>
       </Routes>
     </main>

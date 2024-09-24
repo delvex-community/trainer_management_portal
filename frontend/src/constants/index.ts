@@ -26,6 +26,10 @@ export const adminHeaderLinks = [
     label: "Technologies",
     route: "/admin/technologies",
   },
+  {
+    label: "Ratings",
+    route: "/admin/ratings",
+  },
 ];
 
 export const nonTechRatingLabels = [
@@ -33,7 +37,7 @@ export const nonTechRatingLabels = [
   "Communication Skills",
   "Work Ethic",
   "Leadership",
-  "Time Management ",
+  "Time Management",
 ];
 
 export const techRatingLabels = [

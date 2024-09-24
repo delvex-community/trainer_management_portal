@@ -21,16 +21,18 @@ import { toast } from "@/components/ui/use-toast";
 import { BACKEND_URL } from "@/config";
 import { filterTechnologies } from "@/constants";
 import { TrainerValidation } from "@/lib/validation";
+import { useAllTechnologies } from "@/react-query/technology";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { z } from "zod";
 
 const TrainerForm = () => {
   const navigate = useNavigate();
+  const { allTechnologies, isLoading } = useAllTechnologies();
   const [technologies, setTechnologies] = useState<String[]>([]);
   const form = useForm<z.infer<typeof TrainerValidation>>({
     resolver: zodResolver(TrainerValidation),
@@ -196,14 +198,16 @@ const TrainerForm = () => {
                           </SelectTrigger>
                           <SelectContent className="max-h-[150px]">
                             <div className="flex flex-col gap-2 overscroll-auto px-3 py-2">
-                              {filterTechnologies.map((tech) => (
-                                <TrainerTechCheckbox
-                                  key={tech}
-                                  value={tech}
-                                  technologies={technologies}
-                                  setTechnologies={setTechnologies}
-                                />
-                              ))}
+                              {allTechnologies?.data.map(
+                                (tech: { name: string }) => (
+                                  <TrainerTechCheckbox
+                                    key={tech.name}
+                                    value={tech.name}
+                                    technologies={technologies}
+                                    setTechnologies={setTechnologies}
+                                  />
+                                )
+                              )}
                             </div>
                           </SelectContent>
                         </Select>
