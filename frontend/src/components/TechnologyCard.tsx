@@ -1,24 +1,23 @@
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { EllipsisVertical, Loader } from "lucide-react";
-import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog";
-import { useState } from "react";
-import { Input } from "./ui/input";
-import { Button } from "./ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { BACKEND_URL } from "@/config";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
-import { BACKEND_URL } from "@/config";
+import { EllipsisVertical, Loader } from "lucide-react";
+import { useState } from "react";
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
 import { toast } from "./ui/use-toast";
 
 const TechnologyCard = ({ tech }: { tech: { name: string; _id: string } }) => {

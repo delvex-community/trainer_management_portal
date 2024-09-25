@@ -19,20 +19,19 @@ import {
 } from "@/components/ui/select";
 import { toast } from "@/components/ui/use-toast";
 import { BACKEND_URL } from "@/config";
-import { filterTechnologies } from "@/constants";
 import { TrainerValidation } from "@/lib/validation";
 import { useAllTechnologies } from "@/react-query/technology";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { z } from "zod";
 
 const TrainerForm = () => {
   const navigate = useNavigate();
-  const { allTechnologies, isLoading } = useAllTechnologies();
+  const { allTechnologies } = useAllTechnologies();
   const [technologies, setTechnologies] = useState<String[]>([]);
   const form = useForm<z.infer<typeof TrainerValidation>>({
     resolver: zodResolver(TrainerValidation),

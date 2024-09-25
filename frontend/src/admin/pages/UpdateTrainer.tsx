@@ -1,36 +1,34 @@
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import Loader from "@/components/Loader";
+import ProfileUploader from "@/components/ProfileUploader";
+import TrainerTechCheckbox from "@/components/TrainerTechCheckbox";
 import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import axios from "axios";
 import { Input } from "@/components/ui/input";
-import { TrainerValidation } from "@/lib/validation";
-import { useMutation } from "@tanstack/react-query";
-import { BACKEND_URL } from "@/config";
-import { toast } from "@/components/ui/use-toast";
-import Loader from "@/components/Loader";
-import { useNavigate, useParams } from "react-router-dom";
-import ProfileUploader from "@/components/ProfileUploader";
-import { useTrainerById } from "@/react-query/trainer";
-import { useEffect, useState } from "react";
-import TrainerTechCheckbox from "@/components/TrainerTechCheckbox";
 import {
   Select,
   SelectContent,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { filterTechnologies } from "@/constants";
+import { toast } from "@/components/ui/use-toast";
+import { BACKEND_URL } from "@/config";
+import { TrainerValidation } from "@/lib/validation";
 import { useAllTechnologies } from "@/react-query/technology";
+import { useTrainerById } from "@/react-query/trainer";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { useNavigate, useParams } from "react-router-dom";
+import { z } from "zod";
 
 const UpdateTrainer = () => {
   const navigate = useNavigate();
