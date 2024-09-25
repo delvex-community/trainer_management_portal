@@ -20,6 +20,8 @@ const SearchInput = () => {
       setTimeout(() => {
         queryClient.invalidateQueries({ queryKey: ["all-trainers"] });
         queryClient.invalidateQueries({ queryKey: ["all-users"] });
+        queryClient.invalidateQueries({ queryKey: ["all-technologies"] });
+        queryClient.invalidateQueries({ queryKey: ["all-trainings"] });
       }, 100);
     }, 300);
 

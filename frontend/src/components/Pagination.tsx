@@ -1,4 +1,4 @@
-import { useSearchParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import { Button } from "./ui/button";
 import { useQueryClient } from "@tanstack/react-query";
 
@@ -10,6 +10,7 @@ const Pagination = ({ totalPages }: PaginationProps) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const page = searchParams.get("page") || "1";
   const queryClient = useQueryClient();
+  const { trainerId } = useParams();
 
   const onClick = (btnType: string) => {
     const pageValue = btnType === "next" ? Number(page) + 1 : Number(page) - 1;
@@ -18,6 +19,12 @@ const Pagination = ({ totalPages }: PaginationProps) => {
     setSearchParams(searchParams);
     setTimeout(() => {
       queryClient.invalidateQueries({ queryKey: ["all-users"] });
+      queryClient.invalidateQueries({ queryKey: ["all-technologies"] });
+      queryClient.invalidateQueries({ queryKey: ["all-trainers"] });
+      queryClient.invalidateQueries({ queryKey: ["all-trainings"] });
+      queryClient.invalidateQueries({
+        queryKey: ["trainer-trainings", trainerId],
+      });
     }, 100);
   };
 

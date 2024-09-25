@@ -13,9 +13,9 @@ const UsersList = () => {
           <Loader />
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full max-h-[70vh] overflow-auto">
           {allUsers.data.map((user: UserType) => (
-            <div className="flex items-center justify-center" key={user._id}>
+            <div className="w-full" key={user._id}>
               <UserCard user={user} />
             </div>
           ))}

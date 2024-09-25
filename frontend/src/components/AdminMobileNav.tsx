@@ -3,7 +3,7 @@ import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 
 const AdminMobileNav = () => {
   return (
-    <nav className="sm:hidden">
+    <nav className="md:hidden">
       <Sheet>
         <SheetTrigger>
           <img src="/icons/menu.svg" alt="menu-icon" />

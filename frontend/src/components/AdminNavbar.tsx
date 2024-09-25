@@ -11,7 +11,7 @@ const AdminNavbar = () => {
         <Link to="/admin" className="h2-bold text-primary-500">
           Delvex
         </Link>
-        <div className="hidden sm:block">
+        <div className="hidden md:block">
           <AdminNavItems />
         </div>
         <div className="flex items-center gap-4">

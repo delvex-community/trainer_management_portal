@@ -6,8 +6,8 @@ import UserDeleteConfirmation from "./UserDeleteConfirmation";
 
 const UserCard = ({ user }: { user: UserType }) => {
   return (
-    <div className="w-full border-2 rounded-md bg-white shadow-md px-6 py-3 cursor-pointer  ">
-      <div className="flex items-center gap-6 flex-wrap justify-center sm:justify-start">
+    <div className="flex flex-col gap-3 w-full shadow-md px-4 py-3 rounded-md cursor-pointer max-w-[500px] border-2">
+      <div className="flex items-center gap-6 justify-center sm:justify-start">
         <img
           src={user.avatar || "/icons/profile-placeholder.svg"}
           alt={user.name}

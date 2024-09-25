@@ -13,7 +13,7 @@ const TrainersList = ({ isAdmin = false }) => {
           <Loader />
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
           {allTrainers.data.map((trainer: TrainerType) => (
             <div className="w-full" key={trainer._id}>
               <TrainerCard trainer={trainer} isAdmin={isAdmin} />

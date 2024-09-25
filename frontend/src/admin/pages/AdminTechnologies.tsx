@@ -19,12 +19,10 @@ import { Loader } from "lucide-react";
 import { useState } from "react";
 
 const AdminTechnologies = () => {
-  const { allTechnologies, isLoading } = useAllTechnologies();
+  const { allTechnologies } = useAllTechnologies();
   const [input, setInput] = useState("");
   const [open, setOpen] = useState(false);
   const queryClient = useQueryClient();
-
-  console.log(allTechnologies);
 
   const { mutate: addTech, isPending } = useMutation({
     mutationFn: async (payload: { name: string }) => {

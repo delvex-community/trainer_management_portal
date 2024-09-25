@@ -1,3 +1,4 @@
+import Pagination from "@/components/Pagination";
 import TrainingList from "@/components/TrainingList";
 import {
   DropdownMenu,
@@ -139,6 +140,9 @@ const AdminTrainerDetails = () => {
           </div>
 
           <TrainingList trainings={trainerTrainings.data} />
+          <div className="flex justify-center">
+            <Pagination totalPages={trainerTrainings.totalPages} />
+          </div>
         </div>
       </div>
     </div>

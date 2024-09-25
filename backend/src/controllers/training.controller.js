@@ -7,6 +7,10 @@ import { Training } from "../models/training.model.js";
 export const addTraining = asyncHandler(async (req, res) => {
   const { title, location, mode, trainerId, startDate, endDate } = req.body;
 
+  if (!title || !location || !mode || !trainerId || !startDate || !endDate) {
+    throw new ApiError(400, "Required all the fields");
+  }
+
   const findTraining = await Training.findOne({
     $and: [
       { title },
@@ -35,9 +39,23 @@ export const addTraining = asyncHandler(async (req, res) => {
 });
 
 export const getAllTrainings = asyncHandler(async (req, res) => {
+  const { query, page } = req.query;
   const limit = 6;
+  const skip = (Number(page) - 1) * limit;
 
-  const trainings = await Training.aggregate([
+  const condition = query
+    ? {
+        $or: [
+          { title: { $regex: query, $options: "i" } },
+          { location: { $regex: query, $options: "i" } },
+          { mode: { $regex: query, $options: "i" } },
+        ],
+      }
+    : {};
+
+  let pipeline = [];
+
+  pipeline.push(
     {
       $lookup: {
         from: "trainers",
@@ -53,12 +71,21 @@ export const getAllTrainings = asyncHandler(async (req, res) => {
         },
       },
     },
-  ]);
+    {
+      $match: condition,
+    },
+    {
+      $skip: skip,
+    }
+  );
 
-  const length = trainings.length;
+  const temp = await Training.aggregate(pipeline);
 
-  console.log(trainings);
+  const length = temp.length;
 
+  pipeline.push({ $limit: limit });
+
+  const trainings = await Training.aggregate(pipeline);
   return res
     .status(200)
     .json({ data: trainings, totalPages: Math.ceil(length / limit) });
@@ -66,9 +93,13 @@ export const getAllTrainings = asyncHandler(async (req, res) => {
 
 export const getTrainerTrainings = asyncHandler(async (req, res) => {
   const { trainerId } = req.params;
-  const limit = 6;
+  const limit = 3;
+  const { page } = req.query;
+  const skip = (Number(page) - 1) * limit;
 
-  const trainings = await Training.aggregate([
+  let pipeline = [];
+
+  pipeline.push(
     {
       $match: {
         trainerId: new mongoose.Types.ObjectId(trainerId),
@@ -89,9 +120,17 @@ export const getTrainerTrainings = asyncHandler(async (req, res) => {
         },
       },
     },
-  ]);
+    {
+      $skip: skip,
+    }
+  );
 
-  const length = trainings.length;
+  const temp = await Training.aggregate(pipeline);
+
+  const length = temp.length;
+
+  pipeline.push({ $limit: limit });
+  const trainings = await Training.aggregate(pipeline);
 
   return res
     .status(200)

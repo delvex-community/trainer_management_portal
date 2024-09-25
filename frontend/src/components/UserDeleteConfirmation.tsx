@@ -45,7 +45,7 @@ const UserDeleteConfirmation = ({ userId }: { userId: string }) => {
 
   return (
     <AlertDialog>
-      <AlertDialogTrigger>
+      <AlertDialogTrigger asChild>
         <Button
           variant="destructive"
           className="text-md flex items-center gap-2"

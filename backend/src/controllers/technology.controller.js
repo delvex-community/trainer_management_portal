@@ -5,7 +5,6 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 
 export const addTechnology = asyncHandler(async (req, res) => {
   const { name } = req.body;
-  console.log(name);
 
   const findTechnology = await Technology.findOne({
     name,
@@ -35,7 +34,7 @@ export const getTechnologies = asyncHandler(async (req, res) => {
 
   let pipeline = [];
 
-  pipeline.push({ $match: condition });
+  pipeline.push({ $match: condition }, { $skip: skip });
 
   const temp = await Technology.aggregate(pipeline);
 
