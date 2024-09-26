@@ -5,7 +5,7 @@ import { useRatingLabels } from "@/react-query/rating";
 import { useRating } from "@/react-query/trainer";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
-import { Loader, Star } from "lucide-react";
+import { ChevronLeft, Loader, Star } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -77,7 +77,13 @@ const UpdateNonTechRating = () => {
 
   return (
     <div className="h-[80vh] flex items-center justify-center">
-      <div className="flex flex-col bg-white rounded-md p-6 shadow-md gap-3 max-w-md w-full">
+      <div className="relative flex flex-col bg-white rounded-md p-6 shadow-md gap-3 max-w-md w-full">
+        <div className="absolute left-0 -top-[3rem]">
+          <Button variant="ghost" onClick={() => navigate(-1)}>
+            <ChevronLeft />
+            Back
+          </Button>
+        </div>
         <h2 className="h2-bold text-center mb-6">Update Non Tech Rating</h2>
         <div className="flex flex-col gap-4">
           <div className="flex items-center gap-2 justify-between flex-col sm:flex-row text-center sm:text-left">

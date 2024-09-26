@@ -1,13 +1,15 @@
+import { Button } from "@/components/ui/button";
 import { useRatingLabels } from "@/react-query/rating";
 import { useRating } from "@/react-query/trainer";
-import { Loader, Star } from "lucide-react";
+import { ChevronLeft, Loader, Star } from "lucide-react";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const TechRating = () => {
   const { trainerId } = useParams();
   const { rating, isLoading } = useRating(trainerId || "");
   const { ratingLabels, isLoading: loadingLabels } = useRatingLabels();
+  const navigate = useNavigate();
 
   const [rating1, setRating1] = useState(rating?.tech.rating1);
   const [rating2, setRating2] = useState(rating?.tech.rating2);
@@ -32,7 +34,14 @@ const TechRating = () => {
 
   return (
     <div className="h-[80vh] flex items-center justify-center">
-      <div className="flex flex-col bg-white rounded-md p-6 shadow-md gap-3 max-w-md w-full">
+      <div className="relative flex flex-col bg-white rounded-md p-6 shadow-md gap-3 max-w-md w-full">
+        <div className="absolute left-0 -top-[3rem]">
+          <Button variant="ghost" onClick={() => navigate(-1)}>
+            <ChevronLeft />
+            Back
+          </Button>
+        </div>
+
         <h2 className="h2-bold text-center mb-6">Tech Rating</h2>
         <div className="flex flex-col gap-4">
           <div className="flex items-center gap-2 justify-between flex-col sm:flex-row text-center sm:text-left">
