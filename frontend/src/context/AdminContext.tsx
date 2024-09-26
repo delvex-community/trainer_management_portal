@@ -1,7 +1,7 @@
-import Loader from "@/components/Loader";
 import { BACKEND_URL } from "@/config";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { Loader } from "lucide-react";
 import { createContext, useContext } from "react";
 
 const adminContext = createContext({
@@ -36,9 +36,8 @@ export const AdminContextProvider = ({
   return (
     <adminContext.Provider value={{ admin, isLoading }}>
       {isLoading ? (
-        <div className="h-screen w-screen flex flex-col items-center justify-center">
-          <Loader />
-          <h3 className="h3-bold">Loading Page...</h3>
+        <div className="h-screen w-full flex items-center justify-center">
+          <Loader className="animate-spin h-8 w-8" />
         </div>
       ) : (
         children

@@ -9,7 +9,12 @@ import { NavLink } from "react-router-dom";
 const AdminTrainings = () => {
   const { allTrainings, isLoading } = useAllTrainings();
 
-  if (isLoading) return <Loader />;
+  if (isLoading)
+    return (
+      <div className="h-[70vh] w-full flex items-center justify-center">
+        <Loader className="animate-spin h-8 w-8" />
+      </div>
+    );
 
   return (
     <div className="flex flex-col gap-6 items-center">

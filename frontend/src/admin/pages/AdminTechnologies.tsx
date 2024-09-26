@@ -19,7 +19,7 @@ import { Loader } from "lucide-react";
 import { useState } from "react";
 
 const AdminTechnologies = () => {
-  const { allTechnologies } = useAllTechnologies();
+  const { allTechnologies, isLoading } = useAllTechnologies();
   const [input, setInput] = useState("");
   const [open, setOpen] = useState(false);
   const queryClient = useQueryClient();
@@ -51,6 +51,13 @@ const AdminTechnologies = () => {
       setInput("");
     },
   });
+
+  if (isLoading)
+    return (
+      <div className="h-[70vh] w-full flex items-center justify-center">
+        <Loader className="animate-spin h-8 w-8" />
+      </div>
+    );
 
   function onAddTech() {
     if (!input) return;

@@ -34,8 +34,8 @@ const AdminTrainerDetails = () => {
 
   if (isLoading || loadingTrainings)
     return (
-      <div className="flex-center w-full h-full">
-        <Loader />
+      <div className="h-[70vh] w-full flex items-center justify-center">
+        <Loader className="animate-spin h-8 w-8" />
       </div>
     );
 
@@ -140,9 +140,11 @@ const AdminTrainerDetails = () => {
           </div>
 
           <TrainingList trainings={trainerTrainings.data} />
-          <div className="flex justify-center">
-            <Pagination totalPages={trainerTrainings.totalPages} />
-          </div>
+          {trainerTrainings.totalPages !== 0 && (
+            <div className="flex justify-center">
+              <Pagination totalPages={trainerTrainings.totalPages} />
+            </div>
+          )}
         </div>
       </div>
     </div>

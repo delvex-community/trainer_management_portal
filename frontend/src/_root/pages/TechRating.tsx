@@ -1,14 +1,13 @@
-import Loader from "@/components/Loader";
 import { useRatingLabels } from "@/react-query/rating";
 import { useRating } from "@/react-query/trainer";
-import { Star } from "lucide-react";
+import { Loader, Star } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 const TechRating = () => {
   const { trainerId } = useParams();
   const { rating, isLoading } = useRating(trainerId || "");
-  const { ratingLabels } = useRatingLabels();
+  const { ratingLabels, isLoading: loadingLabels } = useRatingLabels();
 
   const [rating1, setRating1] = useState(rating?.tech.rating1);
   const [rating2, setRating2] = useState(rating?.tech.rating2);
@@ -24,7 +23,12 @@ const TechRating = () => {
     setRating5(rating?.tech.rating5);
   }, [rating]);
 
-  if (isLoading) return <Loader />;
+  if (isLoading || loadingLabels)
+    return (
+      <div className="h-[70vh] w-full flex items-center justify-center">
+        <Loader className="animate-spin h-8 w-8" />
+      </div>
+    );
 
   return (
     <div className="h-[80vh] flex items-center justify-center">

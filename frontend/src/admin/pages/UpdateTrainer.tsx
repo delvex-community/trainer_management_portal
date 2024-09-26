@@ -1,4 +1,3 @@
-import Loader from "@/components/Loader";
 import ProfileUploader from "@/components/ProfileUploader";
 import TrainerTechCheckbox from "@/components/TrainerTechCheckbox";
 import { Button } from "@/components/ui/button";
@@ -25,6 +24,7 @@ import { useTrainerById } from "@/react-query/trainer";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
+import { Loader } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
@@ -101,7 +101,12 @@ const UpdateTrainer = () => {
     updateTrainer(data);
   }
 
-  if (isLoading) return <Loader />;
+  if (isLoading)
+    return (
+      <div className="h-[70vh] w-full flex items-center justify-center">
+        <Loader className="animate-spin h-8 w-8" />
+      </div>
+    );
 
   return (
     <div className="h-[80vh] flex items-center justify-center">

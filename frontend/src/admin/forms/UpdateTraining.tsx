@@ -23,11 +23,10 @@ import { TrainingValidation } from "@/lib/validation";
 import { useMutation } from "@tanstack/react-query";
 import { BACKEND_URL } from "@/config";
 import { toast } from "@/components/ui/use-toast";
-import Loader from "@/components/Loader";
 import { useNavigate, useParams } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { Calendar } from "lucide-react";
+import { Calendar, Loader } from "lucide-react";
 import TrainerDropdown from "@/components/TrainerDropdown";
 import { useTraining } from "@/react-query/training";
 import { useEffect } from "react";
@@ -35,7 +34,7 @@ import { useEffect } from "react";
 const UpdateTraining = () => {
   const { trainingId } = useParams();
   const navigate = useNavigate();
-  const { training } = useTraining(trainingId || "");
+  const { training, isLoading } = useTraining(trainingId || "");
 
   const form = useForm<z.infer<typeof TrainingValidation>>({
     resolver: zodResolver(TrainingValidation),
@@ -98,6 +97,13 @@ const UpdateTraining = () => {
   function onSubmit(values: z.infer<typeof TrainingValidation>) {
     updateTraining(values);
   }
+
+  if (isLoading)
+    return (
+      <div className="h-[70vh] w-full flex items-center justify-center">
+        <Loader className="animate-spin h-8 w-8" />
+      </div>
+    );
 
   return (
     <div className="h-[80vh] flex items-center justify-center">

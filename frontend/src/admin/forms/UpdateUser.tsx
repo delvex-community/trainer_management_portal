@@ -1,4 +1,3 @@
-import Loader from "@/components/Loader";
 import ProfileUploader from "@/components/ProfileUploader";
 import { Button } from "@/components/ui/button";
 import {
@@ -17,6 +16,7 @@ import { useUserById } from "@/react-query/user";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
+import { Loader } from "lucide-react";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
@@ -85,7 +85,12 @@ const UpdateUser = () => {
     updateUser(values);
   }
 
-  if (loadingUser) return <Loader />;
+  if (loadingUser)
+    return (
+      <div className="h-[70vh] w-full flex items-center justify-center">
+        <Loader className="animate-spin h-8 w-8" />
+      </div>
+    );
 
   return (
     <div className="h-[70vh] flex items-center justify-center">
