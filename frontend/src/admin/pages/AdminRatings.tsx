@@ -135,7 +135,7 @@ const AdminRatings = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="flex flex-col gap-5 items-center">
           <h2 className="text-xl font-semibold">Tech Ratings</h2>
-          <div className="min-w-[400px]">
+          <div className="min-w-[300px] sm:min-w-[400px]">
             <div className="flex items-center justify-between gap-4 shadow-md rounded-md p-4 font-semibold">
               <span>{ratingLabels?.data.tech?.label1}</span>
               <Edit
@@ -195,7 +195,7 @@ const AdminRatings = () => {
         </div>
         <div className="flex flex-col gap-5 items-center">
           <h2 className="text-xl font-semibold">Non Tech Ratings</h2>
-          <div className="min-w-[400px]">
+          <div className="min-w-[300px] sm:min-w-[400px]">
             <div className="flex items-center justify-between gap-4 shadow-md rounded-md p-4 font-semibold">
               <span>{ratingLabels?.data.nonTech?.label1}</span>
               <Edit

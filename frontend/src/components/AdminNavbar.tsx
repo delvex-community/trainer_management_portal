@@ -8,7 +8,7 @@ const AdminNavbar = () => {
   return (
     <div className="fixed top-0 z-20 bg-white w-full h-fit py-3 shadow-md">
       <div className="container flex items-center justify-between">
-        <Link to="/admin" className="h2-bold text-primary-500">
+        <Link to="/admin" className="h2-bold text-blue-2">
           Delvex
         </Link>
         <div className="hidden md:block">

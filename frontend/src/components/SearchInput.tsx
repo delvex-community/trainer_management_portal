@@ -30,7 +30,7 @@ const SearchInput = () => {
 
   return (
     <Input
-      className="form-input rounded-full pl-4 max-w-4xl"
+      className="form-input rounded-xl pl-4 max-w-4xl"
       placeholder="Type here..."
       onChange={(e) => setQuery(e.target.value)}
     />

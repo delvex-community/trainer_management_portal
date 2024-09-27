@@ -3,17 +3,20 @@ import { TrainingType } from "@/types";
 import { Edit, Laptop } from "lucide-react";
 import TrainingDeleteConfirmation from "./TrainingDeleteConfirmation";
 import { NavLink } from "react-router-dom";
+import { useCurrentAdmin } from "@/react-query/admin";
 
 type TrainingCardProps = {
   training: TrainingType;
 };
 
 const TrainingCard = ({ training }: TrainingCardProps) => {
+  const { admin } = useCurrentAdmin();
+
   return (
     <div className="flex items-center justify-center">
-      <div className="flex flex-col gap-3 w-full shadow-md px-4 py-3 rounded-md cursor-pointer max-w-[500px] border-2">
+      <div className="flex flex-col gap-3 w-full shadow-sm px-4 py-3 rounded-md cursor-pointer max-w-[500px] border-2">
         <h3 className="font-semibold text-2xl">{training.title}</h3>
-        <div className="flex items-center font-semibold text-blue-600">
+        <div className="flex items-center font-semibold text-blue-2">
           <span className="flex items-center gap-2 mr-2">
             {formatDateTime(training.startDate).dateOnly}
           </span>{" "}
@@ -22,12 +25,12 @@ const TrainingCard = ({ training }: TrainingCardProps) => {
             {formatDateTime(training.endDate).dateOnly}
           </span>
         </div>
-        <div className="flex justify-between font-semibold text-gray-600">
+        <div className="flex justify-between font-semibold text-zinc-700">
           <span className="flex items-center gap-2">
             <Laptop />
             {training.mode}
           </span>
-          <span className="text-lg  ">{training.location}</span>
+          <span className="text-lg">{training.location}</span>
         </div>
         <div className="flex items-center justify-between gap-4">
           <div className="flex items-center gap-4 font-bold text-md">
@@ -38,13 +41,15 @@ const TrainingCard = ({ training }: TrainingCardProps) => {
             />
             {training.trainer.name}
           </div>
-          <div className="flex items-center gap-3">
-            <NavLink to={`/admin/trainings/update/${training._id}`}>
-              <Edit className="text-violet-600" />
-            </NavLink>
+          {admin && (
+            <div className="flex items-center gap-3">
+              <NavLink to={`/admin/trainings/update/${training._id}`}>
+                <Edit className="text-violet-600" />
+              </NavLink>
 
-            <TrainingDeleteConfirmation trainingId={training._id} />
-          </div>
+              <TrainingDeleteConfirmation trainingId={training._id} />
+            </div>
+          )}
         </div>
       </div>
     </div>

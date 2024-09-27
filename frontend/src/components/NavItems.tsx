@@ -3,15 +3,13 @@ import { NavLink } from "react-router-dom";
 
 const NavItems = () => {
   return (
-    <ul className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 mt-8 sm:mt-0">
+    <ul className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 sm:mt-0">
       {headerLinks.map((link) => (
         <li key={link.label}>
           <NavLink
             to={link.route}
             className={({ isActive }) =>
-              isActive
-                ? "font-semibold text-lg text-blue-600"
-                : "font-semibold text-lg"
+              isActive ? "font-bold text-lg text-blue-2" : "font-bold text-lg"
             }
           >
             {link.label}

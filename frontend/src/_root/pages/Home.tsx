@@ -26,9 +26,9 @@ const Home = () => {
     );
 
   return (
-    <div className="flex flex-col gap-10 items-center justify-center w-full max-h-screen">
+    <div className="flex flex-col gap-10 items-center justify-center w-full pb-4">
       <div className="flex flex-col gap-6 max-w-[400px] w-full">
-        <h1 className="text-4xl font-bold text-gray-900 text-center">
+        <h1 className="text-4xl font-bold text-zinc-800 text-center">
           Search Trainers
         </h1>
         <SearchInput />

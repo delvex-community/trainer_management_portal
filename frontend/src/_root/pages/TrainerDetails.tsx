@@ -60,18 +60,18 @@ const TrainerDetails = () => {
                     </span>
                   </div>
                   <div className="flex items-center justify-center md:justify-start md:items-start gap-3 mt-3 ">
-                    <p className="flex items-center gap-2 small-regular sm:body-medium text-light-3 text-center xl:text-left">
+                    <p className="flex items-center gap-2 small-regular sm:body-medium text-zinc-700 text-center xl:text-left">
                       <Mail className="h-5 w-5" />
                       {trainer?.email}
                     </p>
-                    <p className="flex items-center gap-2 small-regular sm:body-medium text-light-3 text-center xl:text-left">
+                    <p className="flex items-center gap-2 small-regular sm:body-medium text-zinc-700 text-center xl:text-left">
                       <Phone className="h-5 w-5" />
                       {trainer?.contact}
                     </p>
                   </div>
                 </div>
 
-                <div className="mt-4 font-semibold flex items-center gap-2 text-gray-700 justify-center md:justify-start">
+                <div className="mt-4 font-semibold flex items-center gap-2 text-zinc-700 justify-center md:justify-start">
                   <MapPin className="h-5 w-5" />
                   {trainer.location}
                 </div>

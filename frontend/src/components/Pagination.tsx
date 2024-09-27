@@ -28,6 +28,8 @@ const Pagination = ({ totalPages }: PaginationProps) => {
     }, 100);
   };
 
+  if (totalPages <= 1) return null;
+
   return (
     <div className="flex gap-2">
       <Button
