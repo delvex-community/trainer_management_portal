@@ -36,21 +36,20 @@ export const createUser = asyncHandler(async (req, res) => {
     password,
   });
 
-  const token = await generateAccessToken(user._id);
+  // const token = await generateAccessToken(user._id);
 
-  const expiryDate = new Date(Date.now() + 15 * 24 * 60 * 60 * 1000);
+  // const expiryDate = new Date(Date.now() + 15 * 24 * 60 * 60 * 1000);
 
-  const options = {
-    httpOnly: true,
-    secure: true,
-    sameSite: "None",
-    path: "/",
-    expires: expiryDate,
-  };
+  // const options = {
+  //   httpOnly: true,
+  //   secure: true,
+  //   sameSite: "None",
+  //   path: "/",
+  //   expires: expiryDate,
+  // };
 
   return res
     .status(200)
-    .cookie("userToken", token, options)
     .json(new ApiResponse(200, user, "Registered Successfully"));
 });
 
