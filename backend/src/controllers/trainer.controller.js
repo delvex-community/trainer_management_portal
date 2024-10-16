@@ -259,6 +259,9 @@ export const getAllTrainers = asyncHandler(async (req, res) => {
 
   pipeline.push(
     {
+      $sort: { createdAt: -1 },
+    },
+    {
       $skip: skip,
     },
     {

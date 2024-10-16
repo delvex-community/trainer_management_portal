@@ -41,6 +41,9 @@ export const getTechnologies = asyncHandler(async (req, res) => {
   const length = temp.length;
 
   pipeline.push(
+    {
+      $sort: { createdAt: -1 },
+    },
     { $skip: skip },
     {
       $limit: limit,
