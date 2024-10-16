@@ -73,9 +73,6 @@ export const getAllTrainings = asyncHandler(async (req, res) => {
     },
     {
       $match: condition,
-    },
-    {
-      $skip: skip,
     }
   );
 
@@ -83,7 +80,12 @@ export const getAllTrainings = asyncHandler(async (req, res) => {
 
   const length = temp.length;
 
-  pipeline.push({ $limit: limit });
+  pipeline.push(
+    {
+      $skip: skip,
+    },
+    { $limit: limit }
+  );
 
   const trainings = await Training.aggregate(pipeline);
   return res
@@ -119,9 +121,6 @@ export const getTrainerTrainings = asyncHandler(async (req, res) => {
           $first: "$trainer",
         },
       },
-    },
-    {
-      $skip: skip,
     }
   );
 
@@ -129,7 +128,12 @@ export const getTrainerTrainings = asyncHandler(async (req, res) => {
 
   const length = temp.length;
 
-  pipeline.push({ $limit: limit });
+  pipeline.push(
+    {
+      $skip: skip,
+    },
+    { $limit: limit }
+  );
   const trainings = await Training.aggregate(pipeline);
 
   return res

@@ -223,22 +223,22 @@ export const getAllUsers = asyncHandler(async (req, res) => {
 
   let pipeline = [];
 
-  pipeline.push(
-    {
-      $match: condition,
-    },
-    {
-      $skip: skip,
-    }
-  );
+  pipeline.push({
+    $match: condition,
+  });
 
   const temp = await User.aggregate(pipeline);
 
   const length = temp.length;
 
-  pipeline.push({
-    $limit: limit,
-  });
+  pipeline.push(
+    {
+      $skip: skip,
+    },
+    {
+      $limit: limit,
+    }
+  );
 
   if (sortQuery) {
     pipeline.push({

@@ -250,9 +250,6 @@ export const getAllTrainers = asyncHandler(async (req, res) => {
     },
     {
       $match: nonTechRatingCondition,
-    },
-    {
-      $skip: skip,
     }
   );
 
@@ -260,9 +257,14 @@ export const getAllTrainers = asyncHandler(async (req, res) => {
 
   const length = temp.length;
 
-  pipeline.push({
-    $limit: limit,
-  });
+  pipeline.push(
+    {
+      $skip: skip,
+    },
+    {
+      $limit: limit,
+    }
+  );
 
   if (sortQuery) {
     pipeline.push({

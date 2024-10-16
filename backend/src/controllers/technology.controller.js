@@ -34,15 +34,18 @@ export const getTechnologies = asyncHandler(async (req, res) => {
 
   let pipeline = [];
 
-  pipeline.push({ $match: condition }, { $skip: skip });
+  pipeline.push({ $match: condition });
 
   const temp = await Technology.aggregate(pipeline);
 
   const length = temp.length;
 
-  pipeline.push({
-    $limit: limit,
-  });
+  pipeline.push(
+    { $skip: skip },
+    {
+      $limit: limit,
+    }
+  );
 
   const technologies = await Technology.aggregate(pipeline);
 
