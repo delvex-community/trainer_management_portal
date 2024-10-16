@@ -2,7 +2,7 @@ import Filter from "@/components/Filter";
 import Pagination from "@/components/Pagination";
 import SearchInput from "@/components/SearchInput";
 import TrainersList from "@/components/TrainersList";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
