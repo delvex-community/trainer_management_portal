@@ -5,23 +5,10 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { BACKEND_URL } from "@/config";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
-import {
-  Cross,
-  EllipsisVertical,
-  Loader,
-  Pencil,
-  Plus,
-  Trash2,
-} from "lucide-react";
+import { Loader, Plus } from "lucide-react";
 import { useState } from "react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";

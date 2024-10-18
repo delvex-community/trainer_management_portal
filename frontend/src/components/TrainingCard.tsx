@@ -1,15 +1,7 @@
 import { formatDateTime } from "@/lib/utils";
 import { useCurrentAdmin } from "@/react-query/admin";
 import { TrainingType } from "@/types";
-import {
-  CircleDot,
-  Dot,
-  Edit,
-  MapPinCheckIcon,
-  TvMinimalPlay,
-  Wifi,
-  WifiOff,
-} from "lucide-react";
+import { Edit, MapPinCheckIcon, Wifi, WifiOff } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import TrainingDeleteConfirmation from "./TrainingDeleteConfirmation";
 
