@@ -3,6 +3,10 @@ export const headerLinks = [
     label: "Home",
     route: "/",
   },
+  {
+    label: "Trainings",
+    route: "/trainings",
+  },
 ];
 
 export const adminHeaderLinks = [
