@@ -15,7 +15,7 @@ import { BACKEND_URL } from "@/config";
 import { useAllTechnologies } from "@/react-query/technology";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
-import { Loader } from "lucide-react";
+import { CirclePlus, Loader } from "lucide-react";
 import { useState } from "react";
 
 const AdminTechnologies = () => {
@@ -72,11 +72,14 @@ const AdminTechnologies = () => {
       <div className="flex justify-center mb-5">
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
-            <Button className="font-semibold text-lg">Add Technology</Button>
+            <button className="flex items-center gap-2 font-semibold text-lg px-4 py-2 rounded-md border-[1px] hover:border-gray-100 hover:bg-gray-100">
+              <CirclePlus className="w-5 h-5 text-blue-500" />
+              Add Technology
+            </button>
           </DialogTrigger>
           <DialogContent className="max-w-[400px]">
             <DialogHeader>
-              <DialogTitle>Add a technology</DialogTitle>
+              <DialogTitle className="text-2xl">Add a technology</DialogTitle>
             </DialogHeader>
             <div className="flex flex-col  gap-4">
               <Input

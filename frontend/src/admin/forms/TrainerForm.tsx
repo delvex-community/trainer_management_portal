@@ -24,6 +24,7 @@ import { useAllTechnologies } from "@/react-query/technology";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
+import { ChevronLeft } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -85,8 +86,14 @@ const TrainerForm = () => {
 
   return (
     <div className="h-[80vh] flex items-center justify-center">
-      <div className="flex flex-col bg-white rounded-md p-6 shadow-md gap-3 max-w-md w-full">
-        <h2 className="h2-bold text-center mb-6">Add Trainer</h2>
+      <div className="relative flex flex-col bg-gradient-to-br from-gray-50 to-gray-100/90 border-[1px] border-gray-300 rounded-md p-6 shadow-md gap-3 max-w-md w-full">
+        <div className="absolute left-0 -top-[3rem]">
+          <Button variant="ghost" onClick={() => navigate(-1)}>
+            <ChevronLeft />
+            Back
+          </Button>
+        </div>
+        <h2 className="text-3xl font-[600] text-center mb-6">Add Trainer</h2>
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}

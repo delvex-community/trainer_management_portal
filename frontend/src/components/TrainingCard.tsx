@@ -1,7 +1,15 @@
 import { formatDateTime } from "@/lib/utils";
 import { useCurrentAdmin } from "@/react-query/admin";
 import { TrainingType } from "@/types";
-import { Edit, MapPinCheckIcon, TvMinimalPlay } from "lucide-react";
+import {
+  CircleDot,
+  Dot,
+  Edit,
+  MapPinCheckIcon,
+  TvMinimalPlay,
+  Wifi,
+  WifiOff,
+} from "lucide-react";
 import { NavLink } from "react-router-dom";
 import TrainingDeleteConfirmation from "./TrainingDeleteConfirmation";
 
@@ -26,11 +34,19 @@ const TrainingCard = ({ training }: TrainingCardProps) => {
           </span>
         </div>
         <div className="flex justify-between font-[500] text-zinc-800">
-          <span className="flex items-center gap-2">
-            <TvMinimalPlay className="w-4 h-4" />
+          <span
+            className={`flex items-center gap-2 ${
+              training.mode === "Offline" ? "text-yellow-500" : "text-green-500"
+            }`}
+          >
+            {training.mode === "Offline" ? (
+              <WifiOff className="w-4 h-4 text-yellow-500" />
+            ) : (
+              <Wifi className="w-4 h-4 text-green-500" />
+            )}
             {training.mode}
           </span>
-          <span className="flex items-center gap-2">
+          <span className="flex items-center gap-2 bg-red-100 text-red-500 px-2 py-1 rounded-md text-sm">
             <MapPinCheckIcon className="w-4 h-4" />
             {training.location}
           </span>

@@ -34,7 +34,7 @@ const ProfileUploader = ({ fieldChange, mediaUrl }: ProfileUploaderProps) => {
 
       <div className="cursor-pointer flex-center gap-4">
         <img
-          src={fileUrl || "/icons/profile-placeholder.svg"}
+          src={fileUrl || "/images/user-profile.png"}
           alt="image"
           className="h-16 w-16 rounded-full object-cover object-top"
         />

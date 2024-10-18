@@ -76,8 +76,10 @@ const AddUserForm = () => {
 
   return (
     <div className="h-[70vh] flex items-center justify-center">
-      <div className="flex flex-col bg-white rounded-md p-6 shadow-md gap-3 max-w-md w-full mx-auto">
-        <h2 className="h2-bold text-center">Create user account</h2>
+      <div className="flex flex-col bg-gradient-to-br sm:from-gray-50 sm:to-gray-100/90 sm:border-[1px] sm:border-gray-300 rounded-md p-6 shadow-md gap-3 max-w-md w-full mx-auto">
+        <h2 className="text-3xl font-semibold text-center mb-4">
+          Create user account
+        </h2>
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
@@ -94,7 +96,7 @@ const AddUserForm = () => {
                     </FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="Your Full Name"
+                        placeholder="User's Full Name"
                         {...field}
                         className="form-input"
                       />
@@ -113,7 +115,7 @@ const AddUserForm = () => {
                     <FormLabel className="shadcn-form-label">Email</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="Your Email"
+                        placeholder="User's Email"
                         {...field}
                         type="email"
                         className="form-input"
@@ -135,7 +137,7 @@ const AddUserForm = () => {
                     </FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="Your Contact Info"
+                        placeholder="User's Contact Info"
                         {...field}
                         className="form-input"
                       />
@@ -156,7 +158,7 @@ const AddUserForm = () => {
                     </FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="Your Password"
+                        placeholder="User's Password"
                         {...field}
                         className="form-input"
                         type="password"

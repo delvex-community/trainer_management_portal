@@ -74,7 +74,7 @@ const TrainerCard = ({
         {isAdmin && (
           <div className="flex items-center justify-end w-full gap-4">
             <Link to={`/admin/trainers/${trainer._id}/update-profile`}>
-              <Edit className="w-5 h-5 text-red-500 hover:scale-[1.20] duration-150" />
+              <Edit className="w-5 h-5 text-blue-500 hover:scale-[1.20] duration-150" />
             </Link>
 
             <TrainerDeleteConfirmation trainerId={trainer._id} />

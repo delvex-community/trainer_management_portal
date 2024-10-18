@@ -15,11 +15,11 @@ const UserCard = ({ user }: { user: UserType }) => {
         <div className="text-zinc-800 flex flex-col gap-2 font-semibold">
           <h3 className="text-xl">{user.name}</h3>
 
-          <span className="flex items-center gap-2 font-[500] text-red-600 w-fit py-1 px-2 rounded-md text-xs bg-red-100">
+          <span className="flex items-center gap-2 font-[500] text-blue-600 w-fit py-1 px-2 rounded-md text-xs bg-blue-100">
             <Mail className="h-4 w-4" />
             {user.email}
           </span>
-          <span className="flex items-center gap-2 font-[500] text-red-600 w-fit py-1 px-2 rounded-md text-xs bg-red-100">
+          <span className="flex items-center gap-2 font-[500] text-blue-600 w-fit py-1 px-2 rounded-md text-xs bg-blue-100">
             <Phone className="h-4 w-4" />
             {user.contact}
           </span>
@@ -27,7 +27,7 @@ const UserCard = ({ user }: { user: UserType }) => {
       </div>
       <div className="flex items-center justify-end gap-4 w-full">
         <Link to={`/admin/users/${user._id}/update-user`}>
-          <Edit className="w-5 h-5 text-red-500 hover:scale-[1.20] duration-150" />
+          <Edit className="w-5 h-5 text-blue-500 hover:scale-[1.20] duration-150" />
         </Link>
 
         <UserDeleteConfirmation userId={user._id} />

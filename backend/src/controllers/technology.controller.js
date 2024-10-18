@@ -23,7 +23,7 @@ export const addTechnology = asyncHandler(async (req, res) => {
 
 export const getTechnologies = asyncHandler(async (req, res) => {
   const { query, page } = req.query;
-  const limit = 12;
+  const limit = 16;
   const skip = (Number(page) - 1) * limit;
 
   const condition = query
@@ -40,15 +40,9 @@ export const getTechnologies = asyncHandler(async (req, res) => {
 
   const length = temp.length;
 
-  pipeline.push(
-    {
-      $sort: { createdAt: -1 },
-    },
-    { $skip: skip },
-    {
-      $limit: limit,
-    }
-  );
+  pipeline.push({
+    $sort: { createdAt: -1 },
+  });
 
   const technologies = await Technology.aggregate(pipeline);
 

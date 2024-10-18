@@ -131,15 +131,17 @@ const AdminRatings = () => {
 
   return (
     <div className="flex flex-col gap-10 items-center min-h-[80vh]">
-      <h1 className="text-xl md:text-2xl font-bold">Update Rating Labels</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="flex flex-col gap-5 items-center">
-          <h2 className="text-xl font-semibold">Tech Ratings</h2>
-          <div className="min-w-[300px] sm:min-w-[400px]">
-            <div className="flex items-center justify-between gap-4 shadow-md rounded-md p-4 font-semibold">
+      <h1 className="text-xl md:text-3xl font-[600]">Update Rating Labels</h1>
+      <div className=" grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="flex flex-col gap-5 items-center justify-center">
+          <h2 className="text-lg font-[500] text-yellow-400 bg-zinc-800 px-4 py-2 rounded-md">
+            Tech Ratings
+          </h2>
+          <div className="min-w-[300px] sm:min-w-[400px] flex flex-col gap-4">
+            <div className="flex items-center justify-between gap-4 shadow-md rounded-md p-4 font-[500] text-lg border-[1px] border-yellow-300 bg-gradient-to-br from-yellow-50 to-yellow-200 text-zinc-800 italic">
               <span>{ratingLabels?.data.tech?.label1}</span>
               <Edit
-                className="w-4 h-4 cursor-pointer"
+                className="w-5 h-5 cursor-pointer hover:scale-[1.20] duration-150"
                 onClick={() => {
                   setOpenDialogTech(true);
                   setLabel("label1");
@@ -147,10 +149,10 @@ const AdminRatings = () => {
                 }}
               />
             </div>
-            <div className="flex items-center justify-between gap-4 shadow-md rounded-md p-4 font-semibold">
+            <div className="flex items-center justify-between gap-4 shadow-md rounded-md p-4 font-[500] text-lg border-[1px] border-yellow-300 bg-gradient-to-br from-yellow-50 to-yellow-200 text-zinc-800 italic">
               <span>{ratingLabels?.data.tech?.label2}</span>
               <Edit
-                className="w-4 h-4 cursor-pointer"
+                className="w-5 h-5 cursor-pointer hover:scale-[1.20] duration-150"
                 onClick={() => {
                   setOpenDialogTech(true);
                   setLabel("label2");
@@ -158,10 +160,10 @@ const AdminRatings = () => {
                 }}
               />
             </div>
-            <div className="flex items-center justify-between gap-4 shadow-md rounded-md p-4 font-semibold">
+            <div className="flex items-center justify-between gap-4 shadow-md rounded-md p-4 font-[500] text-lg border-[1px] border-yellow-300 bg-gradient-to-br from-yellow-50 to-yellow-200 text-zinc-800 italic">
               <span>{ratingLabels?.data.tech?.label3}</span>
               <Edit
-                className="w-4 h-4 cursor-pointer"
+                className="w-5 h-5 cursor-pointer hover:scale-[1.20] duration-150"
                 onClick={() => {
                   setOpenDialogTech(true);
                   setLabel("label3");
@@ -169,10 +171,10 @@ const AdminRatings = () => {
                 }}
               />
             </div>
-            <div className="flex items-center justify-between gap-4 shadow-md rounded-md p-4 font-semibold">
+            <div className="flex items-center justify-between gap-4 shadow-md rounded-md p-4 font-[500] text-lg border-[1px] border-yellow-300 bg-gradient-to-br from-yellow-50 to-yellow-200 text-zinc-800 italic">
               <span>{ratingLabels?.data.tech?.label4}</span>
               <Edit
-                className="w-4 h-4 cursor-pointer"
+                className="w-5 h-5 cursor-pointer hover:scale-[1.20] duration-150"
                 onClick={() => {
                   setOpenDialogTech(true);
                   setLabel("label4");
@@ -180,10 +182,10 @@ const AdminRatings = () => {
                 }}
               />
             </div>
-            <div className="flex items-center justify-between gap-4 shadow-md rounded-md p-4 font-semibold">
+            <div className="flex items-center justify-between gap-4 shadow-md rounded-md p-4 font-[500] text-lg border-[1px] border-yellow-300 bg-gradient-to-br from-yellow-50 to-yellow-200 text-zinc-800 italic">
               <span>{ratingLabels?.data.tech?.label5}</span>
               <Edit
-                className="w-4 h-4 cursor-pointer"
+                className="w-5 h-5 cursor-pointer hover:scale-[1.20] duration-150"
                 onClick={() => {
                   setOpenDialogTech(true);
                   setLabel("label5");
@@ -194,12 +196,14 @@ const AdminRatings = () => {
           </div>
         </div>
         <div className="flex flex-col gap-5 items-center">
-          <h2 className="text-xl font-semibold">Non Tech Ratings</h2>
-          <div className="min-w-[300px] sm:min-w-[400px]">
-            <div className="flex items-center justify-between gap-4 shadow-md rounded-md p-4 font-semibold">
+          <h2 className="text-lg font-[500] text-yellow-400 bg-zinc-800 px-4 py-2 rounded-md">
+            Non Tech Ratings
+          </h2>
+          <div className="min-w-[300px] sm:min-w-[400px] flex flex-col gap-4">
+            <div className="flex items-center justify-between gap-4 shadow-md rounded-md p-4 font-[500] text-lg border-[1px] border-yellow-300 bg-gradient-to-br from-yellow-50 to-yellow-200 text-zinc-800 italic">
               <span>{ratingLabels?.data.nonTech?.label1}</span>
               <Edit
-                className="w-4 h-4 cursor-pointer"
+                className="w-5 h-5 cursor-pointer hover:scale-[1.20] duration-150"
                 onClick={() => {
                   setOpenDialogNonTech(true);
                   setLabel("label1");
@@ -207,10 +211,10 @@ const AdminRatings = () => {
                 }}
               />
             </div>
-            <div className="flex items-center justify-between gap-4 shadow-md rounded-md p-4 font-semibold">
+            <div className="flex items-center justify-between gap-4 shadow-md rounded-md p-4 font-[500] text-lg border-[1px] border-yellow-300 bg-gradient-to-br from-yellow-50 to-yellow-200 text-zinc-800 italic">
               <span>{ratingLabels?.data.nonTech?.label2}</span>
               <Edit
-                className="w-4 h-4 cursor-pointer"
+                className="w-5 h-5 cursor-pointer hover:scale-[1.20] duration-150"
                 onClick={() => {
                   setOpenDialogNonTech(true);
                   setLabel("label2");
@@ -218,10 +222,10 @@ const AdminRatings = () => {
                 }}
               />
             </div>
-            <div className="flex items-center justify-between gap-4 shadow-md rounded-md p-4 font-semibold">
+            <div className="flex items-center justify-between gap-4 shadow-md rounded-md p-4 font-[500] text-lg border-[1px] border-yellow-300 bg-gradient-to-br from-yellow-50 to-yellow-200 text-zinc-800 italic">
               <span>{ratingLabels?.data.nonTech?.label3}</span>
               <Edit
-                className="w-4 h-4 cursor-pointer"
+                className="w-5 h-5 cursor-pointer hover:scale-[1.20] duration-150"
                 onClick={() => {
                   setOpenDialogNonTech(true);
                   setLabel("label3");
@@ -229,10 +233,10 @@ const AdminRatings = () => {
                 }}
               />
             </div>
-            <div className="flex items-center justify-between gap-4 shadow-md rounded-md p-4 font-semibold">
+            <div className="flex items-center justify-between gap-4 shadow-md rounded-md p-4 font-[500] text-lg border-[1px] border-yellow-300 bg-gradient-to-br from-yellow-50 to-yellow-200 text-zinc-800 italic">
               <span>{ratingLabels?.data.nonTech?.label4}</span>
               <Edit
-                className="w-4 h-4 cursor-pointer"
+                className="w-5 h-5 cursor-pointer hover:scale-[1.20] duration-150"
                 onClick={() => {
                   setOpenDialogNonTech(true);
                   setLabel("label4");
@@ -240,10 +244,10 @@ const AdminRatings = () => {
                 }}
               />
             </div>
-            <div className="flex items-center justify-between gap-4 shadow-md rounded-md p-4 font-semibold">
+            <div className="flex items-center justify-between gap-4 shadow-md rounded-md p-4 font-[500] text-lg border-[1px] border-yellow-300 bg-gradient-to-br from-yellow-50 to-yellow-200 text-zinc-800 italic">
               <span>{ratingLabels?.data.nonTech?.label5}</span>
               <Edit
-                className="w-4 h-4 cursor-pointer"
+                className="w-5 h-5 cursor-pointer hover:scale-[1.20] duration-150"
                 onClick={() => {
                   setOpenDialogNonTech(true);
                   setLabel("label5");
@@ -275,7 +279,7 @@ const AdminRatings = () => {
       <Dialog open={openDialogNonTech} onOpenChange={setOpenDialogNonTech}>
         <DialogContent className="max-w-[400px]">
           <DialogHeader>
-            <DialogTitle>Update Rating Label</DialogTitle>
+            <DialogTitle className="text-2xl">Update Rating Label</DialogTitle>
           </DialogHeader>
           <div className="flex flex-col gap-4">
             <Input

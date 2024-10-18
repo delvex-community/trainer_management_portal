@@ -16,7 +16,7 @@ import { useUserById } from "@/react-query/user";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
-import { Loader } from "lucide-react";
+import { ChevronLeft, Loader } from "lucide-react";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
@@ -94,8 +94,16 @@ const UpdateUser = () => {
 
   return (
     <div className="h-[70vh] flex items-center justify-center">
-      <div className="flex flex-col bg-white rounded-md p-6 shadow-md gap-3 max-w-md w-full mx-auto">
-        <h2 className="h2-bold text-center mb-4">Update User Details</h2>
+      <div className="relative flex flex-col bg-gradient-to-br sm:from-gray-50 sm:to-gray-100/90 sm:border-[1px] sm:border-gray-300 rounded-md p-6 shadow-md gap-3 max-w-md w-full mx-auto">
+        <div className="absolute left-0 -top-[3rem]">
+          <Button variant="ghost" onClick={() => navigate(-1)}>
+            <ChevronLeft />
+            Back
+          </Button>
+        </div>
+        <h2 className="text-3xl font-semibold text-center mb-4">
+          Update User Details
+        </h2>
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}

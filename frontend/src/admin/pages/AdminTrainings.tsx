@@ -32,7 +32,7 @@ const AdminTrainings = () => {
       <TrainingList trainings={allTrainings.data} />
 
       <div className="flex items-center justify-center mt-4">
-        <Pagination totalPages={1} />
+        <Pagination totalPages={allTrainings.totalPages} />
       </div>
     </div>
   );

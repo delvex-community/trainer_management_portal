@@ -27,7 +27,7 @@ import Loader from "@/components/Loader";
 import { useNavigate } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { Calendar } from "lucide-react";
+import { Calendar, ChevronLeft } from "lucide-react";
 import TrainerDropdown from "@/components/TrainerDropdown";
 
 const TrainingForm = () => {
@@ -78,8 +78,16 @@ const TrainingForm = () => {
 
   return (
     <div className="h-[80vh] flex items-center justify-center">
-      <div className="flex flex-col bg-white rounded-md p-6 shadow-md gap-3 max-w-md w-full">
-        <h2 className="h2-bold text-center mb-6">Add Training</h2>
+      <div className="relative flex flex-col bg-gradient-to-br sm:from-gray-50 sm:to-gray-100/90 sm:border-[1px] sm:border-gray-300 rounded-md p-6 shadow-md gap-3 max-w-md w-full">
+        <div className="absolute left-0 -top-[3rem]">
+          <Button variant="ghost" onClick={() => navigate(-1)}>
+            <ChevronLeft />
+            Back
+          </Button>
+        </div>
+        <h2 className="text-3xl font-semibold text-center mb-6">
+          Add Training
+        </h2>
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}

@@ -110,8 +110,10 @@ const UpdateTrainer = () => {
 
   return (
     <div className="h-[80vh] flex items-center justify-center">
-      <div className="flex flex-col bg-white rounded-md p-6 shadow-md gap-3 max-w-md w-full">
-        <h2 className="h2-bold text-center mb-6">Update Trainer</h2>
+      <div className="flex flex-col bg-gradient-to-br sm:from-gray-50 sm:to-gray-100/90 sm:border-[1px] sm:border-gray-300 rounded-md p-6 shadow-md gap-3 max-w-md w-full">
+        <h2 className="text-3xl font-semibold text-center mb-6">
+          Update Trainer
+        </h2>
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}

@@ -14,7 +14,14 @@ import {
 import { BACKEND_URL } from "@/config";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
-import { EllipsisVertical, Loader } from "lucide-react";
+import {
+  Cross,
+  EllipsisVertical,
+  Loader,
+  Pencil,
+  Plus,
+  Trash2,
+} from "lucide-react";
 import { useState } from "react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
@@ -73,40 +80,50 @@ const TechnologyCard = ({ tech }: { tech: { name: string; _id: string } }) => {
   });
 
   function onUpdate() {
-    console.log(input);
-
     if (!input) return;
     updateTech();
   }
 
   return (
     <>
-      <div className="flex items-center justify-between shadow-md rounded-md p-4 w-full">
-        <h3 className="text-xl font-semibold text-center">{tech.name}</h3>
-        <DropdownMenu>
+      <div
+        className="flex items-center gap-4 shadow-sm rounded-md px-4 py-2  bg-blue-100 text-zinc-800 w-fit cursor-pointer"
+        onClick={() => setOpenEdit(true)}
+      >
+        <h3 className="text-lg font-[500] text-center">{tech.name}</h3>
+        {/* <DropdownMenu>
           <DropdownMenuTrigger>
             <EllipsisVertical className="w-4 h-4 cursor-pointer" />
           </DropdownMenuTrigger>
           <DropdownMenuContent>
             <DropdownMenuItem
-              className="text-sm font-semibold cursor-pointer"
+              className="text-md font-[500] cursor-pointer flex items-center gap-3"
               onClick={() => setOpenEdit(true)}
             >
+              <Pencil className="w-4 h-4 text-blue-500" />
               Edit
             </DropdownMenuItem>
             <DropdownMenuItem
-              className="text-sm font-semibold cursor-pointer"
+              className="text-md font-[500] cursor-pointer flex items-center gap-3"
               onClick={() => setOpenDelete(true)}
             >
+              <Trash2 className="w-4 h-4 text-red-500" />
               Delete
             </DropdownMenuItem>
           </DropdownMenuContent>
-        </DropdownMenu>
+        </DropdownMenu> */}
+        <Plus
+          onClick={(e) => {
+            e.stopPropagation();
+            setOpenDelete(true);
+          }}
+          className="w-5 h-5 text-red-500 rotate-45 hover:scale-[1.25] duration-150 cursor-pointer"
+        />
       </div>
       <Dialog open={openEdit} onOpenChange={setOpenEdit}>
-        <DialogContent>
+        <DialogContent className="max-w-[350px]">
           <DialogHeader>
-            <DialogTitle>Update Technology</DialogTitle>
+            <DialogTitle className="text-xl">Update Technology</DialogTitle>
           </DialogHeader>
           <div className="flex flex-col  gap-4">
             <Input
