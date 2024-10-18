@@ -14,14 +14,13 @@ const UserCard = ({ user }: { user: UserType }) => {
         />
         <div className="text-zinc-800 flex flex-col gap-2 font-semibold">
           <h3 className="text-xl">{user.name}</h3>
-
-          <span className="flex items-center gap-2 font-[500] text-blue-600 w-fit py-1 px-2 rounded-md text-xs bg-blue-100">
-            <Mail className="h-4 w-4" />
-            {user.email}
-          </span>
           <span className="flex items-center gap-2 font-[500] text-blue-600 w-fit py-1 px-2 rounded-md text-xs bg-blue-100">
             <Phone className="h-4 w-4" />
             {user.contact}
+          </span>
+          <span className="flex items-center gap-2 font-[500] text-blue-600 w-fit py-1 px-2 rounded-md text-xs bg-blue-100">
+            <Mail className="h-4 w-4" />
+            {user.email}
           </span>
         </div>
       </div>
