@@ -7,7 +7,7 @@ const Navbar = () => {
   return (
     <div className="fixed top-0 z-20 bg-white w-full h-fit py-3 shadow-md">
       <div className="container flex items-center justify-between">
-        <Link to="/" className="h2-bold text-blue-2">
+        <Link to="/" className="text-3xl font-semibold text-blue-2">
           Delvex
         </Link>
         <div className="hidden sm:block">

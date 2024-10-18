@@ -1,22 +1,12 @@
-import Filter from "@/components/Filter";
+import FilterButton from "@/components/FilterButton";
 import Pagination from "@/components/Pagination";
 import SearchInput from "@/components/SearchInput";
 import TrainersList from "@/components/TrainersList";
-import { buttonVariants } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 import { useAllTrainers } from "@/react-query/trainer";
 import { Loader } from "lucide-react";
-import { useState } from "react";
 
 const Home = () => {
   const { allTrainers, loadingTrainers } = useAllTrainers();
-  const [open, setOpen] = useState(false);
 
   if (loadingTrainers)
     return (
@@ -28,25 +18,11 @@ const Home = () => {
   return (
     <div className="flex flex-col gap-10 items-center justify-center w-full pb-4">
       <div className="flex flex-col gap-6 max-w-[400px] w-full">
-        <h1 className="text-4xl font-bold text-zinc-800 text-center">
+        <h1 className="text-5xl font-[600] text-zinc-800 text-center">
           Search Trainers
         </h1>
         <SearchInput />
-        <Dialog open={open} onOpenChange={setOpen}>
-          <DialogTrigger className="flex justify-center">
-            <div className={buttonVariants()}>Filter</div>
-          </DialogTrigger>
-          <DialogContent className="max-w-[600px] overflow-y-auto max-h-screen">
-            <DialogHeader>
-              <DialogTitle className="text-xl text-center ">
-                Filter Trainers
-              </DialogTitle>
-              <div className="mt-6">
-                <Filter setOpen={setOpen} />
-              </div>
-            </DialogHeader>
-          </DialogContent>
-        </Dialog>
+        <FilterButton />
       </div>
       <div className="overscroll-auto w-full">
         <TrainersList />

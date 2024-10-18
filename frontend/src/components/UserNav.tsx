@@ -55,7 +55,7 @@ const UserNav = () => {
       <DropdownMenuTrigger>
         <Avatar>
           <img
-            src={user?.avatar || "/icons/profile-placeholder.svg"}
+            src={user?.avatar || "/images/user-profile.png"}
             referrerPolicy="no-referrer"
             alt="profile"
             className="aspect-square"

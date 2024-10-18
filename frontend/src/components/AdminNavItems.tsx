@@ -10,8 +10,8 @@ const AdminNavItems = () => {
             to={link.route}
             className={({ isActive }) =>
               isActive
-                ? "font-semibold text-lg text-blue-600"
-                : "font-semibold text-lg"
+                ? "font-[500] text-lg text-blue-600"
+                : "font-[500] text-lg"
             }
           >
             {link.label}

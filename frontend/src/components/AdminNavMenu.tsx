@@ -56,7 +56,7 @@ const AdminNavMenu = () => {
       <DropdownMenuTrigger>
         <Avatar>
           <img
-            src={"/icons/profile-placeholder.svg"}
+            src={"/images/user-profile.png"}
             referrerPolicy="no-referrer"
             alt="profile"
             className="aspect-square"

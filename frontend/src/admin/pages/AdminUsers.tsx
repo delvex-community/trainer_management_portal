@@ -1,9 +1,8 @@
 import Pagination from "@/components/Pagination";
 import SearchInput from "@/components/SearchInput";
-import { Button } from "@/components/ui/button";
 import UsersList from "@/components/UsersList";
 import { useAllUsers } from "@/react-query/user";
-import { Loader } from "lucide-react";
+import { CirclePlus, Loader } from "lucide-react";
 import { NavLink } from "react-router-dom";
 
 const AdminUsers = () => {
@@ -22,9 +21,12 @@ const AdminUsers = () => {
         <SearchInput />
       </div>
       <div className="flex justify-center mb-5">
-        <Button className="font-semibold text-lg" asChild>
-          <NavLink to="/admin/users/add">Add User</NavLink>
-        </Button>
+        <NavLink
+          to="/admin/users/add"
+          className="flex items-center gap-2 font-semibold text-lg px-4 py-2 rounded-md border-[1px] hover:border-gray-100 hover:bg-gray-100"
+        >
+          <CirclePlus className="w-5 h-5 text-blue-500" /> Add User
+        </NavLink>
       </div>
       <UsersList />
       <div className="flex items-center justify-center mt-4">

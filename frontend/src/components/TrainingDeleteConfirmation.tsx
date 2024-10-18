@@ -45,7 +45,7 @@ const TrainingDeleteConfirmation = ({ trainingId }: { trainingId: string }) => {
   return (
     <AlertDialog>
       <AlertDialogTrigger>
-        <Trash2 className="text-red-600" />
+        <Trash2 className="text-red-600 w-5 h-5 hover:scale-[1.20] duration-150" />
       </AlertDialogTrigger>
 
       <AlertDialogContent className="bg-white">

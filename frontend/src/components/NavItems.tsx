@@ -9,7 +9,7 @@ const NavItems = () => {
           <NavLink
             to={link.route}
             className={({ isActive }) =>
-              isActive ? "font-bold text-lg text-blue-2" : "font-bold text-lg"
+              isActive ? "font-[500] text-lg text-blue-2" : "font-[500] text-lg"
             }
           >
             {link.label}

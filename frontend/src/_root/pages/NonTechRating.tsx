@@ -34,14 +34,16 @@ const NonTechRating = () => {
 
   return (
     <div className="h-[80vh] flex flex-col items-center justify-center">
-      <div className="flex flex-col bg-white rounded-md p-6 shadow-md border-2 gap-3 max-w-md w-full relative">
+      <div className="flex flex-col bg-gradient-to-br from-gray-50 to-gray-100/90 rounded-md p-6 shadow-md border-[1px] border-gray-300 gap-3 max-w-md w-full relative">
         <div className="absolute left-0 -top-[3rem]">
           <Button variant="ghost" onClick={() => navigate(-1)}>
             <ChevronLeft />
             Back
           </Button>
         </div>
-        <h2 className="h2-bold text-center mb-6">Non Tech Rating</h2>
+        <h2 className="text-2xl font-[700] text-center mb-6">
+          Non Tech Rating
+        </h2>
         <div className="flex flex-col gap-4">
           <div className="flex items-center gap-2 justify-between flex-col sm:flex-row text-center sm:text-left">
             <span className="text-lg font-semibold">
@@ -54,8 +56,8 @@ const NonTechRating = () => {
                   return (
                     <Star
                       key={index}
-                      className={`cursor-pointer text-yellow-500 ${
-                        rating1 >= index + 1 && "fill-yellow-500"
+                      className={`cursor-pointer text-yellow-400 ${
+                        rating1 >= index + 1 && "fill-yellow-400"
                       }`}
                     />
                   );
@@ -73,8 +75,8 @@ const NonTechRating = () => {
                   return (
                     <Star
                       key={index}
-                      className={`cursor-pointer text-yellow-500 ${
-                        rating2 >= index + 1 && "fill-yellow-500"
+                      className={`cursor-pointer text-yellow-400 ${
+                        rating2 >= index + 1 && "fill-yellow-400"
                       }`}
                     />
                   );
@@ -92,8 +94,8 @@ const NonTechRating = () => {
                   return (
                     <Star
                       key={index}
-                      className={`cursor-pointer text-yellow-500 ${
-                        rating3 >= index + 1 && "fill-yellow-500"
+                      className={`cursor-pointer text-yellow-400 ${
+                        rating3 >= index + 1 && "fill-yellow-400"
                       }`}
                     />
                   );
@@ -111,8 +113,8 @@ const NonTechRating = () => {
                   return (
                     <Star
                       key={index}
-                      className={`cursor-pointer text-yellow-500 ${
-                        rating4 >= index + 1 && "fill-yellow-500"
+                      className={`cursor-pointer text-yellow-400 ${
+                        rating4 >= index + 1 && "fill-yellow-400"
                       }`}
                     />
                   );
@@ -130,8 +132,8 @@ const NonTechRating = () => {
                   return (
                     <Star
                       key={index}
-                      className={`cursor-pointer text-yellow-500 ${
-                        rating5 >= index + 1 && "fill-yellow-500"
+                      className={`cursor-pointer text-yellow-400 ${
+                        rating5 >= index + 1 && "fill-yellow-400"
                       }`}
                     />
                   );

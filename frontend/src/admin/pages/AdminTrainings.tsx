@@ -1,9 +1,8 @@
 import Pagination from "@/components/Pagination";
 import SearchInput from "@/components/SearchInput";
 import TrainingList from "@/components/TrainingList";
-import { Button } from "@/components/ui/button";
 import { useAllTrainings } from "@/react-query/training";
-import { Loader } from "lucide-react";
+import { CirclePlus, Loader } from "lucide-react";
 import { NavLink } from "react-router-dom";
 
 const AdminTrainings = () => {
@@ -22,9 +21,12 @@ const AdminTrainings = () => {
         <SearchInput />
       </div>
       <div className="flex justify-center mb-5">
-        <Button className="font-semibold text-lg" asChild>
-          <NavLink to="/admin/trainings/add">Add Training</NavLink>
-        </Button>
+        <NavLink
+          to="/admin/trainings/add"
+          className="flex items-center gap-2 font-semibold text-lg px-4 py-2 rounded-md border-[1px] hover:border-gray-100 hover:bg-gray-100"
+        >
+          <CirclePlus className="w-5 h-5 text-blue-500" /> Add Training
+        </NavLink>
       </div>
 
       <TrainingList trainings={allTrainings.data} />

@@ -23,14 +23,14 @@ const Filter = ({ setOpen }: { setOpen: any }) => {
     <div className="mt-4 flex flex-col items-center gap-6 max-h-[700px] overflow-auto">
       <div className="flex flex-col items-center gap-5 sm:flex-row">
         <div className="flex flex-col gap-3 items-center">
-          <h3 className="text-gray-800 font-semibold bg-gray-200 py-1 px-2 rounded-md">
+          <h3 className="text-zinc-800 font-semibold bg-gray-200 py-1 px-2 rounded-md">
             Sort
           </h3>
           <Sort />
         </div>
 
         <div className="flex  flex-col gap-3 items-center ">
-          <h3 className="text-gray-800 font-semibold bg-gray-200 py-1 px-2 rounded-md">
+          <h3 className="text-zinc-800 font-semibold bg-gray-200 py-1 px-2 rounded-md">
             Technologies
           </h3>
           <TechnologyFilter />
@@ -38,14 +38,14 @@ const Filter = ({ setOpen }: { setOpen: any }) => {
       </div>
       <div className="flex flex-col items-center gap-5 sm:flex-row">
         <div className="flex flex-col gap-3 items-center ">
-          <h3 className="text-gray-800 font-semibold bg-gray-200 py-1 px-2 rounded-md">
+          <h3 className="text-zinc-800 font-semibold bg-gray-200 py-1 px-2 rounded-md">
             Tech Rating
           </h3>
           <TechRatingFilter />
         </div>
 
         <div className="flex flex-col gap-3 items-center ">
-          <h3 className="text-gray-800 font-semibold bg-gray-200 py-1 px-2 rounded-md">
+          <h3 className="text-zinc-800 font-semibold bg-gray-200 py-1 px-2 rounded-md">
             Non Tech Rating
           </h3>
           <NonTechRatingFilter />
@@ -53,7 +53,7 @@ const Filter = ({ setOpen }: { setOpen: any }) => {
       </div>
 
       <div className="flex flex-col gap-3 items-center ">
-        <h3 className="text-gray-800 font-semibold bg-gray-200 py-1 px-2 rounded-md">
+        <h3 className="text-zinc-800 font-semibold bg-gray-200 py-1 px-2 rounded-md">
           Overall Rating
         </h3>
         <RatingFilter />

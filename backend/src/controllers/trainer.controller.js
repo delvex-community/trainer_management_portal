@@ -214,6 +214,21 @@ export const getAllTrainers = asyncHandler(async (req, res) => {
 
   pipeline.push(
     {
+      $lookup: {
+        from: "trainings",
+        localField: "_id",
+        foreignField: "trainerId",
+        as: "trainingCount",
+      },
+    },
+    {
+      $addFields: {
+        trainingCount: {
+          $size: "$trainingCount",
+        },
+      },
+    },
+    {
       $addFields: {
         ratings: {
           $first: "$ratings",

@@ -1,3 +1,7 @@
+import { BACKEND_URL } from "@/config";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import axios from "axios";
+import { Trash2 } from "lucide-react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -9,11 +13,6 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "./ui/alert-dialog";
-import { Delete } from "lucide-react";
-import { Button } from "./ui/button";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
-import { BACKEND_URL } from "@/config";
 import { toast } from "./ui/use-toast";
 
 const TrainerDeleteConfirmation = ({ trainerId }: { trainerId: string }) => {
@@ -46,12 +45,7 @@ const TrainerDeleteConfirmation = ({ trainerId }: { trainerId: string }) => {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button
-          variant="destructive"
-          className="text-md flex items-center gap-2"
-        >
-          <Delete /> Delete
-        </Button>
+        <Trash2 className="w-5 h-5 text-red-500 hover:scale-[1.20] duration-150" />
       </AlertDialogTrigger>
 
       <AlertDialogContent className="bg-white">

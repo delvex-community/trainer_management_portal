@@ -29,11 +29,13 @@ export type TrainerType = {
   name: string;
   email: string;
   contact: number;
-  tech: string;
+  tech: string[];
   avatar: string;
   _id: string;
   ratings: any;
   avgRating: number;
+  location: string;
+  trainingCount: number;
 };
 
 export type TrainingType = {
