@@ -2,8 +2,7 @@ import Pagination from "@/components/Pagination";
 import SearchInput from "@/components/SearchInput";
 import TrainingList from "@/components/TrainingList";
 import { useAllTrainings } from "@/react-query/training";
-import { CirclePlus, Loader } from "lucide-react";
-import { NavLink } from "react-router-dom";
+import { Loader } from "lucide-react";
 
 const Trainings = () => {
   const { allTrainings, isLoading } = useAllTrainings();
