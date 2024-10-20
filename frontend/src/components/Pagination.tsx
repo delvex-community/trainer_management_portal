@@ -1,7 +1,6 @@
-import { useParams, useSearchParams } from "react-router-dom";
-import { Button } from "./ui/button";
 import { useQueryClient } from "@tanstack/react-query";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useParams, useSearchParams } from "react-router-dom";
 
 type PaginationProps = {
   totalPages: number;
