@@ -27,6 +27,7 @@ const Home = () => {
       <div className="overscroll-auto w-full">
         <TrainersList />
       </div>
+
       <Pagination totalPages={allTrainers?.totalPages} />
     </div>
   );

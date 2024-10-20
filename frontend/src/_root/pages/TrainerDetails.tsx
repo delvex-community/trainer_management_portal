@@ -39,7 +39,7 @@ const TrainerDetails = () => {
           <div className="bg-gradient-to-br sm:from-gray-50 sm:to-gray-100/90 sm:border-[1px] sm:border-gray-300 py-8 px-12 rounded-lg flex flex-col md:flex-row md:items-start md:justify-between gap-6">
             <div className="flex flex-col md:flex-row items-center md:items-start gap-7">
               <img
-                src={trainer?.avatar || "/icons/profile-placeholder.svg"}
+                src={trainer?.avatar || "/images/user-profile.png"}
                 alt="profile"
                 className="w-28 h-28 lg:h-34 lg:w-34 rounded-xl object-cover"
               />

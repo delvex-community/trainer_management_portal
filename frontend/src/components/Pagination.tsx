@@ -1,6 +1,7 @@
 import { useParams, useSearchParams } from "react-router-dom";
 import { Button } from "./ui/button";
 import { useQueryClient } from "@tanstack/react-query";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 type PaginationProps = {
   totalPages: number;
@@ -31,25 +32,24 @@ const Pagination = ({ totalPages }: PaginationProps) => {
   if (totalPages <= 1) return null;
 
   return (
-    <div className="flex gap-2">
-      <Button
-        size="lg"
-        variant="outline"
-        className="w-28"
+    <div className="flex items-center gap-3">
+      <button
+        className="w-fit border-[1px] border-gray-300 rounded-md p-2 cursor-pointer hover:bg-gray-100 disabled:hover:bg-transparent disabled:cursor-not-allowed"
         onClick={() => onClick("prev")}
         disabled={Number(page) === 1}
       >
-        Previous
-      </Button>
-      <Button
-        size="lg"
-        variant="outline"
-        className="w-28"
+        <ChevronLeft />
+      </button>
+      <span className="font-semibold">
+        Page {page} out of {totalPages}
+      </span>
+      <button
+        className="w-fit border-[1px] border-gray-300 rounded-md p-2 cursor-pointer hover:bg-gray-100 disabled:hover:bg-transparent disabled:cursor-not-allowed"
         onClick={() => onClick("next")}
         disabled={Number(page) >= totalPages}
       >
-        Next
-      </Button>
+        <ChevronRight />
+      </button>
     </div>
   );
 };
