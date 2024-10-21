@@ -23,7 +23,7 @@ import AdminTrainerDetails from "./admin/pages/AdminTrainerDetails";
 import AdminTrainers from "./admin/pages/AdminTrainers";
 import AdminTrainings from "./admin/pages/AdminTrainings";
 import AdminUsers from "./admin/pages/AdminUsers";
-import UpdateTrainer from "./admin/pages/UpdateTrainer";
+import UpdateTrainer from "./admin/forms/UpdateTrainer";
 import AdminTechnologies from "./admin/pages/AdminTechnologies";
 import AdminRatings from "./admin/pages/AdminRatings";
 import Trainings from "./_root/pages/Trainings";

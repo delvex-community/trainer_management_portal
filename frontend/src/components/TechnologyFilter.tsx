@@ -4,10 +4,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { filterTechnologies } from "@/constants";
+import { useAllTechnologies } from "@/react-query/technology";
 import TechnologyCheckbox from "./TechnologyCheckbox";
 
 const TechnologyFilter = () => {
+  const { allTechnologies } = useAllTechnologies();
+
   return (
     <div className="flex flex-col gap-3 items-center">
       <Select>
@@ -16,8 +18,8 @@ const TechnologyFilter = () => {
         </SelectTrigger>
         <SelectContent className="max-h-[150px]">
           <div className="flex flex-col gap-2 overscroll-auto px-3 py-2">
-            {filterTechnologies.map((tech) => (
-              <TechnologyCheckbox value={tech} key={tech} />
+            {allTechnologies?.data?.map((tech: { name: string }) => (
+              <TechnologyCheckbox value={tech.name} key={tech.name} />
             ))}
           </div>
         </SelectContent>

@@ -46,7 +46,7 @@ const Sort = () => {
         <SelectTrigger className="w-[100px]">
           <SelectValue placeholder="Sort" />
         </SelectTrigger>
-        <SelectContent>
+        <SelectContent className="font-[500]">
           <SelectItem value="none">Default</SelectItem>
           <SelectItem value="rating">Rating</SelectItem>
           <SelectItem value="name">Name</SelectItem>
@@ -59,7 +59,7 @@ const Sort = () => {
         <SelectTrigger className="w-[100px]">
           <SelectValue placeholder="Order" />
         </SelectTrigger>
-        <SelectContent>
+        <SelectContent className="font-[500]">
           <SelectItem value="none">Default</SelectItem>
           <SelectItem value="asc">
             <ArrowUp className="h-4 w-4" />

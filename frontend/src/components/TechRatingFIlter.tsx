@@ -77,7 +77,7 @@ const TechRatingFilter = () => {
             <SelectItem value="none">Default</SelectItem>
             {techRatingLabels.map((rating, index) => (
               <SelectItem value={`rating${index + 1}`}>
-                <div className="flex items-center gap-2 font-bold">
+                <div className="flex items-center gap-2 font-[500]">
                   {rating}
                 </div>
               </SelectItem>
@@ -94,27 +94,27 @@ const TechRatingFilter = () => {
           <SelectContent>
             <SelectItem value="none">Default</SelectItem>
             <SelectItem value="1">
-              <div className="flex items-center gap-2 font-bold">
+              <div className="flex items-center gap-2 font-[500]">
                 1 <Star className="h-4 w-4 fill-black" />
               </div>
             </SelectItem>
             <SelectItem value="2">
-              <div className="flex items-center gap-2 font-bold">
+              <div className="flex items-center gap-2 font-[500]">
                 2 <Star className="h-4 w-4 fill-black" />
               </div>
             </SelectItem>
             <SelectItem value="3">
-              <div className="flex items-center gap-2 font-bold">
+              <div className="flex items-center gap-2 font-[500]">
                 3 <Star className="h-4 w-4 fill-black" />
               </div>
             </SelectItem>
             <SelectItem value="4">
-              <div className="flex items-center gap-2 font-bold">
+              <div className="flex items-center gap-2 font-[500]">
                 4 <Star className="h-4 w-4 fill-black" />
               </div>
             </SelectItem>
             <SelectItem value="5">
-              <div className="flex items-center gap-2 font-bold">
+              <div className="flex items-center gap-2 font-[500]">
                 5 <Star className="h-4 w-4 fill-black" />
               </div>
             </SelectItem>

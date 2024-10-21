@@ -2,7 +2,7 @@ import Pagination from "@/components/Pagination";
 import SearchInput from "@/components/SearchInput";
 import TrainingList from "@/components/TrainingList";
 import { useAllTrainings } from "@/react-query/training";
-import { Loader } from "lucide-react";
+import { Loader, SearchX } from "lucide-react";
 
 const Trainings = () => {
   const { allTrainings, isLoading } = useAllTrainings();
@@ -23,10 +23,16 @@ const Trainings = () => {
         <SearchInput />
       </div>
 
-      <div className="overscroll-auto w-full flex-1 mt-4">
-        <TrainingList trainings={allTrainings.data} />
-      </div>
-
+      {allTrainings.data.length !== 0 ? (
+        <div className="overscroll-auto w-full flex-1">
+          <TrainingList trainings={allTrainings.data} />
+        </div>
+      ) : (
+        <div className="flex flex-col items-center sm:flex-row gap-4 justify-center rounded-md text-3xl font-[700] h-[20vh] text-red-500 text-center">
+          <SearchX className="w-10 h-10" />
+          No Training Found
+        </div>
+      )}
       <div className="flex items-center justify-center mt-4">
         <Pagination totalPages={allTrainings.totalPages} />
       </div>

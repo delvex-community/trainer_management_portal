@@ -140,7 +140,7 @@ const AdminTrainerDetails = () => {
           ) : (
             <div className="bg-gradient-to-br sm:from-gray-50 sm:to-gray-100/90 sm:border-[1px] sm:border-gray-300 flex flex-col items-center sm:flex-row gap-4 justify-center rounded-md text-3xl font-[700] h-36 text-red-500 text-center mb-4">
               <SearchX className="w-10 h-10" />
-              No Trainings Delivered Yet
+              No Training Delivered Yet
             </div>
           )}
           {trainerTrainings.totalPages !== 0 && (

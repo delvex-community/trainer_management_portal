@@ -16,7 +16,7 @@ const AdminUsers = () => {
     );
 
   return (
-    <div className="flex flex-col gap-6 items-center min-h-[86vh] sm:min-h-[79vh]">
+    <div className="flex flex-col gap-6 items-center min-h-[86vh] sm:min-h-[78vh]">
       <div className="w-full max-w-[400px]">
         <SearchInput />
       </div>
@@ -29,7 +29,7 @@ const AdminUsers = () => {
         </NavLink>
       </div>
 
-      <div className="w-full flex-1 mt-4">
+      <div className="w-full flex-1">
         <UsersList />
       </div>
 

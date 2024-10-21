@@ -41,7 +41,7 @@ export const getTechnologies = asyncHandler(async (req, res) => {
   const length = temp.length;
 
   pipeline.push({
-    $sort: { createdAt: -1 },
+    $sort: { name: 1 },
   });
 
   const technologies = await Technology.aggregate(pipeline);
