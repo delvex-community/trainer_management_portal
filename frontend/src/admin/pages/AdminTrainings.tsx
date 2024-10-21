@@ -2,7 +2,7 @@ import Pagination from "@/components/Pagination";
 import SearchInput from "@/components/SearchInput";
 import TrainingList from "@/components/TrainingList";
 import { useAllTrainings } from "@/react-query/training";
-import { CirclePlus, Loader } from "lucide-react";
+import { CirclePlus, Loader, SearchX } from "lucide-react";
 import { NavLink } from "react-router-dom";
 
 const AdminTrainings = () => {
@@ -28,9 +28,17 @@ const AdminTrainings = () => {
           <CirclePlus className="w-5 h-5 text-blue-500" /> Add Training
         </NavLink>
       </div>
-      <div className="overscroll-auto w-full flex-1">
-        <TrainingList trainings={allTrainings.data} />
-      </div>
+
+      {allTrainings.data.length !== 0 ? (
+        <div className="overscroll-auto w-full flex-1">
+          <TrainingList trainings={allTrainings.data} />
+        </div>
+      ) : (
+        <div className="flex flex-col items-center sm:flex-row gap-4 justify-center rounded-md text-3xl font-[700] h-[20vh] text-red-500 text-center">
+          <SearchX className="w-10 h-10" />
+          No Trainings Found
+        </div>
+      )}
 
       <div className="flex items-center justify-center mt-4">
         <Pagination totalPages={allTrainings.totalPages} />

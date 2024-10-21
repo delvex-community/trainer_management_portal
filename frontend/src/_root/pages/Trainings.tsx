@@ -15,7 +15,7 @@ const Trainings = () => {
     );
 
   return (
-    <div className="flex flex-col gap-6 items-center min-h-[82vh]">
+    <div className="flex flex-col gap-6 items-center min-h-[86vh] sm:min-h-[82vh]">
       <h1 className="text-3xl md:text-4xl font-[600] text-zinc-800 text-center">
         Search Trainings
       </h1>

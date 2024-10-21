@@ -16,7 +16,7 @@ const TrainersList = ({ isAdmin = false }) => {
       ) : (
         <>
           {allTrainers.data.length === 0 ? (
-            <div className="w-full flex items-center justify-center gap-4 h-[20vh] text-3xl font-semibold text-red-500">
+            <div className="w-full flex items-center justify-center gap-4 h-[20vh] text-3xl font-[700] text-red-500">
               <SearchX className="w-10 h-10" />
               No Trainer Found
             </div>
