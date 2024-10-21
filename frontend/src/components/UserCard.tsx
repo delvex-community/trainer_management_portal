@@ -10,7 +10,7 @@ import { UserType } from "@/types";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { Edit, Mail, Phone, ShieldAlert } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Loader from "./Loader";
 import { Button } from "./ui/button";
@@ -19,11 +19,17 @@ import { toast } from "./ui/use-toast";
 import UserDeleteConfirmation from "./UserDeleteConfirmation";
 
 const UserCard = ({ user }: { user: UserType }) => {
-  const decryptedPassword = decryptPassword(user.password);
+  const decryptedPassword = decryptPassword(user?.password || "");
 
   const [openPassword, setOpenPassword] = useState(false);
   const [input, setInput] = useState(decryptedPassword || "");
   const queryClient = useQueryClient();
+
+  useEffect(() => {
+    if (user.password) {
+      setInput(decryptPassword(user.password));
+    }
+  }, [user]);
 
   const { mutate: updateUserPassword, isPending: isUpdating } = useMutation({
     mutationFn: async () => {
