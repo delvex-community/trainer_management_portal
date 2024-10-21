@@ -31,7 +31,7 @@ const Pagination = ({ totalPages }: PaginationProps) => {
   if (totalPages <= 1) return null;
 
   return (
-    <div className="flex items-center gap-3">
+    <div className="flex items-center gap-3 mb-4">
       <button
         className="w-fit border-[1px] border-gray-300 rounded-md p-2 cursor-pointer hover:bg-gray-100 disabled:hover:bg-transparent disabled:cursor-not-allowed"
         onClick={() => onClick("prev")}

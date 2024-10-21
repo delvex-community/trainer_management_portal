@@ -81,7 +81,7 @@ const UserCard = ({ user }: { user: UserType }) => {
           </span>
         </div>
       </div>
-      <div className="flex items-center justify-between gap-4 w-full">
+      <div className="flex items-center justify-center sm:justify-between gap-4 w-full">
         <button
           onClick={(e) => {
             e.stopPropagation();
