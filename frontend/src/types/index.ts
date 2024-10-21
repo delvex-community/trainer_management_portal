@@ -54,4 +54,5 @@ export type UserType = {
   email: string;
   contact: number;
   avatar: string;
+  password: string;
 };

@@ -1,6 +1,6 @@
-import mongoose, { Schema } from "mongoose";
-import bcryptjs from "bcryptjs";
+import CryptoJS from "crypto-js";
 import jwt from "jsonwebtoken";
+import mongoose, { Schema } from "mongoose";
 
 const userSchema = new Schema(
   {
@@ -32,12 +32,21 @@ const userSchema = new Schema(
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
 
-  this.password = await bcryptjs.hash(this.password, 10);
+  this.password = CryptoJS.AES.encrypt(
+    this.password,
+    process.env.ENCRYPT_SECRET_KEY
+  ).toString();
+
   next();
 });
 
 userSchema.methods.isPasswordCorrect = async function (password) {
-  return await bcryptjs.compare(password, this.password);
+  const bytes = CryptoJS.AES.decrypt(
+    this.password,
+    process.env.ENCRYPT_SECRET_KEY
+  );
+
+  return bytes.toString(CryptoJS.enc.Utf8) === password;
 };
 
 userSchema.methods.generateUserToken = async function () {

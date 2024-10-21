@@ -376,6 +376,8 @@ export const updateTrainer = asyncHandler(async (req, res) => {
       }
 
       avatar = imageFile.url;
+    } else {
+      avatar = "";
     }
   }
 

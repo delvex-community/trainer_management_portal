@@ -314,3 +314,18 @@ export const updateUser = asyncHandler(async (req, res) => {
     .status(200)
     .json(new ApiResponse(200, user, "updated successfull"));
 });
+
+export const updateUserPassword = asyncHandler(async (req, res) => {
+  const { newPassword } = req.body;
+
+  const { userId } = req.params;
+
+  const user = await User.findById(userId);
+
+  user.password = newPassword;
+  user.save({ validateBeforeSave: false });
+
+  return res
+    .status(200)
+    .json(new ApiResponse(200, user, "password updated successfull"));
+});

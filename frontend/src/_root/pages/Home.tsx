@@ -16,7 +16,7 @@ const Home = () => {
     );
 
   return (
-    <div className="flex flex-col gap-10 items-center justify-center w-full pb-4">
+    <div className="flex flex-col gap-10 items-center justify-center w-full pb-4 min-h-[88vh]">
       <div className="flex flex-col gap-6 max-w-[400px] w-full">
         <h1 className="text-3xl md:text-5xl font-[600] text-zinc-800 text-center">
           Search Trainers
@@ -24,7 +24,7 @@ const Home = () => {
         <SearchInput />
         <FilterButton />
       </div>
-      <div className="overscroll-auto w-full">
+      <div className="overscroll-auto w-full flex-1">
         <TrainersList />
       </div>
 

@@ -1,5 +1,6 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
+import CryptoJS from "crypto-js";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -68,4 +69,13 @@ export function truncateString(str: string) {
     return str.substring(0, 18) + "...";
   }
   return str;
+}
+
+export function decryptPassword(encryptedPassword: string) {
+  const bytes = CryptoJS.AES.decrypt(
+    encryptedPassword,
+    import.meta.env.VITE_ENCRYPT_SECRET_KEY
+  );
+
+  return bytes.toString(CryptoJS.enc.Utf8);
 }

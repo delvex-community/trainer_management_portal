@@ -15,7 +15,7 @@ const Trainings = () => {
     );
 
   return (
-    <div className="flex flex-col gap-6 items-center">
+    <div className="flex flex-col gap-6 items-center min-h-[82vh]">
       <h1 className="text-3xl md:text-4xl font-[600] text-zinc-800 text-center">
         Search Trainings
       </h1>
@@ -23,7 +23,9 @@ const Trainings = () => {
         <SearchInput />
       </div>
 
-      <TrainingList trainings={allTrainings.data} />
+      <div className="overscroll-auto w-full flex-1 mt-4">
+        <TrainingList trainings={allTrainings.data} />
+      </div>
 
       <div className="flex items-center justify-center mt-4">
         <Pagination totalPages={allTrainings.totalPages} />

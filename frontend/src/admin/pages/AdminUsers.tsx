@@ -16,7 +16,7 @@ const AdminUsers = () => {
     );
 
   return (
-    <div className="flex flex-col gap-6 items-center">
+    <div className="flex flex-col gap-6 items-center min-h-[75vh]">
       <div className="w-full max-w-[400px]">
         <SearchInput />
       </div>
@@ -28,7 +28,11 @@ const AdminUsers = () => {
           <CirclePlus className="w-5 h-5 text-blue-500" /> Add User
         </NavLink>
       </div>
-      <UsersList />
+
+      <div className="overscroll-auto w-full flex-1 mt-4">
+        <UsersList />
+      </div>
+
       <div className="flex items-center justify-center mt-4">
         <Pagination totalPages={allUsers?.totalPages} />
       </div>

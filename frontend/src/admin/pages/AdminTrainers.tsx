@@ -17,7 +17,7 @@ const AdminTrainers = () => {
     );
 
   return (
-    <div className="flex flex-col gap-6 items-center">
+    <div className="flex flex-col gap-6 items-center min-h-[83vh]">
       <div className="w-full max-w-[400px]">
         <SearchInput />
       </div>
@@ -30,7 +30,11 @@ const AdminTrainers = () => {
         </NavLink>
         <FilterButton />
       </div>
-      <TrainersList isAdmin={true} />
+
+      <div className="overscroll-auto w-full flex-1">
+        <TrainersList isAdmin={true} />
+      </div>
+
       <div className="flex items-center justify-center mt-4">
         <Pagination totalPages={allTrainers?.totalPages} />
       </div>

@@ -10,6 +10,7 @@ import {
   loginUser,
   logoutUser,
   updateUser,
+  updateUserPassword,
 } from "../controllers/user.controller.js";
 import { verifyUser } from "../middlewares/user.middleware.js";
 import { verifyAdmin } from "../middlewares/admin.middleware.js";
@@ -34,6 +35,8 @@ userRouter.post("/google-login", googleLogin);
 userRouter.post("/logout", verifyUser, logoutUser);
 
 userRouter.patch("/update/:userId", upload.single("file"), updateUser);
+
+userRouter.patch("/update-password/:userId", updateUserPassword);
 
 userRouter.delete("/delete/:userId", deleteUser);
 export default userRouter;

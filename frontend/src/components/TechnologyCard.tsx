@@ -40,9 +40,6 @@ const TechnologyCard = ({ tech }: { tech: { name: string; _id: string } }) => {
         variant: "destructive",
       });
     },
-    onSettled: () => {
-      setInput("");
-    },
   });
 
   const { mutate: deleteTech, isPending: isDeleting } = useMutation({
