@@ -72,14 +72,10 @@ export function truncateString(str: string) {
 }
 
 export function decryptPassword(encryptedPassword: string) {
-  console.log(encryptedPassword, import.meta.env.VITE_ENCRYPT_SECRET_KEY);
-
   const bytes = CryptoJS.AES.decrypt(
     encryptedPassword,
     import.meta.env.VITE_ENCRYPT_SECRET_KEY
   );
-
-  console.log(bytes);
 
   return bytes.toString(CryptoJS.enc.Utf8);
 }
