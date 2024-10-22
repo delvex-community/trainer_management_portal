@@ -80,36 +80,63 @@ export const getAllTrainers = asyncHandler(async (req, res) => {
       }
     : {};
 
-  const techRatingCondition = techRating
-    ? atLeastTechRating
-      ? atMostTechRating
+  const techRatingCondition =
+    techRating && techRatingLabel
+      ? atLeastTechRating
+        ? atMostTechRating
+          ? {
+              $expr: {
+                $eq: [`$ratings.tech.${techRatingLabel}`, Number(techRating)],
+              },
+            }
+          : {
+              $expr: {
+                $gte: [`$ratings.tech.${techRatingLabel}`, Number(techRating)],
+              },
+            }
+        : atMostTechRating
         ? {
             $expr: {
-              $eq: [`$ratings.tech.${techRatingLabel}`, Number(techRating)],
+              $lte: [`$ratings.tech.${techRatingLabel}`, Number(techRating)],
             },
           }
         : {
             $expr: {
-              $gte: [`$ratings.tech.${techRatingLabel}`, Number(techRating)],
+              $eq: [`$ratings.tech.${techRatingLabel}`, Number(techRating)],
             },
           }
-      : atMostTechRating
-      ? {
-          $expr: {
-            $lte: [`$ratings.tech.${techRatingLabel}`, Number(techRating)],
-          },
-        }
-      : {
-          $expr: {
-            $eq: [`$ratings.tech.${techRatingLabel}`, Number(techRating)],
-          },
-        }
-    : {};
+      : {};
 
-  const nonTechRatingCondition = nonTechRating
-    ? atLeastNonTechRating
-      ? atMostNonTechRating
+  const nonTechRatingCondition =
+    nonTechRating && nonTechRatingLabel
+      ? atLeastNonTechRating
+        ? atMostNonTechRating
+          ? {
+              $expr: {
+                $eq: [
+                  `$ratings.nonTech.${nonTechRatingLabel}`,
+                  Number(nonTechRating),
+                ],
+              },
+            }
+          : {
+              $expr: {
+                $gte: [
+                  `$ratings.nonTech.${nonTechRatingLabel}`,
+                  Number(nonTechRating),
+                ],
+              },
+            }
+        : atMostTechRating
         ? {
+            $expr: {
+              $lte: [
+                `$ratings.nonTech.${nonTechRatingLabel}`,
+                Number(nonTechRating),
+              ],
+            },
+          }
+        : {
             $expr: {
               $eq: [
                 `$ratings.nonTech.${nonTechRatingLabel}`,
@@ -117,32 +144,7 @@ export const getAllTrainers = asyncHandler(async (req, res) => {
               ],
             },
           }
-        : {
-            $expr: {
-              $gte: [
-                `$ratings.nonTech.${nonTechRatingLabel}`,
-                Number(nonTechRating),
-              ],
-            },
-          }
-      : atMostTechRating
-      ? {
-          $expr: {
-            $lte: [
-              `$ratings.nonTech.${nonTechRatingLabel}`,
-              Number(nonTechRating),
-            ],
-          },
-        }
-      : {
-          $expr: {
-            $eq: [
-              `$ratings.nonTech.${nonTechRatingLabel}`,
-              Number(nonTechRating),
-            ],
-          },
-        }
-    : {};
+      : {};
 
   const ratingCondition = rating
     ? atLeast
