@@ -98,13 +98,13 @@ const TrainerDetails = () => {
                 <p className="flex font-semibold">Ratings</p>
               </DropdownMenuTrigger>
               <DropdownMenuContent>
-                <DropdownMenuItem className="font-[500]">
+                <DropdownMenuItem className="font-[500] text-md">
                   <Link to={`/trainers/${trainer?._id}/rating/tech`}>
                     Tech Rating
                   </Link>
                 </DropdownMenuItem>
 
-                <DropdownMenuItem className="font-[500]">
+                <DropdownMenuItem className="font-[500] text-md">
                   <Link to={`/trainers/${trainer?._id}/rating/nontech`}>
                     Non Tech Rating
                   </Link>
