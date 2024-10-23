@@ -91,9 +91,10 @@ const SigninForm = () => {
       {admin ? (
         <Navigate to="/admin" />
       ) : (
-        <div className="flex flex-col bg-white rounded-md p-6 shadow-md gap-3 max-w-md w-full mx-4">
-          <h2 className="h2-bold text-center">Admin Login</h2>
-          <p className="text-center mb-4">
+        <div className="flex flex-col items-center bg-white rounded-md p-6 shadow-md gap-3 max-w-md w-full mx-4">
+          <img src="/images/delvex-logo.png" alt="logo" className="h-10 w-10" />
+          <h2 className="h2-bold text-center text-blue-500">Admin Login</h2>
+          <p className="text-center mb-4 text-blue-400">
             Log in to admin account of delvex portal
           </p>
           <Form {...form}>
@@ -107,13 +108,15 @@ const SigninForm = () => {
                 render={({ field }) => (
                   <FormItem>
                     <div className="shadcn-form-row">
-                      <FormLabel className="shadcn-form-label">Email</FormLabel>
+                      <FormLabel className="shadcn-form-label text-blue-500 text-lg font-[600]">
+                        Email
+                      </FormLabel>
                       <FormControl>
                         <Input
                           placeholder="Your Email"
                           {...field}
                           type="email"
-                          className="form-input"
+                          className="form-input rounded-lg border-[1px] border-blue-300 bg-blue-100/30 max-w-4xl placeholder:text-zinc-700 text-zinc-900"
                         />
                       </FormControl>
                     </div>
@@ -128,14 +131,14 @@ const SigninForm = () => {
                 render={({ field }) => (
                   <FormItem>
                     <div className="shadcn-form-row">
-                      <FormLabel className="shadcn-form-label">
+                      <FormLabel className="shadcn-form-label text-blue-500 text-lg font-[600]">
                         Password
                       </FormLabel>
                       <FormControl>
                         <Input
                           placeholder="Your Password"
                           {...field}
-                          className="form-input"
+                          className="form-input rounded-lg border-[1px] border-blue-300 bg-blue-100/30 max-w-4xl placeholder:text-zinc-700 text-zinc-900"
                           type="password"
                         />
                       </FormControl>
@@ -145,7 +148,11 @@ const SigninForm = () => {
                 )}
               />
 
-              <Button type="submit" className="mt-3" disabled={isPending}>
+              <Button
+                type="submit"
+                className="mt-3 text-lg font-[500] bg-[#027efe] hover:bg-blue-500/90"
+                disabled={isPending}
+              >
                 {isPending ? <Loader /> : "Login"}
               </Button>
             </form>

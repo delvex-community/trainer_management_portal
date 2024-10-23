@@ -206,7 +206,7 @@
   }
 
   .shadcn-form-label {
-    @apply min-w-[100px] base-medium text-black;
+    @apply min-w-[100px];
   }
 }
 
